@@ -49,7 +49,9 @@ AutonomousMainCommand::AutonomousMainCommand(int containers)
 	AddParallel(new Place());
 	AddSequential(new AutonRunIntake(-1.0, 0.5));
 
-	AddSequential(new AutonDrive(-0.40, 0.40, 380));
+//	AddSequential(new AutonDrive(-0.40, 0.40, 380));
+
+	AddSequential(new AutonDrive(-0.80, -0.80, 400));
 	AddSequential(new ActuateIntake(false));
 
 //
