@@ -29,6 +29,7 @@ private:
 	 CodriverBase* codriverController;
 
 	 JoystickButton* tempLevel1;
+	 JoystickButton* overideCheck;
 
 	 TriggerButton* clawOveridePos;
 	 TriggerButton* clawOverideNeg;

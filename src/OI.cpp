@@ -73,6 +73,8 @@ OI::OI() {
 	SmartDashboard::PutData("Go to level 5", new GoToLevel(5));
 	SmartDashboard::PutData("Go to level 6", new GoToLevel(6));
 
+	SmartDashboard::PutData("Go Down & Reset Encoder", new ResetLevelEncoder());
+
 	SmartDashboard::PutData("Run Winch 1", new RunWinch(1, 1.0));
 	SmartDashboard::PutData("Run Winch 2", new RunWinch(2, 1.0));
 	SmartDashboard::PutData("Run Winch 3", new RunWinch(3, 1.0));
@@ -100,6 +102,9 @@ OI::OI() {
 	codriverController = new CodriverJoystickCustom(joystick2, joystick3);
 
 	tempLevel1 = new JoystickButton(joystick3, 16);
+	overideCheck = new JoystickButton(joystick3, 3);
+
+	overideCheck->WhenPressed(new ResetLevelEncoder());
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 //	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));
@@ -107,6 +112,7 @@ OI::OI() {
 //
 //	codriverController->GetCoopLevel()->WhenPressed(new GoToLevel(0));
 	tempLevel1->WhenPressed(new GoToLevel(1));
+
 	codriverController->GetLevel1()->WhenPressed(new GoToLevel(0));
 	codriverController->GetLevel2()->WhenPressed(new GoToLevel(2));
 	codriverController->GetLevel3()->WhenPressed(new GoToLevel(3));
