@@ -8,12 +8,12 @@
 class AutonDrive: public CommandBase
 {
 private:
-	float magnitude;
-	float angle;
+	float right;
+	float left;
 	float duration;
 
 public:
-	AutonDrive(float magnitude, float angle, float duration);
+	AutonDrive(float right, float left, int duration);
 	void Initialize();
 	void Execute();
 	bool IsFinished();

@@ -17,13 +17,15 @@ void GoToLevel::Initialize() {
 	} else {
 		Robot::clawPID->Disable();
 	}
-	if(Robot::clawPID->LEVELHEIGHT[level] > Robot::clawPID->GetSetpoint()) {
+	if(Robot::clawPID->LEVELHEIGHT[level] > Robot::clawPID->heightEnccoder->GetRaw()) {
 		//Down
 		goingDown = true;
-		Robot::clawPID->Disable();
-//		Robot::clawPID->RetrivePIDController()->SetPID(0.85, 0.0003, 0.0);
+//		Robot::clawPID->Disable();
+		Robot::clawPID->RetrivePIDController()->SetPID(0.4, 0.0003, -0.2);
+//		Robot::clawPID->RetrivePIDController()->SetPID(0.01, 0.0, 0.0);
 		//0.75, 0.0001, 0.0
 	} else {
+//		Robot::clawPID->Disable();
 		Robot::clawPID->RetrivePIDController()->SetPID(0.02, 0.0003, 0.0);
 		//0.01, 0.0001, 0.0
 	}
@@ -31,10 +33,10 @@ void GoToLevel::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void GoToLevel::Execute() {
-	if(goingDown) {
-		if(Robot::clawPID->heightEnccoder->GetRaw())
-		Robot::clawPID->SetMotor(1.5 * TimeSinceInitialized() + 0.15);
-	}
+//	if(goingDown) {
+//		if(Robot::clawPID->heightEnccoder->GetRaw())
+//		Robot::clawPID->SetMotor(1.5 * TimeSinceInitialized() + 0.15);
+//	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

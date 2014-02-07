@@ -145,7 +145,7 @@ Children:
           default: '0'
           name: Input Channel (Analog)
           validators: [AnalogInput]
-          value: '1'
+          value: '0'
       Base: Gyro
       Name: Gyro 1
     Properties:
@@ -620,7 +620,7 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Craig\workspace',
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Loaner\workspace',
     extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ..\}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
