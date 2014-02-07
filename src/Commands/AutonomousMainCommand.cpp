@@ -4,6 +4,8 @@
 #include "RunWinch.h"
 #include "GoToLevel.h"
 #include "Place.h"
+#include "ActuateIntake.h"
+#include "AutonRunIntake.h"
 
 AutonomousMainCommand::AutonomousMainCommand(int containers)
 {
@@ -28,17 +30,28 @@ AutonomousMainCommand::AutonomousMainCommand(int containers)
 
 //	if (containers > 0) AddParallel(new RunWinch(1, 1.0));
 //	if (containers > 1) AddParallel(new RunWinch(2, 1.0));
-//	AddSequential(new GoToLevel(0));
-//	AddSequential(new GoToLevel(2));
+	AddSequential(new GoToLevel(0));
+	AddParallel(new GoToLevel(2));
+	AddSequential(new AutonDrive(0.30, 0.30, 900));
+	AddSequential(new ActuateIntake(true));
+	AddSequential(new AutonRunIntake(-1.0, 0.8));
+	AddSequential(new ActuateIntake(false));
 
-//	AddParallel(new RunIntake(1.0));
-	AddSequential(new AutonDrive(0.30, 0.30, -900));
 //
 ////	if (containers > 1) AddParallel(new RunWinch(2, 1.0));
 ////	if (containers > 2) AddParallel(new RunWinch(3, 1.0));
-//	AddSequential(new AutonDrive(0.25, 0, 1));
-//	AddSequential(new GoToLevel(0));
-//	AddSequential(new GoToLevel(2));
+	AddSequential(new GoToLevel(0));
+	AddParallel(new GoToLevel(2));
+	AddSequential(new AutonDrive(0.30, 0.30, 900));
+
+	AddSequential(new ActuateIntake(true));
+	AddSequential(new AutonRunIntake(-1.0, 0.6));
+	AddParallel(new Place());
+	AddSequential(new AutonRunIntake(-1.0, 0.5));
+
+	AddSequential(new AutonDrive(-0.40, 0.40, 380));
+	AddSequential(new ActuateIntake(false));
+
 //
 ////	if (containers > 2) AddParallel(new RunWinch(3, 1.0));
 //	AddSequential(new AutonDrive(0.25, 0, 1));

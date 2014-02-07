@@ -1,3 +1,4 @@
+#include <cmath>
 #include "AutonDrive.h"
 
 AutonDrive::AutonDrive(float right, float left, int duration)
@@ -32,7 +33,7 @@ void AutonDrive::Execute()
 // Make this return true when this Command no longer needs to run execute()
 bool AutonDrive::IsFinished()
 {
-	if(Robot::drivetrain->rearRight->GetRaw() <= duration) {
+	if(abs(Robot::drivetrain->rearRight->GetRaw()) >= duration) {
 		return true;
 	} else {
 		return false;
