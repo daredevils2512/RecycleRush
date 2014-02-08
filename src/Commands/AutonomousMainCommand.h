@@ -8,7 +8,7 @@
 class AutonomousMainCommand: public CommandGroup
 {
 public:
-	AutonomousMainCommand(int containers);
+	AutonomousMainCommand(int containers, int totes);
 };
 
 #endif

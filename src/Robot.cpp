@@ -40,14 +40,15 @@ void Robot::RobotInit() {
 	lw = LiveWindow::GetInstance();
 
 	// instantiate the command used for the autonomous period
-	autonomousCommand = new AutonomousMainCommand(0);
+	autonomousCommand = new AutonomousMainCommand(0, 0);
 
 	chooser = new SendableChooser();
 //	chooser->AddDefault("Forward", new AutonomousForward());
-	chooser->AddDefault("No Containers", new AutonomousMainCommand(0));
-	chooser->AddObject("1 Containers", new AutonomousMainCommand(1));
-	chooser->AddObject("2 Containers", new AutonomousMainCommand(2));
-	chooser->AddObject("3 Containers", new AutonomousMainCommand(3));
+	chooser->AddDefault("No Containers, All Totes", new AutonomousMainCommand(0, 3));
+	chooser->AddObject("1 Containers, All Totes", new AutonomousMainCommand(1, 3));
+	chooser->AddObject("2 Containers, All Totes", new AutonomousMainCommand(2, 3));
+	chooser->AddObject("3 Containers, All Totes", new AutonomousMainCommand(3, 3));
+	chooser->AddObject("No Containers, 1 Tote", new AutonomousMainCommand(0, 1));
 
 	SmartDashboard::PutData("Autonomous Command", chooser);
 
