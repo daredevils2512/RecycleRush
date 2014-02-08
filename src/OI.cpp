@@ -112,7 +112,7 @@ OI::OI() {
 //	codriverController->GetCoopLevel()->WhenPressed(new GoToLevel(0));
 	tempLevel1->WhenPressed(new GoToLevel(1));
 
-	codriverController->GetLevel1()->WhenPressed(new GoToLevel(0));
+//	codriverController->GetLevel1()->WhenPressed(new GoToLevel(0));
 	codriverController->GetLevel2()->WhenPressed(new GoToLevel(2));
 	codriverController->GetLevel3()->WhenPressed(new GoToLevel(3));
 	codriverController->GetLevel4()->WhenPressed(new GoToLevel(4));
