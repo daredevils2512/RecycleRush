@@ -76,9 +76,8 @@ OI::OI() {
 
 	SmartDashboard::PutData("Go Down & Reset Encoder", new ResetLevelEncoder());
 
-	SmartDashboard::PutData("Run Winch 1", new RunWinch(1, 1.0));
-	SmartDashboard::PutData("Run Winch 2", new RunWinch(2, 1.0));
-	SmartDashboard::PutData("Run Winch 3", new RunWinch(3, 1.0));
+	SmartDashboard::PutData("Run Winch 1", new RunWinch(1, 1.0, 0.5));
+	SmartDashboard::PutData("Run Winch 2", new RunWinch(2, 1.0, 0.5));
 
 	//Experimental output of PID controller to SmartDashboard for tuning
 	SmartDashboard::PutData("Claw PID", Robot::clawPID->RetrivePIDController());

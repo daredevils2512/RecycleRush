@@ -24,8 +24,9 @@
 class RunWinch: public Command {
 	int winchNumber;
 	float winchOutput;
+	float duration;
 public:
-	RunWinch(int winchNumber, float _winchOutput);
+	RunWinch(int winchNumber, float winchOutput, float duration);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

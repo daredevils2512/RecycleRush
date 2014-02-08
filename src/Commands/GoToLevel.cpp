@@ -7,6 +7,7 @@ GoToLevel::GoToLevel(int level) {
 	Requires(Robot::clawPID);
 
 	this->level = level;
+	goingDown = false;
 }
 
 // Called just before this Command runs the first time

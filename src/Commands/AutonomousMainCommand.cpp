@@ -28,12 +28,16 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 	int autonLevel = 185;
+
 	if(totes >= 1) {
 		AddSequential(new GoToLevel(0));
+		if(containers >= 1) AddParallel(new RunWinch(1, 1, 1.0));
 		AddParallel(new GoToHeight(autonLevel));
 	}
 	if(totes >= 2) {
+		if(containers >= 2) AddParallel(new RunWinch(2, 0.8, 0.5));
 		AddSequential(new AutonDrive(0.30, 0.30, 900));
+		if(containers >= 2) AddParallel(new RunWinch(2, 1.0, 0.5));
 		AddSequential(new ActuateIntake(true));
 		AddSequential(new AutonRunIntake(-1.0, 0.8));
 		AddSequential(new ActuateIntake(false));
@@ -47,7 +51,6 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 		AddParallel(new Place());
 		AddSequential(new AutonRunIntake(-1.0, 0.5));
 	}
-
 
 	AddSequential(new AutonDrive(-0.40, 0.40, 580));
 

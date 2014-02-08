@@ -7,6 +7,7 @@ GoToHeight::GoToHeight(float targetHeight)
 	// eg. Requires(chassis);
 	Requires(Robot::clawPID);
 	this->targetHeight = targetHeight;
+	goingDown = false;
 }
 
 // Called just before this Command runs the first time

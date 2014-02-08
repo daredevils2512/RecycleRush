@@ -269,36 +269,6 @@ Children:
   - Children:
     - Children: []
       Properties:
-        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id007
-          default: '0'
-          name: Input Channel (Digital)
-          validators: *id008
-          value: '19'
-      Base: Digital Input
-      Name: Container Sensor 1
-    - Children: []
-      Properties:
-        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id007
-          default: '0'
-          name: Input Channel (Digital)
-          validators: *id008
-          value: '20'
-      Base: Digital Input
-      Name: Container Sensor 2
-    - Children: []
-      Properties:
-        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id007
-          default: '0'
-          name: Input Channel (Digital)
-          validators: *id008
-          value: '21'
-      Base: Digital Input
-      Name: Container Senser 3
-    - Children: []
-      Properties:
         Type: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id009
           default: Talon
