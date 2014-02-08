@@ -14,6 +14,9 @@ void GoToLevel::Initialize() {
 	Robot::clawPID->Enable();
 	if(level >= 0 && level < 7) {
 		Robot::clawPID->SetSetpoint(Robot::clawPID->LEVELHEIGHT[level]);
+		if(level == 1) {
+			Robot::intakeSystem->SetCooperatition(true);
+		}
 	} else {
 		Robot::clawPID->Disable();
 	}

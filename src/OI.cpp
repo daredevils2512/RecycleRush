@@ -36,6 +36,7 @@
 #include "Controller/DriverXbox.h"
 #include "Controller/CodriverJoystickCustom.h"
 #include "Commands/SetIntake.h"
+#include "Commands/PickUp.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -102,9 +103,11 @@ OI::OI() {
 	codriverController = new CodriverJoystickCustom(joystick2, joystick3);
 
 	tempLevel1 = new JoystickButton(joystick3, 16);
-	overideCheck = new JoystickButton(joystick3, 3);
+	resetButton = new JoystickButton(joystick3, 3);
+	pickUp = new JoystickButton(joystick1, 5);
 
-	overideCheck->WhenPressed(new ResetLevelEncoder());
+	resetButton->WhenPressed(new ResetLevelEncoder());
+	pickUp->WhenPressed(new PickUp());
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 //	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));

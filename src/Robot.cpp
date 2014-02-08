@@ -117,8 +117,10 @@ void Robot::TeleopPeriodic() {
 	if(Robot::clawPID->bottom->Get()) {
 		Robot::clawPID->ResetHeightEncoder();
 	}
-	if((Robot::clawPID->heightEnccoder->GetRaw() > -122 && Robot::clawPID->heightEnccoder->GetRaw() != 0) && oi->getJoystick1()->GetRawButton(4) == false) {
+	if((Robot::clawPID->heightEnccoder->GetRaw() > -122 && Robot::clawPID->heightEnccoder->GetRaw() != 0) && (oi->getJoystick1()->GetRawButton(4) == false && intakeSystem->GetCooperatition())) {
 		intakeSystem->ActuateIntake(false);
+	} else {
+		intakeSystem->SetCooperatition(false);
 	}
 
 	SmartDashboard::PutBoolean("PID On Target", clawPID->OnTarget());
