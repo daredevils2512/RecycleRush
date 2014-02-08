@@ -13,7 +13,7 @@ GoToLevel::GoToLevel(int level) {
 // Called just before this Command runs the first time
 void GoToLevel::Initialize() {
 	Robot::clawPID->Enable();
-	if(level >= 0 && level < 7) {
+	if(level >= 0 && level < 8) {
 		Robot::clawPID->SetSetpoint(Robot::clawPID->LEVELHEIGHT[level]);
 		if(level == 1) {
 			Robot::intakeSystem->SetCooperatition(true);

@@ -121,7 +121,10 @@ OI::OI() {
 	codriverController->GetLevel4()->WhenPressed(new GoToLevel(4));
 	codriverController->GetLevel5()->WhenPressed(new GoToLevel(5));
 	codriverController->GetLevel6()->WhenPressed(new GoToLevel(6));
+	codriverController->GetLevel7()->WhenPressed(new GoToLevel(7));
 	codriverController->GetPlaceButton()->WhenPressed(new Place());
+	codriverController->GetCoopLevel()->WhenPressed(new GoToLevel(1));
+
 	clawOveridePos = new TriggerButton(joystick2, 1, 0.3);
 	clawOverideNeg = new TriggerButton(joystick2, 1, -0.3);
 

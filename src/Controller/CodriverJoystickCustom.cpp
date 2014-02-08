@@ -16,9 +16,9 @@ CodriverJoystickCustom::CodriverJoystickCustom(Joystick* stick1, Joystick* stick
 			new JoystickButton(stick2, 8),
 			new JoystickButton(stick2, 6),
 			new JoystickButton(stick2, 2),
-			new JoystickButton(stick2, 15),
+			new JoystickButton(stick2, 7),
 			new JoystickButton(stick2, 14),
-			new JoystickButton(stick1, 1),
+			new JoystickButton(stick2, 15),
 			1),
 	stick2(stick2)
 {
