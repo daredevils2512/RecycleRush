@@ -31,6 +31,7 @@ private:
 	 JoystickButton* tempLevel1;
 	 JoystickButton* resetButton;
 	 JoystickButton* pickUp;
+	 JoystickButton* dropContainers;
 
 	 TriggerButton* clawOveridePos;
 	 TriggerButton* clawOverideNeg;

@@ -37,6 +37,7 @@
 #include "Controller/CodriverJoystickCustom.h"
 #include "Commands/SetIntake.h"
 #include "Commands/PickUp.h"
+#include "Commands/DropContainers.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -82,12 +83,6 @@ OI::OI() {
 	//Experimental output of PID controller to SmartDashboard for tuning
 	SmartDashboard::PutData("Claw PID", Robot::clawPID->RetrivePIDController());
 
-	SmartDashboard::PutNumber("PID Encoder", Robot::clawPID->heightEnccoder->Get());
-
-	SmartDashboard::PutNumber("DriverX 2", GetX());
-	SmartDashboard::PutNumber("DriverY 2", GetY());
-	SmartDashboard::PutNumber("DriverTwist 2", GetR());
-
 	SmartDashboard::PutData("Actuate Intake In", new ActuateIntake(true));
 	SmartDashboard::PutData("Actuate Intake Out", new ActuateIntake(false));
 
@@ -104,9 +99,11 @@ OI::OI() {
 	tempLevel1 = new JoystickButton(joystick3, 16);
 	resetButton = new JoystickButton(joystick3, 3);
 	pickUp = new JoystickButton(joystick1, 3);
+	dropContainers = new JoystickButton(joystick1, 8);
 
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());
+	dropContainers->WhenPressed(new DropContainers());
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 //	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));
