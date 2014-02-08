@@ -13,7 +13,7 @@ GoToHeight::GoToHeight(float targetHeight)
 // Called just before this Command runs the first time
 void GoToHeight::Initialize()
 {
-	if(targetHeight >= 0) {
+	if(targetHeight <= 0) {
 		Robot::clawPID->Enable();
 		Robot::clawPID->SetSetpoint(targetHeight);
 	}

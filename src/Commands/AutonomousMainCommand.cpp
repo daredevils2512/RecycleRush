@@ -27,7 +27,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	int autonLevel = 185;
+	int autonLevel = -185;
 
 	if(totes >= 1) {
 		AddSequential(new GoToLevel(0));
@@ -40,8 +40,14 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 		if(containers >= 2) AddParallel(new RunWinch(2, 1.0, 0.5));
 		AddSequential(new ActuateIntake(true));
 		AddSequential(new AutonRunIntake(-1.0, 0.8));
-		AddSequential(new ActuateIntake(false));
-		AddSequential(new GoToLevel(0));
+		if(totes != 2) {
+			AddSequential(new ActuateIntake(false));
+			AddSequential(new GoToLevel(0));
+		}
+		if(totes == 2) {
+			AddParallel(new Place());
+		}
+
 	}
 	if(totes >= 3) {
 		AddParallel(new GoToHeight(autonLevel));
@@ -52,19 +58,30 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 		AddSequential(new AutonRunIntake(-1.0, 0.5));
 	}
 
-	AddSequential(new AutonDrive(-0.40, 0.40, 580));
+	if(totes >= 3) {
+		AddSequential(new AutonDrive(-0.60, 0.60, 480));
+	} else {
+		AddSequential(new AutonDrive(-0.60, 0.60, 600));
+	}
 
 	if(totes >= 3) {
 		AddSequential(new AutonDrive(-1.0, -1.0, 700));
 		AddSequential(new AutonWait(0.85));
 	} else {
-		AddSequential(new AutonDrive(-1.0, -1.0, 700));
+		AddSequential(new AutonDrive(-0.5, -0.5, 825));
 		AddSequential(new AutonWait(0.85));
 	}
 
-	AddSequential(new AutonDrive(0.40, -0.40, 580));
+	AddSequential(new AutonDrive(0.60, -0.60, 580));
 
 	AddSequential(new ActuateIntake(false));
 
-	AddSequential(new AutonDrive(-1.0, -1.0, 200));
+	if(totes <= 2) {
+		AddSequential(new GoToLevel(0));
+	}
+	if(totes >= 3) {
+		AddSequential(new AutonDrive(-1.0, -1.0, 200));
+	} else {
+		AddSequential(new AutonDrive(-1.0, -1.0, 250));
+	}
 }

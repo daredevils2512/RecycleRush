@@ -274,7 +274,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id010
           default: '0'
@@ -290,7 +290,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id010
           default: '0'
@@ -299,22 +299,6 @@ Children:
           value: '18'
       Base: Speed Controller
       Name: Container Pull 2
-    - Children: []
-      Properties:
-        Type: !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id009
-          default: Talon
-          name: Type
-          validators: null
-          value: Talon
-        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id010
-          default: '0'
-          name: Output Channel (PWM)
-          validators: *id011
-          value: '2'
-      Base: Speed Controller
-      Name: Container Pull 3
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
@@ -537,12 +521,6 @@ Children:
   - Children: []
     Properties:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command Group
-    Name: AutonomousForward
-  - Children: []
-    Properties:
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: AutonomousMainCommand
@@ -599,7 +577,7 @@ Children:
   Name: Commands
 Properties:
   Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Loaner\workspace',
-    extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ..\}
+    extension: null, folder: true, name: Eclipse Workspace, validators: null, value: 'C:\Users\Loaner\workspace'}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
   Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,

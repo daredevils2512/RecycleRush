@@ -31,12 +31,8 @@ public:
 	static DigitalInput* clawPIDTop;
 	static Encoder* clawPIDHeightEnccoder;
 	static SpeedController* clawPIDClawMotor;
-	static DigitalInput* containerWinchContainerSensor1;
-	static DigitalInput* containerWinchContainerSensor2;
-	static DigitalInput* containerWinchContainerSenser3;
-	static SpeedController* containerWinchContainerPull1;
-	static SpeedController* containerWinchContainerPull2;
-	static SpeedController* containerWinchContainerPull3;
+	static Victor* containerWinchContainerPull1;
+	static Victor* containerWinchContainerPull2;
 	static SpeedController* intakeSystemLeftIntake;
 	static SpeedController* intakeSystemRightIntake;
 	static DoubleSolenoid* intakeSystemDoubleSolenoid1;

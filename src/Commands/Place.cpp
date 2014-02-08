@@ -27,7 +27,7 @@ void Place::Initialize() {
 //		Robot::clawPID->SetSetpoint(Robot::clawPID->GetSetpoint() - Robot::clawPID->PLACEOFFSET);
 //	}
 	Robot::clawPID->RetrivePIDController()->SetPID(0.85, 0.0003, 0.0);
-	Robot::clawPID->SetSetpointRelative(Robot::clawPID->PLACEOFFSET);
+	Robot::clawPID->SetSetpoint(Robot::clawPID->heightEnccoder->GetRaw() + Robot::clawPID->PLACEOFFSET);
 }
 
 // Called repeatedly when this Command is scheduled to run

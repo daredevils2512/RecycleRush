@@ -23,12 +23,8 @@ DigitalInput* RobotMap::clawPIDBottom = NULL;
 DigitalInput* RobotMap::clawPIDTop = NULL;
 Encoder* RobotMap::clawPIDHeightEnccoder = NULL;
 SpeedController* RobotMap::clawPIDClawMotor = NULL;
-DigitalInput* RobotMap::containerWinchContainerSensor1 = NULL;
-DigitalInput* RobotMap::containerWinchContainerSensor2 = NULL;
-DigitalInput* RobotMap::containerWinchContainerSenser3 = NULL;
-SpeedController* RobotMap::containerWinchContainerPull1 = NULL;
-SpeedController* RobotMap::containerWinchContainerPull2 = NULL;
-SpeedController* RobotMap::containerWinchContainerPull3 = NULL;
+Victor* RobotMap::containerWinchContainerPull1 = NULL;
+Victor* RobotMap::containerWinchContainerPull2 = NULL;
 SpeedController* RobotMap::intakeSystemLeftIntake = NULL;
 SpeedController* RobotMap::intakeSystemRightIntake = NULL;
 DoubleSolenoid* RobotMap::intakeSystemDoubleSolenoid1 = NULL;
@@ -78,23 +74,11 @@ void RobotMap::init() {
 	clawPIDClawMotor = new TalonSRX(3);
 	lw->AddActuator("ClawPID", "Claw Motor", (TalonSRX*) clawPIDClawMotor);
 	
-	containerWinchContainerSensor1 = new DigitalInput(19);
-	lw->AddSensor("Container Winch", "Container Sensor 1", containerWinchContainerSensor1);
+	containerWinchContainerPull1 = new Victor(6);
+//	lw->AddActuator("Container Winch", "Container Pull 1", (Talon*) containerWinchContainerPull1);
 	
-	containerWinchContainerSensor2 = new DigitalInput(20);
-	lw->AddSensor("Container Winch", "Container Sensor 2", containerWinchContainerSensor2);
-	
-	containerWinchContainerSenser3 = new DigitalInput(21);
-	lw->AddSensor("Container Winch", "Container Senser 3", containerWinchContainerSenser3);
-	
-	containerWinchContainerPull1 = new Talon(14);
-	lw->AddActuator("Container Winch", "Container Pull 1", (Talon*) containerWinchContainerPull1);
-	
-	containerWinchContainerPull2 = new Talon(18);
-	lw->AddActuator("Container Winch", "Container Pull 2", (Talon*) containerWinchContainerPull2);
-	
-	containerWinchContainerPull3 = new Talon(2);
-	lw->AddActuator("Container Winch", "Container Pull 3", (Talon*) containerWinchContainerPull3);
+	containerWinchContainerPull2 = new Victor(7);
+//	lw->AddActuator("Container Winch", "Container Pull 2", (Talon*) containerWinchContainerPull2);
 	
 	intakeSystemLeftIntake = new Victor(0);
 	lw->AddActuator("Intake System", "LeftIntake", (Victor*) intakeSystemLeftIntake);

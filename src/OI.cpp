@@ -16,7 +16,6 @@
 #include "Commands/ActuateIntake.h"
 #include "Commands/AutonDrive.h"
 #include "Commands/AutonomousCommand.h"
-#include "Commands/AutonomousForward.h"
 #include "Commands/AutonomousMainCommand.h"
 #include "Commands/CheckIntake.h"
 #include "Commands/ClawOveride.h"
@@ -57,8 +56,6 @@ OI::OI() {
 	SmartDashboard::PutData("DriveRobot", new DriveRobot());
 
 	SmartDashboard::PutData("StopIntake", new StopIntake());
-
-	SmartDashboard::PutData("AutonomousForward", new AutonomousForward());
 
 	SmartDashboard::PutData("ResetLevelEncoder", new ResetLevelEncoder());
 
@@ -101,12 +98,14 @@ OI::OI() {
 	pickUp = new JoystickButton(joystick1, 3);
 	dropContainers = new JoystickButton(joystick1, 8);
 	center = new JoystickButton(joystick1, 2);
+	secondaryPlace = new JoystickButton(joystick2, 1);
 
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());
 	dropContainers->WhenPressed(new DropContainers());
 	center->WhenPressed(new ActuateIntake(true));
 	center->WhenReleased(new ActuateIntake(false));
+	secondaryPlace->WhenPressed(new Place());
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 //	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));
