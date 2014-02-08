@@ -103,7 +103,7 @@ OI::OI() {
 
 	tempLevel1 = new JoystickButton(joystick3, 16);
 	resetButton = new JoystickButton(joystick3, 3);
-	pickUp = new JoystickButton(joystick1, 5);
+	pickUp = new JoystickButton(joystick1, 3);
 
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());
