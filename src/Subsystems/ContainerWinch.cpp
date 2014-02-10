@@ -40,14 +40,14 @@ void ContainerWinch::InitDefaultCommand() {
 void ContainerWinch::SetWinch(int winchNumber, float output) {
 	switch (winchNumber) {
 		case 1:
-			containerPull1->Set(output);
+//			containerPull1->Set(output);
 			break;
 		case 2:
-			containerPull2->Set(output);
+//			containerPull2->Set(output);
 			break;
 		default:
-			containerPull1->Set(0);
-			containerPull2->Set(0);
+//			containerPull1->Set(0);
+//			containerPull2->Set(0);
 			break;
 	}
 }

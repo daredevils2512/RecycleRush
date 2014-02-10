@@ -22,7 +22,6 @@ Gyro* RobotMap::drivetrainGyro1 = NULL;
 DigitalInput* RobotMap::clawPIDBottom = NULL;
 DigitalInput* RobotMap::clawPIDTop = NULL;
 Encoder* RobotMap::clawPIDHeightEnccoder = NULL;
-SpeedController* RobotMap::clawPIDClawMotor = NULL;
 Victor* RobotMap::containerWinchContainerPull1 = NULL;
 Victor* RobotMap::containerWinchContainerPull2 = NULL;
 SpeedController* RobotMap::intakeSystemLeftIntake = NULL;
@@ -71,13 +70,11 @@ void RobotMap::init() {
 	lw->AddSensor("ClawPID", "Height Enccoder", clawPIDHeightEnccoder);
 	clawPIDHeightEnccoder->SetDistancePerPulse(1.0);
         clawPIDHeightEnccoder->SetPIDSourceParameter(Encoder::kDistance);
-	clawPIDClawMotor = new TalonSRX(3);
-	lw->AddActuator("ClawPID", "Claw Motor", (TalonSRX*) clawPIDClawMotor);
 	
-	containerWinchContainerPull1 = new Victor(6);
+	containerWinchContainerPull1 = new Victor(2);
 //	lw->AddActuator("Container Winch", "Container Pull 1", (Talon*) containerWinchContainerPull1);
 	
-	containerWinchContainerPull2 = new Victor(7);
+	containerWinchContainerPull2 = new Victor(3);
 //	lw->AddActuator("Container Winch", "Container Pull 2", (Talon*) containerWinchContainerPull2);
 	
 	intakeSystemLeftIntake = new Victor(0);

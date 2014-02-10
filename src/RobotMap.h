@@ -30,7 +30,6 @@ public:
 	static DigitalInput* clawPIDBottom;
 	static DigitalInput* clawPIDTop;
 	static Encoder* clawPIDHeightEnccoder;
-	static SpeedController* clawPIDClawMotor;
 	static Victor* containerWinchContainerPull1;
 	static Victor* containerWinchContainerPull2;
 	static SpeedController* intakeSystemLeftIntake;

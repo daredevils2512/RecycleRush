@@ -12,6 +12,7 @@
 #ifndef CLAWPID_H
 #define CLAWPID_H
 
+#include <vector>
 #include "Commands/PIDSubsystem.h"
 #include "WPILib.h"
 
@@ -33,6 +34,7 @@ class ClawPID: public PIDSubsystem {
 
 	//Constants for PID set-points for each claw level
 	static const float LEVELHEIGHT[];
+//	static const std::vector<int> LEVELHEIGHT;
 
 	// Distance to go down to release tote
 	static const float PLACEOFFSET;
