@@ -8,6 +8,7 @@
 #include "AutonRunIntake.h"
 #include "AutonWait.h"
 #include "GoToHeight.h"
+#include "WinchDriveToContainer.h"
 
 AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 {
@@ -31,13 +32,13 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 
 	if(totes >= 1) {
 		AddSequential(new GoToLevel(0));
-		if(containers >= 1) AddParallel(new RunWinch(1, 1, 1.0));
+		if(containers >= 1) AddParallel(new RunWinch(1, 1, 2.5));
 		AddParallel(new GoToHeight(autonLevel));
+		if(containers >= 1) AddSequential(new AutonWait(0.25));
 	}
 	if(totes >= 2) {
-		if(containers >= 2) AddParallel(new RunWinch(2, 0.8, 0.5));
+		if(containers >= 2) AddParallel(new WinchDriveToContainer());
 		AddSequential(new AutonDrive(0.30, 0.30, 900));
-		if(containers >= 2) AddParallel(new RunWinch(2, 1.0, 0.5));
 		AddSequential(new ActuateIntake(true));
 		AddSequential(new AutonRunIntake(-1.0, 0.8));
 		if(totes != 2) {
@@ -59,13 +60,13 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	}
 
 	if(totes >= 3) {
-		AddSequential(new AutonDrive(-0.60, 0.60, 480));
+		AddSequential(new AutonDrive(-0.60, 0.60, 580));
 	} else {
 		AddSequential(new AutonDrive(-0.60, 0.60, 600));
 	}
 
 	if(totes >= 3) {
-		AddSequential(new AutonDrive(-1.0, -1.0, 700));
+		AddSequential(new AutonDrive(-1.0, -1.0, 800));
 		AddSequential(new AutonWait(0.85));
 	} else {
 		AddSequential(new AutonDrive(-0.5, -0.5, 825));
@@ -73,6 +74,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	}
 
 	AddSequential(new AutonDrive(0.60, -0.60, 580));
+	//580
 
 	AddSequential(new ActuateIntake(false));
 

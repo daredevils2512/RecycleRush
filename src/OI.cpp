@@ -77,6 +77,9 @@ OI::OI() {
 	SmartDashboard::PutData("Run Winch 1", new RunWinch(1, 1.0, 0.5));
 	SmartDashboard::PutData("Run Winch 2", new RunWinch(2, 1.0, 0.5));
 
+	SmartDashboard::PutData("Run Winch 1 Reverse", new RunWinch(1, -1.0, 0.5));
+	SmartDashboard::PutData("Run Winch 2 Reverse", new RunWinch(2, -1.0, 0.5));
+
 	//Experimental output of PID controller to SmartDashboard for tuning
 	SmartDashboard::PutData("Claw PID", Robot::clawPID->RetrivePIDController());
 
@@ -99,6 +102,10 @@ OI::OI() {
 	dropContainers = new JoystickButton(joystick1, 8);
 	center = new JoystickButton(joystick1, 2);
 	secondaryPlace = new JoystickButton(joystick2, 1);
+	rightIn = new JoystickButton(joystick2, 4);
+	rightOut = new JoystickButton(joystick2, 6);
+	leftIn = new JoystickButton(joystick2, 3);
+	leftOut = new JoystickButton(joystick2, 5);
 
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());
@@ -106,6 +113,10 @@ OI::OI() {
 	center->WhenPressed(new ActuateIntake(true));
 	center->WhenReleased(new ActuateIntake(false));
 	secondaryPlace->WhenPressed(new Place());
+	rightIn->WhileHeld(new RunWinch(1, 0.5, 0.1));
+	rightOut->WhileHeld(new RunWinch(1, -1.0, 0.1));
+	leftIn->WhileHeld(new RunWinch(2, 0.5, 0.1));
+	leftOut->WhileHeld(new RunWinch(2, -1.0, 0.1));
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 //	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));

@@ -40,7 +40,7 @@ void Robot::RobotInit() {
 	lw = LiveWindow::GetInstance();
 
 	// instantiate the command used for the autonomous period
-	autonomousCommand = new AutonomousMainCommand(0, 2);
+	autonomousCommand = new AutonomousMainCommand(2, 3);
 
 	chooser = new SendableChooser();
 	chooser->AddDefault("Just Drive", new AutonomousMainCommand(0, 0));
@@ -103,8 +103,8 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 
-	Robot::containerWinch->containerPull1->Set(0.5);
-	Robot::containerWinch->containerPull2->Set(0.5);
+//	Robot::containerWinch->containerPull1->Set(0.5);
+//	Robot::containerWinch->containerPull2->Set(0.5);
 
 //	SmartDashboard::PutBoolean("Setting", Robot::intakeSystem->solenoid1->Get());
 //	SmartDashboard::PutBoolean("Setting 2", Robot::intakeSystem->solenoid1->Get());

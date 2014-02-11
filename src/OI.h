@@ -34,6 +34,11 @@ private:
 	 JoystickButton* dropContainers;
 	 JoystickButton* center;
 	 JoystickButton* secondaryPlace;
+	 JoystickButton* rightIn;
+	 JoystickButton* rightOut;
+	 JoystickButton* leftIn;
+	 JoystickButton* leftOut;
+
 
 	 TriggerButton* clawOveridePos;
 	 TriggerButton* clawOverideNeg;
