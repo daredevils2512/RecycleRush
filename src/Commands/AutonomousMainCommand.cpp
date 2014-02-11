@@ -60,7 +60,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	}
 
 	if(totes >= 3) {
-		AddSequential(new AutonDrive(-0.60, 0.60, 580));
+		AddSequential(new AutonDrive(-0.80, 0.80, 500));
 	} else {
 		AddSequential(new AutonDrive(-0.60, 0.60, 600));
 	}
@@ -86,4 +86,6 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	} else {
 		AddSequential(new AutonDrive(-1.0, -1.0, 250));
 	}
+
+	AddSequential(new AutonDrive(-1.0, 1.0, 300));
 }
