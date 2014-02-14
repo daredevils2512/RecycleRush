@@ -9,6 +9,7 @@
 #include "AutonWait.h"
 #include "GoToHeight.h"
 #include "WinchDriveToContainer.h"
+#include "AutonPickUp.h"
 
 AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 {
@@ -46,7 +47,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 		AddSequential(new AutonRunIntake(-1.0, 0.8));
 		if(totes != 2) {
 			AddSequential(new ActuateIntake(false));
-			AddSequential(new GoToLevel(0));
+			AddSequential(new Place());
 		}
 		if(totes == 2) {
 			AddParallel(new Place());
@@ -55,7 +56,11 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	}
 	if(totes >= 3) {
 		// Pick up tote 3 & container 3
-		AddParallel(new GoToHeight(autonLevel));
+		if(containers >= 2) {
+			AddParallel(new AutonPickUp());
+		} else {
+			AddParallel(new GoToHeight(autonLevel));
+		}
 		AddSequential(new AutonDrive(0.30, 0.30, 900));
 
 		AddSequential(new ActuateIntake(true));
@@ -64,10 +69,10 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 		AddSequential(new AutonRunIntake(-1.0, 0.5));
 	}
 
-	// Turn depending on the amount of weight that will be on the robot
-	/*if(totes >= 3) {
+	// 1st turn (at third tote) depending on the amount of weight that will be on the robot
+	if(totes >= 3) {
 		if(containers > 0) {
-			AddSequential(new AutonDrive(-0.80, 0.80, 700));
+			AddSequential(new AutonDrive(-0.60, 0.60, 875));
 		} else {
 			AddSequential(new AutonDrive(-0.80, 0.80, 500));
 		}
@@ -77,15 +82,26 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 
 	// Drive to scoring zone
 	if(totes >= 3) {
-		AddSequential(new AutonDrive(-1.0, -1.0, 800));
-		AddSequential(new AutonWait(0.85));
+		if(containers > 0) {
+			AddSequential(new AutonDrive(-1.0, -1.0, 600));
+		} else {
+			AddSequential(new AutonDrive(-1.0, -1.0, 800));
+			AddSequential(new AutonWait(0.85));
+		}
 	} else {
 		AddSequential(new AutonDrive(-0.5, -0.5, 825));
 		AddSequential(new AutonWait(0.85));
 	}
 
 	// Turn in scoring zone before releasing totes
-	AddSequential(new AutonDrive(0.60, -0.60, 580));
+	if(totes >= 3) {
+		if(containers > 0) {
+			//J turn for 3 tote 2 container
+			AddSequential(new AutonDrive(-0.10, -1.0, 1500));
+		} else {
+			AddSequential(new AutonDrive(0.60, -0.60, 580));
+		}
+	}
 	//580
 
 	// Release totes
@@ -96,13 +112,13 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 
 	// Drive away from totes
 	if(totes >= 3) {
-		AddSequential(new AutonDrive(-1.0, -1.0, 400));
+//		AddSequential(new AutonDrive(-1.0, -1.0, 400));
 	} else {
 		AddSequential(new AutonDrive(-1.0, -1.0, 250));
 	}
 
 	// Turn so containers fit in the scoring zone
 	if(containers > 0) {
-		AddSequential(new AutonDrive(-1.0, 1.0, 300));
-	}*/
+//		AddSequential(new AutonDrive(-1.0, 1.0, 300));
+	}
 }
