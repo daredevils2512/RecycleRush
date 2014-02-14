@@ -28,15 +28,18 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
+
 	int autonLevel = -185;
 
 	if(totes >= 1) {
+		// Pick up tote 1 & container 1
 		AddSequential(new GoToLevel(0));
 		if(containers >= 1) AddParallel(new RunWinch(1, 1, 2.5));
 		AddParallel(new GoToHeight(autonLevel));
 		if(containers >= 1) AddSequential(new AutonWait(0.25));
 	}
 	if(totes >= 2) {
+		// Pick up tote 2 & container 2
 		if(containers >= 2) AddParallel(new WinchDriveToContainer());
 		AddSequential(new AutonDrive(0.30, 0.30, 900));
 		AddSequential(new ActuateIntake(true));
@@ -51,20 +54,28 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 
 	}
 	if(totes >= 3) {
+		// Pick up tote 3 & container 3
 		AddParallel(new GoToHeight(autonLevel));
 		AddSequential(new AutonDrive(0.30, 0.30, 900));
+
 		AddSequential(new ActuateIntake(true));
 		AddSequential(new AutonRunIntake(-1.0, 0.6));
 		AddParallel(new Place());
 		AddSequential(new AutonRunIntake(-1.0, 0.5));
 	}
 
-	if(totes >= 3) {
-		AddSequential(new AutonDrive(-0.80, 0.80, 500));
+	// Turn depending on the amount of weight that will be on the robot
+	/*if(totes >= 3) {
+		if(containers > 0) {
+			AddSequential(new AutonDrive(-0.80, 0.80, 700));
+		} else {
+			AddSequential(new AutonDrive(-0.80, 0.80, 500));
+		}
 	} else {
 		AddSequential(new AutonDrive(-0.60, 0.60, 600));
 	}
 
+	// Drive to scoring zone
 	if(totes >= 3) {
 		AddSequential(new AutonDrive(-1.0, -1.0, 800));
 		AddSequential(new AutonWait(0.85));
@@ -73,19 +84,25 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 		AddSequential(new AutonWait(0.85));
 	}
 
+	// Turn in scoring zone before releasing totes
 	AddSequential(new AutonDrive(0.60, -0.60, 580));
 	//580
 
+	// Release totes
 	AddSequential(new ActuateIntake(false));
-
 	if(totes <= 2) {
 		AddSequential(new GoToLevel(0));
 	}
+
+	// Drive away from totes
 	if(totes >= 3) {
-		AddSequential(new AutonDrive(-1.0, -1.0, 200));
+		AddSequential(new AutonDrive(-1.0, -1.0, 400));
 	} else {
 		AddSequential(new AutonDrive(-1.0, -1.0, 250));
 	}
 
-	AddSequential(new AutonDrive(-1.0, 1.0, 300));
+	// Turn so containers fit in the scoring zone
+	if(containers > 0) {
+		AddSequential(new AutonDrive(-1.0, 1.0, 300));
+	}*/
 }

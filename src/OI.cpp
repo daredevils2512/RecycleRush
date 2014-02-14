@@ -37,6 +37,7 @@
 #include "Commands/SetIntake.h"
 #include "Commands/PickUp.h"
 #include "Commands/DropContainers.h"
+#include "Commands/RunWinchOveride.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -113,10 +114,10 @@ OI::OI() {
 	center->WhenPressed(new ActuateIntake(true));
 	center->WhenReleased(new ActuateIntake(false));
 	secondaryPlace->WhenPressed(new Place());
-	rightIn->WhileHeld(new RunWinch(1, 0.5, 0.1));
-	rightOut->WhileHeld(new RunWinch(1, -1.0, 0.1));
-	leftIn->WhileHeld(new RunWinch(2, 0.5, 0.1));
-	leftOut->WhileHeld(new RunWinch(2, -1.0, 0.1));
+	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
+	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
+	leftIn->WhileHeld(new RunWinchOveride(2, 0.5));
+	leftOut->WhileHeld(new RunWinchOveride(2, -1.0));
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 //	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));
