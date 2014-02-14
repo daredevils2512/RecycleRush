@@ -19,8 +19,8 @@ DropContainers::DropContainers()
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	AddParallel(new RunWinch(2, 1, 1));
-	AddSequential(new RunWinch(1, 1, 1));
-	AddParallel(new RunWinch(2, -1, 1));
-	AddSequential(new RunWinch(1, -1, 1));
+	AddParallel(new RunWinch(2, -1, 1.5));
+	AddSequential(new RunWinch(1, -1, 1.5));
+	AddParallel(new RunWinch(2, 1, 2.5));
+	AddSequential(new RunWinch(1, 1, 2.5));
 }
