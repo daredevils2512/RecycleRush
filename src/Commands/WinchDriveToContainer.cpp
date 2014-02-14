@@ -21,5 +21,5 @@ WinchDriveToContainer::WinchDriveToContainer()
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 	AddSequential(new AutonWait(0.75));
-	AddSequential(new RunWinch(2, 1.0, 6.4));
+	AddSequential(new RunWinch(2, 1.0, 6.6));
 }

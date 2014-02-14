@@ -35,7 +35,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	if(totes >= 1) {
 		// Pick up tote 1 & container 1
 		AddSequential(new GoToLevel(0));
-		if(containers >= 1) AddParallel(new RunWinch(1, 1, 2.5));
+		if(containers >= 1) AddParallel(new RunWinch(1, 1, 2.7));
 		AddParallel(new GoToHeight(autonLevel));
 		if(containers >= 1) AddSequential(new AutonWait(0.25));
 	}
@@ -83,7 +83,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	// Drive to scoring zone
 	if(totes >= 3) {
 		if(containers > 0) {
-			AddSequential(new AutonDrive(-1.0, -1.0, 600));
+			AddSequential(new AutonDrive(-1.0, -1.0, 500));
 		} else {
 			AddSequential(new AutonDrive(-1.0, -1.0, 800));
 			AddSequential(new AutonWait(0.85));
@@ -97,7 +97,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	if(totes >= 3) {
 		if(containers > 0) {
 			//J turn for 3 tote 2 container
-			AddSequential(new AutonDrive(-0.10, -1.0, 1500));
+			AddSequential(new AutonDrive(-0.15, -1.0, 1500));
 		} else {
 			AddSequential(new AutonDrive(0.60, -0.60, 580));
 		}
@@ -112,7 +112,12 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 
 	// Drive away from totes
 	if(totes >= 3) {
-//		AddSequential(new AutonDrive(-1.0, -1.0, 400));
+		if(containers > 0) {
+			AddSequential(new AutonDrive(-0.8, -0.8, 200));
+			AddSequential(new AutonDrive(-1.0, -0.20, 200));
+		} else {
+			AddSequential(new AutonDrive(-1.0, -1.0, 400));
+		}
 	} else {
 		AddSequential(new AutonDrive(-1.0, -1.0, 250));
 	}
