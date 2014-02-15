@@ -66,13 +66,13 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 		AddSequential(new ActuateIntake(true));
 		AddSequential(new AutonRunIntake(-1.0, 0.6));
 		AddParallel(new Place());
-		AddSequential(new AutonRunIntake(-1.0, 0.4));
+		AddSequential(new AutonRunIntake(-1.0, 0.2));
 	}
 
 	// 1st turn (at third tote) depending on the amount of weight that will be on the robot
 	if(totes >= 3) {
 		if(containers > 0) {
-			AddSequential(new AutonDrive(-0.75, 0.75, 900));
+			AddSequential(new AutonDrive(-0.75, 0.75, 950));
 			AddParallel(new AutonRunIntake(-1.0, 0.5));
 		} else {
 			AddSequential(new AutonDrive(-0.80, 0.80, 500));
@@ -98,7 +98,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes)
 	if(totes >= 3) {
 		if(containers > 0) {
 			//J turn for 3 tote 2 container
-			AddSequential(new AutonDrive(-0.15, -1.0, 1700));
+			AddSequential(new AutonDrive(-0.15, -1.0, 1600));
 		} else {
 			AddSequential(new AutonDrive(0.60, -0.60, 580));
 		}
