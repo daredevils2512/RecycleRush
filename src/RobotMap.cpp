@@ -109,7 +109,7 @@ void RobotMap::init() {
 	clawMotor2 = new CANTalon(2);
 
 	drivetrainRobotDrive->SetSafetyEnabled(false);
-	drivetrainRobotDrive->SetExpiration(0.1);
+	drivetrainRobotDrive->SetExpiration(0.5);
 	drivetrainRobotDrive->SetSensitivity(0.5);
 	drivetrainRobotDrive->SetMaxOutput(1.0);
 }

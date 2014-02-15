@@ -38,6 +38,8 @@
 #include "Commands/PickUp.h"
 #include "Commands/DropContainers.h"
 #include "Commands/RunWinchOveride.h"
+#include "Commands/StationPickUp.h"
+#include "Commands/GoToHeight.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -99,25 +101,28 @@ OI::OI() {
 
 	tempLevel1 = new JoystickButton(joystick3, 16);
 	resetButton = new JoystickButton(joystick3, 3);
-	pickUp = new JoystickButton(joystick1, 3);
+	pickUp = new JoystickButton(joystick1, 1);
 	dropContainers = new JoystickButton(joystick1, 8);
-	center = new JoystickButton(joystick1, 2);
-	secondaryPlace = new JoystickButton(joystick2, 1);
+	center = new JoystickButton(joystick1, 6);
+//	secondaryPlace = new JoystickButton(joystick2, 1);
 	rightIn = new JoystickButton(joystick2, 4);
 	rightOut = new JoystickButton(joystick2, 6);
 	leftIn = new JoystickButton(joystick2, 3);
 	leftOut = new JoystickButton(joystick2, 5);
+	stationPickUp = new JoystickButton(joystick2, 1);
 
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());
 	dropContainers->WhenPressed(new DropContainers());
 	center->WhenPressed(new ActuateIntake(true));
 	center->WhenReleased(new ActuateIntake(false));
-	secondaryPlace->WhenPressed(new Place());
+//	secondaryPlace->WhenPressed(new Place());
 	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
 	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
 	leftIn->WhileHeld(new RunWinchOveride(2, 0.5));
 	leftOut->WhileHeld(new RunWinchOveride(2, -1.0));
+	stationPickUp->WhenPressed(new GoToLevel(0));
+	stationPickUp->WhenReleased(new GoToHeight(-366));
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 //	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));
@@ -232,10 +237,13 @@ float OI::Desensitize(int axisNumber, float threshold) {
 	float value = 0;
 	if(fabs(joystick1->GetRawAxis(axisNumber)) > threshold) {
 		if(joystick1->GetRawAxis(axisNumber) > 0) {
-			value = joystick1->GetRawAxis(axisNumber) - threshold;
+			value = (joystick1->GetRawAxis(axisNumber) - threshold) / (1 - threshold);
 		} else {
-			value = joystick1->GetRawAxis(axisNumber) + threshold;
+			value = (joystick1->GetRawAxis(axisNumber) + threshold) / (1 - threshold);
 		}
+	}
+	if(joystick1->GetRawButton(5)) {
+		value = value / 2;
 	}
 	return value;
 }

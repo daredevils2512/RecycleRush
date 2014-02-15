@@ -27,9 +27,9 @@ void CheckIntake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void CheckIntake::Execute() {
-	if (Robot::clawPID->bottom->Get()) {
-		Robot::intakeSystem->ActuateIntake(false);
-	}
+//	if (Robot::clawPID->bottom->Get()) {
+//		Robot::intakeSystem->ActuateIntake(false);
+//	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

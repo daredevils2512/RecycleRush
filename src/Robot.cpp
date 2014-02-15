@@ -40,16 +40,17 @@ void Robot::RobotInit() {
 	lw = LiveWindow::GetInstance();
 
 	// instantiate the command used for the autonomous period
-	autonomousCommand = new AutonomousMainCommand(2, 3);
+	autonomousCommand = new AutonomousMainCommand(0, 0, true);
 
 	chooser = new SendableChooser();
-	chooser->AddDefault("Just Drive", new AutonomousMainCommand(0, 0));
-	chooser->AddObject("No Containers, All Totes", new AutonomousMainCommand(0, 3));
-	chooser->AddObject("1 Containers, All Totes", new AutonomousMainCommand(1, 3));
-	chooser->AddObject("2 Containers, All Totes", new AutonomousMainCommand(2, 3));
-	chooser->AddObject("3 Containers, All Totes", new AutonomousMainCommand(3, 3));
-	chooser->AddObject("No Containers, 1 Tote", new AutonomousMainCommand(0, 1));
-	chooser->AddObject("No Containers, 2 Totes", new AutonomousMainCommand(0, 2));
+	chooser->AddDefault("Do Nothing", new AutonomousMainCommand(0, 0, true));
+	chooser->AddObject("Just Drive", new AutonomousMainCommand(0, 0, false));
+	chooser->AddObject("No Containers, All Totes", new AutonomousMainCommand(0, 3, false));
+	chooser->AddObject("1 Containers, All Totes", new AutonomousMainCommand(1, 3, false));
+	chooser->AddObject("2 Containers, All Totes", new AutonomousMainCommand(2, 3, false));
+	chooser->AddObject("3 Containers, All Totes", new AutonomousMainCommand(3, 3, false));
+	chooser->AddObject("No Containers, 1 Tote", new AutonomousMainCommand(0, 1, false));
+	chooser->AddObject("No Containers, 2 Totes", new AutonomousMainCommand(0, 2, false));
 
 	SmartDashboard::PutData("Autonomous Command", chooser);
 
@@ -70,7 +71,7 @@ void Robot::DisabledPeriodic() {
 void Robot::AutonomousInit() {
 //	liftDown.WhenActive(new ResetLevelEncoder());
 
-//	autonomousCommand = (Command*) (chooser->GetSelected());
+	autonomousCommand = (Command*) (chooser->GetSelected());
 
 	if (autonomousCommand != NULL)
 		autonomousCommand->Start();
@@ -108,22 +109,13 @@ void Robot::TeleopPeriodic() {
 
 //	SmartDashboard::PutBoolean("Setting", Robot::intakeSystem->solenoid1->Get());
 //	SmartDashboard::PutBoolean("Setting 2", Robot::intakeSystem->solenoid1->Get());
-//	if(oi->getJoystick2()->GetRawButton(2)) {
-//		intakeSystem->ActuateIntake(true);
-//	} else {
-//		intakeSystem->ActuateIntake(false);
-//	}
-//	if(oi->getJoystick3()->GetRawAxis(1) > 0.5 || oi->getJoystick3()->GetRawAxis(1) < -0.5) {
-//		intakeSystem->SetIntakeMotors(oi->getJoystick3()->GetRawAxis(1), oi->getJoystick3()->GetRawAxis(1));
-//	} else {
-//		intakeSystem->SetIntakeMotors(0, 0);
-//	}
+
 	if(Robot::clawPID->bottom->Get()) {
 		Robot::clawPID->ResetHeightEncoder();
 	}
-	if((Robot::clawPID->heightEnccoder->GetRaw() > -122 && Robot::clawPID->heightEnccoder->GetRaw() != 0) && (oi->getJoystick1()->GetRawButton(4) == false && intakeSystem->GetCooperatition())) {
+	if((Robot::clawPID->heightEnccoder->GetRaw() > -122 && Robot::clawPID->bottom->Get() == false) && (oi->getJoystick1()->GetRawButton(10) == false && intakeSystem->GetCooperatition() == false)) {
 		intakeSystem->ActuateIntake(false);
-	} else {
+	} else if (Robot::clawPID->heightEnccoder->GetRaw() <= -122) {
 		intakeSystem->SetCooperatition(false);
 	}
 
@@ -148,9 +140,6 @@ void Robot::TeleopPeriodic() {
 
 	SmartDashboard::PutNumber("Bottom", Robot::clawPID->bottom->Get());
 	SmartDashboard::PutNumber("Top", Robot::clawPID->top->Get());
-
-//	SmartDashboard::PutNumber("encoder1", Robot::drivetrain->quadratureEncoder1->Get());
-//	SmartDashboard::PutNumber("encoder2", Robot::drivetrain->quadratureEncoder2->Get());
 }
 
 void Robot::TestPeriodic() {

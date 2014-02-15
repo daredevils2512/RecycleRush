@@ -33,11 +33,12 @@ private:
 	 JoystickButton* pickUp;
 	 JoystickButton* dropContainers;
 	 JoystickButton* center;
-	 JoystickButton* secondaryPlace;
+//	 JoystickButton* secondaryPlace;
 	 JoystickButton* rightIn;
 	 JoystickButton* rightOut;
 	 JoystickButton* leftIn;
 	 JoystickButton* leftOut;
+	 JoystickButton* stationPickUp;
 
 
 	 TriggerButton* clawOveridePos;
