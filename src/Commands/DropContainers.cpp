@@ -21,6 +21,6 @@ DropContainers::DropContainers()
 	// arm.
 	AddParallel(new RunWinch(2, -1, 1.5));
 	AddSequential(new RunWinch(1, -1, 1.5));
-	AddParallel(new RunWinch(2, 1, 2.5));
+	AddParallel(new RunWinch(2, 1, 2.3));
 	AddSequential(new RunWinch(1, 1, 2.5));
 }
