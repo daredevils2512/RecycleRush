@@ -70,6 +70,7 @@ void Robot::DisabledPeriodic() {
 
 void Robot::AutonomousInit() {
 //	liftDown.WhenActive(new ResetLevelEncoder());
+	intakeSystem->ActuateIntake(false);
 
 	autonomousCommand = (Command*) (chooser->GetSelected());
 
@@ -99,6 +100,7 @@ void Robot::TeleopInit() {
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
 	clawPID->Disable();
+	intakeSystem->ActuateIntake(false);
 }
 
 void Robot::TeleopPeriodic() {
@@ -113,9 +115,10 @@ void Robot::TeleopPeriodic() {
 	if(Robot::clawPID->bottom->Get()) {
 		Robot::clawPID->ResetHeightEncoder();
 	}
-	if((Robot::clawPID->heightEnccoder->GetRaw() > -122 && Robot::clawPID->bottom->Get() == false) && (oi->getJoystick1()->GetRawButton(10) == false && intakeSystem->GetCooperatition() == false)) {
+	if((Robot::clawPID->heightEnccoder->GetRaw() > -150 && Robot::clawPID->bottom->Get() == false) && (oi->getJoystick1()->GetRawButton(10) == false && intakeSystem->GetCooperatition() == false)) {
 		intakeSystem->ActuateIntake(false);
-	} else if (Robot::clawPID->heightEnccoder->GetRaw() <= -122) {
+	}
+	if (Robot::clawPID->heightEnccoder->GetRaw() <= -150) {
 		intakeSystem->SetCooperatition(false);
 	}
 
