@@ -31,8 +31,6 @@ OI::OI() {
 	
 	joystick1 = new Joystick(0);
 	
-	reverseIntakeButton = new JoystickButton(joystick1, 2);
-	reverseIntakeButton->WhileHeld(new ReverseIntake());
 	intakeButton = new JoystickButton(joystick1, 1);
 	intakeButton->WhileHeld(new IntakeTotes());
      
