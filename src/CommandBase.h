@@ -6,6 +6,7 @@
 #include "OI.h"
 #include "Subsystems/Claw.h"
 #include "Subsystems/Drivetrain.h"
+#include "Subsystems/ClawPID.h"
 #include "WPILib.h"
 
 /**
@@ -22,6 +23,7 @@ public:
 	// Create a single static instance of all of your subsystems
 	static Drivetrain *drivetrain;
 	static Claw *claw;
+	static ClawPID *clawpid;
 	static OI *oi;
 };
 

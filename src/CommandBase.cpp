@@ -4,6 +4,7 @@
 // Initialize a single static instance of all of your subsystems to NULL
 Drivetrain* CommandBase::drivetrain = NULL;
 Claw* CommandBase::claw = NULL;
+ClawPID* CommandBase::clawpid = NULL;
 OI* CommandBase::oi = NULL;
 
 CommandBase::CommandBase(char const *name) :
@@ -23,6 +24,7 @@ void CommandBase::init()
 	// line should be repeated for each subsystem in the project.
 	drivetrain = new Drivetrain();
 	claw = new Claw();
+	clawpid = new ClawPID();
 
 	oi = new OI();
 }
