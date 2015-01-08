@@ -35,6 +35,8 @@ class ClawPID: public PIDSubsystem {
 	double ReturnPIDInput();
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
+
+	PIDController* RetrivePIDController();
 };
 
 #endif
