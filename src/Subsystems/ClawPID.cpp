@@ -37,6 +37,8 @@ ClawPID::ClawPID() : PIDSubsystem("ClawPID", 1.0, 0.0, 0.0) {
 	SetSetpoint(0); // -  Sets where the PID controller should move the system
 	//                  to
 	Enable(); //- Enables the PID controller.
+	ITable* table = GetTable();
+	ClawPID::InitTable(table);
 }
 
 double ClawPID::ReturnPIDInput() {
