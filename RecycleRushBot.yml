@@ -19,9 +19,9 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: &id003 [PWMOutput]
-            value: '0'
+            value: '1'
         Base: Speed Controller
-        Name: Speed Controller 1
+        Name: Speed Controller 2
       - Children: []
         Properties:
           Type: !!robotbuilder.data.properties.ChoicesProperty
@@ -35,9 +35,9 @@ Children:
             default: '0'
             name: Output Channel (PWM)
             validators: *id003
-            value: '1'
+            value: '0'
         Base: Speed Controller
-        Name: Speed Controller 2
+        Name: Speed Controller 1
       - Children: []
         Properties:
           Type: !!robotbuilder.data.properties.ChoicesProperty
@@ -466,6 +466,72 @@ Children:
         validators: null, value: 5.0}
     Base: PID Subsystem
     Name: ClawPID
+  - Children:
+    - Children: []
+      Properties:
+        Output Channel (Relay): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id012 ['0', '1', '2', '3']
+          default: '0'
+          name: Output Channel (Relay)
+          validators: &id013 [RelayOutput]
+          value: '0'
+      Base: Spike
+      Name: Container Pull 1
+    - Children: []
+      Properties:
+        Output Channel (Relay): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id012
+          default: '0'
+          name: Output Channel (Relay)
+          validators: *id013
+          value: '1'
+      Base: Spike
+      Name: Container Pull 2
+    - Children: []
+      Properties:
+        Output Channel (Relay): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id012
+          default: '0'
+          name: Output Channel (Relay)
+          validators: *id013
+          value: '2'
+      Base: Spike
+      Name: Container Pull 3
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id011
+          value: '19'
+      Base: Digital Input
+      Name: Container Sensor 1
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id011
+          value: '20'
+      Base: Digital Input
+      Name: Container Sensor 2
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id011
+          value: '21'
+      Base: Digital Input
+      Name: Container Senser 3
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+    Base: Subsystem
+    Name: Container Winch
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -473,20 +539,20 @@ Children:
   - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: &id012 ['0', '1', '2', '3', '4', '5']
+        choices: &id014 ['0', '1', '2', '3', '4', '5']
         default: 1
         name: Number
-        validators: &id013 [Joystick]
+        validators: &id015 [Joystick]
         value: '0'
     Base: Joystick
     Name: Joystick 1
   - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: *id012
+        choices: *id014
         default: 1
         name: Number
-        validators: *id013
+        validators: *id015
         value: '1'
     Base: Joystick
     Name: Joystick 2

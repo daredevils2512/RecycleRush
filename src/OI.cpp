@@ -48,6 +48,9 @@ OI::OI() {
 	//Experimental output of PID controller to SmartDashboard for tuning
 	SmartDashboard::PutData("Claw PID", Robot::clawPID->RetrivePIDController());
 
+	SmartDashboard::PutNumber("PID Encoder", Robot::clawPID->heightEnccoder->Get());
+
+
 	LiveWindow::GetInstance()->AddActuator("ClawPID", "Claw PID Controller", Robot::clawPID->RetrivePIDController());
 //	LiveWindow::GetInstance()->AddActuator("ClawPID", "clawMotor", Robot::clawPID->clawMotor);
 }
