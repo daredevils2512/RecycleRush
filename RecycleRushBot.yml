@@ -544,6 +544,44 @@ Children:
         name: Default Command, type: Command, validators: null, value: None}
     Base: Subsystem
     Name: Container Winch
+  - Children:
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: Talon
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '6'
+      Base: Speed Controller
+      Name: LeftIntake
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id001
+          default: Talon
+          name: Type
+          validators: null
+          value: Talon
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id002
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id003
+          value: '7'
+      Base: Speed Controller
+      Name: RightIntake
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+    Base: Subsystem
+    Name: Intake System
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -640,6 +678,14 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: RunWinch
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Intake System}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command
+    Name: RunIntake
   Properties: {}
   Base: Commands
   Name: Commands

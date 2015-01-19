@@ -83,5 +83,7 @@ bool ContainerWinch::GetContainer(int containerNumber) {
 		case 3:
 			return containerSensor2->Get();
 			break;
+		default:
+			return true;
 	}
 }

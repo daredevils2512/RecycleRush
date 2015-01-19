@@ -8,6 +8,7 @@
 #include "Subsystems/Drivetrain.h"
 #include "Subsystems/ClawPID.h"
 #include "Subsystems/ContainerWinch.h"
+#include "Subsystems/IntakeSystem.h"
 #include "WPILib.h"
 
 /**
@@ -26,6 +27,7 @@ public:
 	static Claw *claw;
 	static ClawPID *clawpid;
 	static ContainerWinch *containerwinch;
+	static IntakeSystem *intakesystem;
 	static OI *oi;
 };
 

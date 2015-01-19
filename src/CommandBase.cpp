@@ -7,6 +7,7 @@ Claw* CommandBase::claw = NULL;
 ClawPID* CommandBase::clawpid = NULL;
 OI* CommandBase::oi = NULL;
 ContainerWinch* CommandBase::containerwinch = NULL;
+IntakeSystem* CommandBase::intakesystem = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -27,6 +28,7 @@ void CommandBase::init()
 	claw = new Claw();
 	clawpid = new ClawPID();
 	containerwinch = new ContainerWinch();
+	intakesystem = new IntakeSystem();
 
 	oi = new OI();
 }
