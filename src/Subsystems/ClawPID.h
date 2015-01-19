@@ -36,6 +36,8 @@ class ClawPID: public PIDSubsystem {
 	void UsePIDOutput(double output);
 	void InitDefaultCommand();
 
+	void SetMotor(float velocity);
+
 	PIDController* RetrivePIDController();
 };
 
