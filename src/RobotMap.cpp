@@ -23,6 +23,7 @@ Encoder* RobotMap::drivetrainQuadratureEncoder1 = NULL;
 Encoder* RobotMap::drivetrainQuadratureEncoder2 = NULL;
 Encoder* RobotMap::drivetrainQuadratureEncoder3 = NULL;
 Encoder* RobotMap::drivetrainQuadratureEncoder4 = NULL;
+Gyro* RobotMap::drivetrainGyro1 = NULL;
 Encoder* RobotMap::clawHeightEncoder = NULL;
 SpeedController* RobotMap::clawClawMotor = NULL;
 DigitalInput* RobotMap::clawLevel0 = NULL;
@@ -83,6 +84,9 @@ void RobotMap::init() {
 	lw->AddSensor("Drivetrain", "Quadrature Encoder 4", drivetrainQuadratureEncoder4);
 	drivetrainQuadratureEncoder4->SetDistancePerPulse(1.0);
         drivetrainQuadratureEncoder4->SetPIDSourceParameter(Encoder::kRate);
+	drivetrainGyro1 = new Gyro(1);
+	lw->AddSensor("Drivetrain", "Gyro 1", drivetrainGyro1);
+	drivetrainGyro1->SetSensitivity(0.007);
 	clawHeightEncoder = new Encoder(8, 9, false, Encoder::k4X);
 	lw->AddSensor("Claw", "Height Encoder", clawHeightEncoder);
 	clawHeightEncoder->SetDistancePerPulse(1.0);

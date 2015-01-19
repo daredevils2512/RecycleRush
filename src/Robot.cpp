@@ -77,6 +77,8 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 
+	SmartDashboard::PutNumber("Gyro 2", Robot::drivetrain->GetGyro());
+
 //	SmartDashboard::PutNumber("encoder1", Robot::drivetrain->quadratureEncoder1->Get());
 //	SmartDashboard::PutNumber("encoder2", Robot::drivetrain->quadratureEncoder2->Get());
 

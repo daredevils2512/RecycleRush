@@ -49,6 +49,7 @@ OI::OI() {
 	SmartDashboard::PutData("Claw PID", Robot::clawPID->RetrivePIDController());
 
 	SmartDashboard::PutNumber("PID Encoder", Robot::clawPID->heightEnccoder->Get());
+	SmartDashboard::PutNumber("Gyro", Robot::drivetrain->GetGyro());
 
 
 	LiveWindow::GetInstance()->AddActuator("ClawPID", "Claw PID Controller", Robot::clawPID->RetrivePIDController());
