@@ -632,6 +632,14 @@ Children:
         validators: null, value: 5.0}
     Base: PID Command
     Name: GoToLevel
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Container Winch}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: RunWinch
   Properties: {}
   Base: Commands
   Name: Commands

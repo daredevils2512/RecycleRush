@@ -6,6 +6,7 @@ Drivetrain* CommandBase::drivetrain = NULL;
 Claw* CommandBase::claw = NULL;
 ClawPID* CommandBase::clawpid = NULL;
 OI* CommandBase::oi = NULL;
+ContainerWinch* CommandBase::containerwinch = NULL;
 
 CommandBase::CommandBase(char const *name) :
 		Command(name)
@@ -25,6 +26,7 @@ void CommandBase::init()
 	drivetrain = new Drivetrain();
 	claw = new Claw();
 	clawpid = new ClawPID();
+	containerwinch = new ContainerWinch();
 
 	oi = new OI();
 }
