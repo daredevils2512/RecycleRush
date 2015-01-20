@@ -36,7 +36,7 @@ void IntakeSystem::InitDefaultCommand() {
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
 
-void IntakeSystem::RunIntake(float leftVelocity, float rightVelocity) {
+void IntakeSystem::SetIntakeMotors(float leftVelocity, float rightVelocity) {
 	leftIntake->Set(leftVelocity);
 	rightIntake->Set(rightVelocity);
 }
