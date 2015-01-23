@@ -11,13 +11,30 @@
 
 class ControllerBase {
 public:
+	enum ControlType { XBOX, JOYSTICK, CUSTOM, NONE };
+
+	ControllerBase(ControlType driver1Type, ControlType driver2Type, ControlType driver2Type2, Joystick* stick1, Joystick* stick2, Joystick* stick3);
+
 	//Driver 1 Controls
+	Joystick* driverStick;
+
+	JoystickButton* driver1PlaceButton;
+
+	int drivingXAxis;
+	int drivingYAxis;
+	int drivingTwistAxis;
+	int intakeAxis;
+
 	virtual float GetDrivingX() = 0;
 	virtual float GetDrivingY() = 0;
 	virtual float GetDrivingTwist() = 0;
 	virtual float GetIntake() = 0;
 
+
 	//Driver 2 Controls
+	Joystick* driver2Stick1;
+	Joystick* driver2Stick2;
+
 	JoystickButton* level1;
 	JoystickButton* level2;
 	JoystickButton* level3;
@@ -25,10 +42,10 @@ public:
 	JoystickButton* level5;
 	JoystickButton* level6;
 	JoystickButton* level7;
-	JoystickButton* driver1PlaceButton;
 	JoystickButton* driver2PlaceButton;
 	JoystickButton* coopLevel;
 
+	int manualOverideAxis;
 	virtual float GetManualOveride() = 0;
 
 	virtual JoystickButton* GetLevel1() = 0;

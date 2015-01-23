@@ -5,6 +5,40 @@
  *      Author: Craig
  */
 #include "ControllerBase.h"
+/*driver1Type - enum for controller that the primary driver is using
+ *
+ */
+ControllerBase::ControllerBase(ControlType driver1Type, ControlType driver2Type, ControlType driver2Type2, Joystick* stick1, Joystick* stick2, Joystick* stick3) {
+	driverStick = stick1;
+	driver2Stick1 = stick2;
+	driver2Stick2 = stick3;
+
+	switch (driver2Type2) {
+	case ControlType::JOYSTICK:
+		manualOverideAxis = 1;
+		break;
+	}
+}
+
+float GetDrivingX() {
+	return driverStick.GetRawAxis(driverXAxis);
+}
+
+float GetDrivingY() {
+
+}
+
+float GetDrivingTwist() {
+
+}
+
+float GetIntake() {
+
+}
+
+float GetManualOveride() {
+
+}
 
 JoystickButton* ControllerBase::GetLevel1() {
 	return level1;
