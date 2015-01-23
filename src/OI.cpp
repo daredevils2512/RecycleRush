@@ -59,9 +59,9 @@ OI::OI() {
 	SmartDashboard::PutData("Go to level 5", new GoToLevel(5));
 	SmartDashboard::PutData("Go to level 6", new GoToLevel(6));
 
-	SmartDashboard::PutData("Run Winch 1", new RunWinch(1));
-	SmartDashboard::PutData("Run Winch 2", new RunWinch(2));
-	SmartDashboard::PutData("Run Winch 3", new RunWinch(3));
+	SmartDashboard::PutData("Run Winch 1", new RunWinch(1, 1.0));
+	SmartDashboard::PutData("Run Winch 2", new RunWinch(2, 1.0));
+	SmartDashboard::PutData("Run Winch 3", new RunWinch(3, 1.0));
 
 	//Experimental output of PID controller to SmartDashboard for tuning
 	SmartDashboard::PutData("Claw PID", Robot::clawPID->RetrivePIDController());
