@@ -1,42 +1,43 @@
-#include "SetIntake.h"
+#include "AutonDrive.h"
 
-SetIntake::SetIntake(float left, float right)
+AutonDrive::AutonDrive(float magnitude, float angle, float duration)
 {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(chassis);
-	Requires(Robot::intakeSystem);
+	Requires(Robot::drivetrain);
 
-	this->left = left;
-	this->right = right;
+	this->magnitude = magnitude;
+	this->angle = angle;
+	this->duration = duration;
 }
 
 // Called just before this Command runs the first time
-void SetIntake::Initialize()
+void AutonDrive::Initialize()
 {
-	Robot::intakeSystem->SetIntakeMotors(left, right);
+	SetTimeout(duration);
 }
 
 // Called repeatedly when this Command is scheduled to run
-void SetIntake::Execute()
+void AutonDrive::Execute()
 {
-
+	Robot::drivetrain->Go(magnitude, angle);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool SetIntake::IsFinished()
+bool AutonDrive::IsFinished()
 {
-	return true;
+	return IsTimedOut();
 }
 
 // Called once after isFinished returns true
-void SetIntake::End()
+void AutonDrive::End()
 {
 
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void SetIntake::Interrupted()
+void AutonDrive::Interrupted()
 {
 
 }

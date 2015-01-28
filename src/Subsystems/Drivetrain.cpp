@@ -45,6 +45,10 @@ void Drivetrain::InitDefaultCommand() {
 
 // Put methods for controlling this subsystem
 // here. Call these from Commands.
+void Drivetrain::Go(float magnitude, float angle) {
+	robotDrive->Drive(magnitude, angle);
+}
+
 float Drivetrain::GetGyro() {
 	return gyro1->GetAngle();
 }

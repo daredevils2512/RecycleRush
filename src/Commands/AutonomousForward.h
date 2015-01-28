@@ -9,28 +9,20 @@
 // it from being updated in the future.
 
 
-#ifndef RUNWINCH_H
-#define RUNWINCH_H
 
+#ifndef AUTONOMOUS_FORWARD_H
+#define AUTONOMOUS_FORWARD_H
 
-#include "Commands/Subsystem.h"
-#include "../Robot.h"
+#include "Commands/CommandGroup.h"
 
 /**
  *
  *
  * @author ExampleAuthor
  */
-class RunWinch: public Command {
-	int winchNumber;
-	float winchOutput;
-public:
-	RunWinch(int winchNumber, float _winchOutput);
-	virtual void Initialize();
-	virtual void Execute();
-	virtual bool IsFinished();
-	virtual void End();
-	virtual void Interrupted();
+class AutonomousForward: public CommandGroup {
+public:	
+	AutonomousForward();
 };
 
 #endif

@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef RUNWINCH_H
-#define RUNWINCH_H
+#ifndef PLACE_H
+#define PLACE_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,11 +21,9 @@
  *
  * @author ExampleAuthor
  */
-class RunWinch: public Command {
-	int winchNumber;
-	float winchOutput;
+class Place: public Command {
 public:
-	RunWinch(int winchNumber, float _winchOutput);
+	Place();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

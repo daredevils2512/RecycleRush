@@ -40,6 +40,8 @@ public:
 
 	Drivetrain();
 	void InitDefaultCommand();
+
+	void Go(float magnitude, float angle);
 	float GetGyro();
 
 };

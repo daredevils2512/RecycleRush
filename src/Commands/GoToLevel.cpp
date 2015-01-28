@@ -1,22 +1,18 @@
 #include "GoToLevel.h"
 
-GoToLevel::GoToLevel(int _level, bool _aboveLevel) {
+GoToLevel::GoToLevel(int level) {
 	// Use requires() here to declare subsystem dependencies
 	// eg. requires(chassis);
 	Requires(Robot::clawPID);
-	level = _level;
-	aboveLevel = _aboveLevel;
+
+	this->level = level;
 }
 
 // Called just before this Command runs the first time
 void GoToLevel::Initialize() {
 	Robot::clawPID->Enable();
 	if(level >= 0 && level < 7) {
-		if(level < 6 && aboveLevel) {
-			Robot::clawPID->SetSetpoint(Robot::clawPID->LEVELHEIGHT[level] + Robot::clawPID->PLACINGOFFSET);
-		} else {
-			Robot::clawPID->SetSetpoint(Robot::clawPID->LEVELHEIGHT[level]);
-		}
+		Robot::clawPID->SetSetpoint(Robot::clawPID->LEVELHEIGHT[level]);
 	} else {
 		Robot::clawPID->Disable();
 	}
