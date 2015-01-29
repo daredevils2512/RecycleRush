@@ -36,6 +36,8 @@ public:
 	static DigitalInput* clawLevel4;
 	static DigitalInput* clawLevel5;
 	static DigitalInput* clawLevel6;
+	static DigitalInput* clawPIDBottom;
+	static DigitalInput* clawPIDTop;
 	static Encoder* clawPIDHeightEnccoder;
 	static SpeedController* clawPIDClawMotor;
 	static Relay* containerWinchContainerPull1;

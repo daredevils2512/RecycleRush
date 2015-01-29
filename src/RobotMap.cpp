@@ -28,6 +28,8 @@ DigitalInput* RobotMap::clawLevel3 = NULL;
 DigitalInput* RobotMap::clawLevel4 = NULL;
 DigitalInput* RobotMap::clawLevel5 = NULL;
 DigitalInput* RobotMap::clawLevel6 = NULL;
+DigitalInput* RobotMap::clawPIDBottom = NULL;
+DigitalInput* RobotMap::clawPIDTop = NULL;
 Encoder* RobotMap::clawPIDHeightEnccoder = NULL;
 SpeedController* RobotMap::clawPIDClawMotor = NULL;
 Relay* RobotMap::containerWinchContainerPull1 = NULL;
@@ -99,6 +101,12 @@ void RobotMap::init() {
 	
 	clawLevel6 = new DigitalInput(16);
 	lw->AddSensor("Claw", "Level 6", clawLevel6);
+	
+	clawPIDBottom = new DigitalInput(23);
+	lw->AddSensor("ClawPID", "Bottom", clawPIDBottom);
+	
+	clawPIDTop = new DigitalInput(22);
+	lw->AddSensor("ClawPID", "Top", clawPIDTop);
 	
 	clawPIDHeightEnccoder = new Encoder(17, 18, false, Encoder::k4X);
 	lw->AddSensor("ClawPID", "Height Enccoder", clawPIDHeightEnccoder);

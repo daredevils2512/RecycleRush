@@ -283,6 +283,26 @@ Children:
   - Children:
     - Children: []
       Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id008
+          value: '23'
+      Base: Digital Input
+      Name: Bottom
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id008
+          value: '22'
+      Base: Digital Input
+      Name: Top
+    - Children: []
+      Properties:
         Channel A Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id001
           default: '0'
