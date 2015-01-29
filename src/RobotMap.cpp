@@ -124,13 +124,13 @@ void RobotMap::init() {
 	containerWinchContainerSenser3 = new DigitalInput(21);
 	lw->AddSensor("Container Winch", "Container Senser 3", containerWinchContainerSenser3);
 	
-	containerWinchContainerPull1 = new Talon(8);
+	containerWinchContainerPull1 = new Talon(0);
 	lw->AddActuator("Container Winch", "Container Pull 1", (Talon*) containerWinchContainerPull1);
 	
-	containerWinchContainerPull2 = new Talon(9);
+	containerWinchContainerPull2 = new Talon(1);
 	lw->AddActuator("Container Winch", "Container Pull 2", (Talon*) containerWinchContainerPull2);
 	
-	containerWinchContainerPull3 = new Talon(10);
+	containerWinchContainerPull3 = new Talon(2);
 	lw->AddActuator("Container Winch", "Container Pull 3", (Talon*) containerWinchContainerPull3);
 	
 	intakeSystemLeftIntake = new Talon(6);
