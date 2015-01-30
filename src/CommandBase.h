@@ -4,7 +4,6 @@
 #include <string>
 #include "Commands/Command.h"
 #include "OI.h"
-#include "Subsystems/Claw.h"
 #include "Subsystems/Drivetrain.h"
 #include "Subsystems/ClawPID.h"
 #include "Subsystems/ContainerWinch.h"
@@ -24,7 +23,6 @@ public:
 	static void init();
 	// Create a single static instance of all of your subsystems
 	static Drivetrain *drivetrain;
-	static Claw *claw;
 	static ClawPID *clawpid;
 	static ContainerWinch *containerwinch;
 	static IntakeSystem *intakesystem;

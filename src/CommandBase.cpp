@@ -3,7 +3,6 @@
 
 // Initialize a single static instance of all of your subsystems to NULL
 Drivetrain* CommandBase::drivetrain = NULL;
-Claw* CommandBase::claw = NULL;
 ClawPID* CommandBase::clawpid = NULL;
 OI* CommandBase::oi = NULL;
 ContainerWinch* CommandBase::containerwinch = NULL;
@@ -25,7 +24,6 @@ void CommandBase::init()
 	// Create a single static instance of all of your subsystems. The following
 	// line should be repeated for each subsystem in the project.
 	drivetrain = new Drivetrain();
-	claw = new Claw();
 	clawpid = new ClawPID();
 	containerwinch = new ContainerWinch();
 	intakesystem = new IntakeSystem();
