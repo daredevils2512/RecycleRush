@@ -58,6 +58,7 @@ public:
 	static CANTalon* drivetrainSpeedController4;
 	static RobotDrive* drivetrainRobotDrive;
 	static CANTalon* clawPIDCANTalon;
+	static CANTalon* clawMotor2;
 
 	static void init();
 };
