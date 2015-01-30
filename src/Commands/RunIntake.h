@@ -22,8 +22,9 @@
  * @author ExampleAuthor
  */
 class RunIntake: public Command {
+	float velocity;
 public:
-	RunIntake();
+	RunIntake(float velocity);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

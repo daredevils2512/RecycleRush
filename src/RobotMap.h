@@ -27,15 +27,6 @@ public:
 	static Encoder* drivetrainQuadratureEncoder3;
 	static Encoder* drivetrainQuadratureEncoder4;
 	static Gyro* drivetrainGyro1;
-	static Encoder* clawHeightEncoder;
-	static SpeedController* clawClawMotor;
-	static DigitalInput* clawLevel0;
-	static DigitalInput* clawLevel1;
-	static DigitalInput* clawLevel2;
-	static DigitalInput* clawLevel3;
-	static DigitalInput* clawLevel4;
-	static DigitalInput* clawLevel5;
-	static DigitalInput* clawLevel6;
 	static DigitalInput* clawPIDBottom;
 	static DigitalInput* clawPIDTop;
 	static Encoder* clawPIDHeightEnccoder;

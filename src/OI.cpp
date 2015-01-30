@@ -49,8 +49,6 @@ OI::OI() {
 
 	SmartDashboard::PutData("DriveRobot", new DriveRobot());
 
-	SmartDashboard::PutData("RunIntake", new RunIntake());
-
 	SmartDashboard::PutData("StopIntake", new StopIntake());
 
 	SmartDashboard::PutData("ActuateLeftIntake", new ActuateLeftIntake());
@@ -87,6 +85,8 @@ OI::OI() {
 	codriverController = new CodriverJoystickCustom(joystick2, joystick3);
 
 	driverController->GetPlaceButton()->WhenPressed(new Place());
+	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));
+	driverController->GetOutakeButton()->WhenPressed(new RunIntake(-1.0));
 
 	codriverController->GetCoopLevel()->WhenPressed(new GoToLevel(1));
 	codriverController->GetLevel1()->WhenPressed(new GoToLevel(1));

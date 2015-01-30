@@ -24,7 +24,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers)
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	AddSequential(new RunIntake());
+	AddSequential(new RunIntake(1.0));
 
 
 	if (containers > 0) AddParallel(new RunWinch(1, 1.0));

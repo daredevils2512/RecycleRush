@@ -19,15 +19,6 @@ Encoder* RobotMap::drivetrainQuadratureEncoder2 = NULL;
 Encoder* RobotMap::drivetrainQuadratureEncoder3 = NULL;
 Encoder* RobotMap::drivetrainQuadratureEncoder4 = NULL;
 Gyro* RobotMap::drivetrainGyro1 = NULL;
-Encoder* RobotMap::clawHeightEncoder = NULL;
-SpeedController* RobotMap::clawClawMotor = NULL;
-DigitalInput* RobotMap::clawLevel0 = NULL;
-DigitalInput* RobotMap::clawLevel1 = NULL;
-DigitalInput* RobotMap::clawLevel2 = NULL;
-DigitalInput* RobotMap::clawLevel3 = NULL;
-DigitalInput* RobotMap::clawLevel4 = NULL;
-DigitalInput* RobotMap::clawLevel5 = NULL;
-DigitalInput* RobotMap::clawLevel6 = NULL;
 DigitalInput* RobotMap::clawPIDBottom = NULL;
 DigitalInput* RobotMap::clawPIDTop = NULL;
 Encoder* RobotMap::clawPIDHeightEnccoder = NULL;
@@ -75,34 +66,6 @@ void RobotMap::init() {
 	drivetrainGyro1 = new Gyro(1);
 	lw->AddSensor("Drivetrain", "Gyro 1", drivetrainGyro1);
 	drivetrainGyro1->SetSensitivity(0.007);
-	clawHeightEncoder = new Encoder(8, 9, false, Encoder::k4X);
-	lw->AddSensor("Claw", "Height Encoder", clawHeightEncoder);
-	clawHeightEncoder->SetDistancePerPulse(1.0);
-        clawHeightEncoder->SetPIDSourceParameter(Encoder::kRate);
-	clawClawMotor = new Talon(4);
-	lw->AddActuator("Claw", "Claw Motor", (Talon*) clawClawMotor);
-	
-	clawLevel0 = new DigitalInput(10);
-	lw->AddSensor("Claw", "Level 0", clawLevel0);
-	
-	clawLevel1 = new DigitalInput(11);
-	lw->AddSensor("Claw", "Level 1", clawLevel1);
-	
-	clawLevel2 = new DigitalInput(12);
-	lw->AddSensor("Claw", "Level 2", clawLevel2);
-	
-	clawLevel3 = new DigitalInput(13);
-	lw->AddSensor("Claw", "Level 3", clawLevel3);
-	
-	clawLevel4 = new DigitalInput(14);
-	lw->AddSensor("Claw", "Level 4", clawLevel4);
-	
-	clawLevel5 = new DigitalInput(15);
-	lw->AddSensor("Claw", "Level 5", clawLevel5);
-	
-	clawLevel6 = new DigitalInput(16);
-	lw->AddSensor("Claw", "Level 6", clawLevel6);
-	
 	clawPIDBottom = new DigitalInput(23);
 	lw->AddSensor("ClawPID", "Bottom", clawPIDBottom);
 	

@@ -9,6 +9,7 @@
 #define SRC_CONTROLLER_DRIVERBASE_H_
 
 #include "WPILib.h"
+#include "TriggerButton.h"
 
 class DriverBase {
 	Joystick* stick;
@@ -33,6 +34,10 @@ public:
 	float GetIntake();
 
 	JoystickButton* GetPlaceButton();
+
+	virtual TriggerButton* GetIntakeButton() = 0;
+
+	virtual TriggerButton* GetOutakeButton() = 0;
 
 	virtual ~DriverBase();
 };
