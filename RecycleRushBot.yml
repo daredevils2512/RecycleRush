@@ -434,7 +434,7 @@ Children:
           default: '0'
           name: Output Channel (PWM)
           validators: *id011
-          value: '0'
+          value: '17'
       Base: Speed Controller
       Name: Container Pull 1
     - Children: []
@@ -450,7 +450,7 @@ Children:
           default: '0'
           name: Output Channel (PWM)
           validators: *id011
-          value: '1'
+          value: '18'
       Base: Speed Controller
       Name: Container Pull 2
     - Children: []
@@ -482,13 +482,13 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id010
           default: '0'
           name: Output Channel (PWM)
           validators: *id011
-          value: '6'
+          value: '0'
       Base: Speed Controller
       Name: LeftIntake
     - Children: []
@@ -498,13 +498,13 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Talon
+          value: Victor
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id010
           default: '0'
           name: Output Channel (PWM)
           validators: *id011
-          value: '7'
+          value: '1'
       Base: Speed Controller
       Name: RightIntake
     - Children: []
