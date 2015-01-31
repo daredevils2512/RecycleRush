@@ -39,7 +39,7 @@ Children:
           validators: &id006 [DigitalChannel]
           value: '1'
       Base: Quadrature Encoder
-      Name: Quadrature Encoder 1
+      Name: RearRight
     - Children: []
       Properties:
         Channel A Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
@@ -71,7 +71,7 @@ Children:
           validators: *id006
           value: '3'
       Base: Quadrature Encoder
-      Name: Quadrature Encoder 2
+      Name: RearLeft
     - Children: []
       Properties:
         Channel A Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
@@ -103,7 +103,7 @@ Children:
           validators: *id006
           value: '5'
       Base: Quadrature Encoder
-      Name: Quadrature Encoder 3
+      Name: FrontLeft
     - Children: []
       Properties:
         Channel A Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
@@ -135,7 +135,7 @@ Children:
           validators: *id006
           value: '7'
       Base: Quadrature Encoder
-      Name: Quadrature Encoder 4
+      Name: FrontRight
     - Children: []
       Properties:
         Sensitivity: !!robotbuilder.data.properties.DoubleProperty {default: 0.007,
@@ -183,7 +183,7 @@ Children:
           default: '0'
           name: Channel A Channel (Digital)
           validators: *id002
-          value: '17'
+          value: '8'
         Distance Per Pulse: !!robotbuilder.data.properties.DoubleProperty {default: 1,
           name: Distance Per Pulse, validators: null, value: 1.0}
         PID Source: !!robotbuilder.data.properties.ChoicesProperty
@@ -205,7 +205,7 @@ Children:
           default: '0'
           name: Channel B Channel (Digital)
           validators: *id006
-          value: '18'
+          value: '9'
       Base: Quadrature Encoder
       Name: Height Enccoder
     - Children: []
