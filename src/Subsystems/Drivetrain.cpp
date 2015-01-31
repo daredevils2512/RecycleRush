@@ -31,6 +31,12 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	speedController3 = RobotMap::drivetrainSpeedController3;
 	speedController4 = RobotMap::drivetrainSpeedController4;
 	robotDrive = RobotMap::drivetrainRobotDrive;
+	//Inversion settings for right side drive motors
+	robotDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
+	robotDrive->SetInvertedMotor(RobotDrive::kRearRightMotor, false);
+	//Inversion settings for left side drive motors
+	robotDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
+	robotDrive->SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
 }
     
 void Drivetrain::InitDefaultCommand() {

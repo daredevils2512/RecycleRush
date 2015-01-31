@@ -81,6 +81,10 @@ void Robot::TeleopPeriodic() {
 
 	SmartDashboard::PutNumber("Gyro", Robot::drivetrain->GetGyro());
 
+	SmartDashboard::PutNumber("DriverX", oi->GetX());
+	SmartDashboard::PutNumber("DriverY", oi->GetY());
+	SmartDashboard::PutNumber("DriverTwist", oi->GetR());
+
 //	SmartDashboard::PutNumber("encoder1", Robot::drivetrain->quadratureEncoder1->Get());
 //	SmartDashboard::PutNumber("encoder2", Robot::drivetrain->quadratureEncoder2->Get());
 

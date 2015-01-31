@@ -8,7 +8,7 @@
 #include "DriverXbox.h"
 
 DriverXbox::DriverXbox(Joystick* stick) :
-	DriverBase(stick, 1, 1, 2, 4, 3),
+	DriverBase(stick, 1, 0, 1, 4, 3),
 	intakeButton(new TriggerButton(stick, 3, 0.3)),
 	outakeButton(new TriggerButton(stick, 3, -0.3))
 {
