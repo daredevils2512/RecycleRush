@@ -28,7 +28,12 @@ void ActuateIntake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ActuateIntake::Execute() {
-	Robot::intakeSystem->ActuateIntake(value);
+	if (Robot::clawPID->GetBottom()) {
+		Robot::intakeSystem->ActuateIntake(false);
+	}
+	else {
+		Robot::intakeSystem->ActuateIntake(value);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

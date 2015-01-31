@@ -80,6 +80,8 @@ void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 	clawPID->CheckBottom();
 
+	clawPID->SetMotor(oi->getJoystick1()->GetRawAxis(2));
+
 	SmartDashboard::PutNumber("Gyro", Robot::drivetrain->GetGyro());
 
 	SmartDashboard::PutNumber("DriverX", oi->GetX());

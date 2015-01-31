@@ -79,13 +79,13 @@ void ClawPID::InitDefaultCommand() {
 }
 
 void ClawPID::SetMotor(float velocity) {
-//	if(bottom.Get() == false) {
-//		clawMotor->Set(velocity);
-//		clawMotor2->Set(-velocity);
-//	} else {
-//		clawMotor->Set(0);
-//		clawMotor2->Set(0);
-//	}
+	if(bottom->Get() == false) {
+		clawMotor->Set(velocity);
+		clawMotor2->Set(-velocity);
+	} else {
+		clawMotor->Set(0);
+		clawMotor2->Set(0);
+	}
 }
 
 bool ClawPID::GetTop() {

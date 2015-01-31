@@ -310,7 +310,7 @@ Children:
           default: '0'
           name: Output Channel (PWM)
           validators: *id011
-          value: '17'
+          value: '14'
       Base: Speed Controller
       Name: Container Pull 1
     - Children: []
