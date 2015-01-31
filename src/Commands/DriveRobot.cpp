@@ -28,7 +28,7 @@ void DriveRobot::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void DriveRobot::Execute() {
-	Robot::drivetrain->robotDrive->MecanumDrive_Cartesian(Robot::oi->GetX(), Robot::oi->GetY(), Robot::oi->GetR());
+//	Robot::drivetrain->robotDrive->MecanumDrive_Cartesian(Robot::oi->GetX(), Robot::oi->GetY(), Robot::oi->GetR());
 }
 
 // Make this return true when this Command no longer needs to run execute()
