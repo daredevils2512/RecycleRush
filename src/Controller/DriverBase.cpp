@@ -24,28 +24,29 @@ DriverBase::DriverBase(
 }
 
 float DriverBase::GetDrivingX() {
-	if(abs(stick->GetRawAxis(drivingXAxis) > 0.1)) {
-		return stick->GetRawAxis(drivingXAxis);
-	} else {
-		return 0.0;
+	float value = 0;
+	if(stick->GetRawAxis(drivingXAxis) > 0.1 || stick->GetRawAxis(drivingXAxis) < -0.1) {
+		value = -stick->GetRawAxis(drivingXAxis);
 	}
+	return value;
 }
 
 float DriverBase::GetDrivingY() {
-	if(abs(stick->GetRawAxis(drivingYAxis) > 0.1)) {
-		return stick->GetRawAxis(drivingYAxis);
-	} else {
-		return 0.0;
+	float value = 0;
+	if(stick->GetRawAxis(drivingYAxis) > 0.1 || stick->GetRawAxis(drivingYAxis) < -0.1) {
+		value = -stick->GetRawAxis(drivingYAxis);
 	}
+	return value;
 }
 
 float DriverBase::GetDrivingTwist() {
-	if(abs(stick->GetRawAxis(drivingTwistAxis) > 0.1)) {
-		return stick->GetRawAxis(drivingTwistAxis);
-	} else {
-		return 0.0;
+	float value = 0;
+	if(stick->GetRawAxis(drivingTwistAxis) > 0.1 || stick->GetRawAxis(drivingTwistAxis) < -0.1) {
+		value = -stick->GetRawAxis(drivingTwistAxis);
 	}
+	return value;
 }
+
 
 float DriverBase::GetIntake() {
 	return stick->GetRawAxis(intakeAxis);
