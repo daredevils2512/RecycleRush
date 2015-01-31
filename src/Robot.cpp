@@ -78,6 +78,7 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+	clawPID->CheckBottom();
 
 	SmartDashboard::PutNumber("Gyro", Robot::drivetrain->GetGyro());
 
@@ -86,6 +87,7 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("DriverTwist", oi->GetR());
 
 	SmartDashboard::PutNumber("Rear Right", Robot::drivetrain->quadratureEncoder1->GetRaw());
+	SmartDashboard::PutNumber("Rear Left", Robot::drivetrain->quadratureEncoder2->GetRaw());
 
 //	SmartDashboard::PutNumber("encoder1", Robot::drivetrain->quadratureEncoder1->Get());
 //	SmartDashboard::PutNumber("encoder2", Robot::drivetrain->quadratureEncoder2->Get());

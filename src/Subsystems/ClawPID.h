@@ -51,6 +51,8 @@ class ClawPID: public PIDSubsystem {
 
 	bool GetBottom();
 
+	void CheckBottom();
+
 	PIDController* RetrivePIDController();
 };
 

@@ -61,13 +61,13 @@ double ClawPID::ReturnPIDInput() {
 void ClawPID::UsePIDOutput(double output) {
 	// Use output to drive your system, like a motor
 	// e.g. yourMotor->Set(output);
-	if(bottom == false) {
-		clawMotor->PIDWrite(output);
-		clawMotor2->PIDWrite(-output);
-	} else {
-		clawMotor->PIDWrite(0);
-		clawMotor2->PIDWrite(0);
-	}
+//	if(bottom.Get() == false) {
+//		clawMotor->PIDWrite(output);
+//		clawMotor2->PIDWrite(-output);
+//	} else {
+//		clawMotor->PIDWrite(0);
+//		clawMotor2->PIDWrite(0);
+//	}
 }
 
 void ClawPID::InitDefaultCommand() {
@@ -79,13 +79,13 @@ void ClawPID::InitDefaultCommand() {
 }
 
 void ClawPID::SetMotor(float velocity) {
-	if(bottom == false) {
-		clawMotor->Set(velocity);
-		clawMotor2->Set(-velocity);
-	} else {
-		clawMotor->Set(0);
-		clawMotor2->Set(0);
-	}
+//	if(bottom.Get() == false) {
+//		clawMotor->Set(velocity);
+//		clawMotor2->Set(-velocity);
+//	} else {
+//		clawMotor->Set(0);
+//		clawMotor2->Set(0);
+//	}
 }
 
 bool ClawPID::GetTop() {
@@ -98,4 +98,10 @@ bool ClawPID::GetBottom() {
 
 PIDController* ClawPID::RetrivePIDController() {
 	return GetPIDController();
+}
+
+void ClawPID::CheckBottom() {
+	if (bottom->Get()) {
+		heightEnccoder->Reset();
+	}
 }
