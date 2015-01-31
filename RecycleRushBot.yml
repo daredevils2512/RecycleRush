@@ -385,65 +385,40 @@ Children:
       Name: RightIntake
     - Children: []
       Properties:
-        Forward PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id012 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-            '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
+        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          choices: &id012 ['0', '1', '2', '3', '4', '5', '6', '7']
           default: '0'
-          name: Forward PCM (Solenoid)
+          name: Output Channel (Solenoid)
           validators: &id013 [Solenoid]
           value: '0'
-        Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+        Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: &id014 ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
             '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']
           default: '0'
-          name: Reverse PCM (Solenoid)
+          name: Output PCM (Solenoid)
           validators: &id015 [Solenoid]
           value: '0'
-        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id016 ['0', '1', '2', '3', '4', '5', '6', '7']
-          default: '0'
-          name: Reverse Channel (Solenoid)
-          validators: &id017 [Solenoid]
-          value: '1'
-        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: &id018 ['0', '1', '2', '3', '4', '5', '6', '7']
-          default: '0'
-          name: Forward Channel (Solenoid)
-          validators: &id019 [Solenoid]
-          value: '0'
-      Base: Double Solenoid
-      Name: Left Intake Actuator
+      Base: Solenoid
+      Name: Solenoid 1
     - Children: []
       Properties:
-        Forward PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+        Output Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id012
           default: '0'
-          name: Forward PCM (Solenoid)
+          name: Output Channel (Solenoid)
           validators: *id013
-          value: '0'
-        Reverse PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
+          value: '1'
+        Output PCM (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id014
           default: '0'
-          name: Reverse PCM (Solenoid)
+          name: Output PCM (Solenoid)
           validators: *id015
-          value: '0'
-        Reverse Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id016
-          default: '0'
-          name: Reverse Channel (Solenoid)
-          validators: *id017
-          value: '3'
-        Forward Channel (Solenoid): !!robotbuilder.data.properties.ChoicesProperty
-          choices: *id018
-          default: '0'
-          name: Forward Channel (Solenoid)
-          validators: *id019
-          value: '2'
-      Base: Double Solenoid
-      Name: Right Intake Actuator
+          value: '1'
+      Base: Solenoid
+      Name: Solenoid 2
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Default Command, type: Command, validators: null, value: None}
+        name: Default Command, type: Command, validators: null, value: CheckIntake}
     Base: Subsystem
     Name: Intake System
   Properties: {}
@@ -453,30 +428,30 @@ Children:
   - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: &id020 ['0', '1', '2', '3', '4', '5']
+        choices: &id016 ['0', '1', '2', '3', '4', '5']
         default: 1
         name: Number
-        validators: &id021 [Joystick]
+        validators: &id017 [Joystick]
         value: '0'
     Base: Joystick
     Name: Joystick 1
   - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: *id020
+        choices: *id016
         default: 1
         name: Number
-        validators: *id021
+        validators: *id017
         value: '1'
     Base: Joystick
     Name: Joystick 2
   - Children: []
     Properties:
       Number: !!robotbuilder.data.properties.ChoicesProperty
-        choices: *id020
+        choices: *id016
         default: 1
         name: Number
-        validators: *id021
+        validators: *id017
         value: '2'
     Base: Joystick
     Name: Joystick 3
@@ -571,19 +546,11 @@ Children:
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
+        name: Requires, type: Subsystem, validators: null, value: Intake System}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
+        name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
-    Name: ActuateLeftIntake
-  - Children: []
-    Properties:
-      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: None}
-      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
-        name: Button on SmartDashboard, validators: null, value: true}
-    Base: Command
-    Name: ActuateRightIntake
+    Name: ActuateIntake
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
@@ -612,6 +579,14 @@ Children:
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
     Name: Place
+  - Children: []
+    Properties:
+      Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Requires, type: Subsystem, validators: null, value: Intake System}
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: false}
+    Base: Command
+    Name: CheckIntake
   Properties: {}
   Base: Commands
   Name: Commands

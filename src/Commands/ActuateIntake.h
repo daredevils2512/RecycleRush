@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef ACTUATELEFTINTAKE_H
-#define ACTUATELEFTINTAKE_H
+#ifndef ACTUATEINTAKE_H
+#define ACTUATEINTAKE_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,9 +21,10 @@
  *
  * @author ExampleAuthor
  */
-class ActuateLeftIntake: public Command {
+class ActuateIntake: public Command {
+	bool value;
 public:
-	ActuateLeftIntake();
+	ActuateIntake(bool value);
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();

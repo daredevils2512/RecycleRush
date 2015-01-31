@@ -9,8 +9,8 @@
 // it from being updated in the future.
 
 
-#ifndef ACTUATERIGHTINTAKE_H
-#define ACTUATERIGHTINTAKE_H
+#ifndef CHECKINTAKE_H
+#define CHECKINTAKE_H
 
 
 #include "Commands/Subsystem.h"
@@ -21,9 +21,9 @@
  *
  * @author ExampleAuthor
  */
-class ActuateRightIntake: public Command {
+class CheckIntake: public Command {
 public:
-	ActuateRightIntake();
+	CheckIntake();
 	virtual void Initialize();
 	virtual void Execute();
 	virtual bool IsFinished();
