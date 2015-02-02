@@ -53,6 +53,8 @@ class ClawPID: public PIDSubsystem {
 
 	void CheckBottom();
 
+	void ResetHeightEncoder();
+
 	PIDController* RetrivePIDController();
 };
 

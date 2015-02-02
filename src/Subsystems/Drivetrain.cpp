@@ -33,10 +33,10 @@ Drivetrain::Drivetrain() : Subsystem("Drivetrain") {
 	robotDrive = RobotMap::drivetrainRobotDrive;
 	//Inversion settings for right side drive motors
 	robotDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
-	robotDrive->SetInvertedMotor(RobotDrive::kRearRightMotor, false);
+	robotDrive->SetInvertedMotor(RobotDrive::kRearRightMotor, true);
 	//Inversion settings for left side drive motors
-	robotDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, false);
-	robotDrive->SetInvertedMotor(RobotDrive::kRearLeftMotor, true);
+	robotDrive->SetInvertedMotor(RobotDrive::kFrontRightMotor, true);
+	robotDrive->SetInvertedMotor(RobotDrive::kRearLeftMotor, false);
 }
     
 void Drivetrain::InitDefaultCommand() {

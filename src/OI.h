@@ -27,6 +27,9 @@ private:
 
 	 DriverBase* driverController;
 	 CodriverBase* codriverController;
+
+	 TriggerButton* clawOveridePos;
+	 TriggerButton* clawOverideNeg;
 public:
 	OI();
  
@@ -40,6 +43,7 @@ public:
 	float GetX();
 	float GetY();
 	float GetR();
+	float GetClawOveride();
 };
 
 #endif

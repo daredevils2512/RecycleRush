@@ -59,6 +59,8 @@ void Robot::DisabledPeriodic() {
 }
 
 void Robot::AutonomousInit() {
+	liftDown.WhenActive(new ResetLevelEncoder());
+
 	if (autonomousCommand != NULL)
 		autonomousCommand->Start();
 }
@@ -72,15 +74,31 @@ void Robot::TeleopInit() {
 	// teleop starts running. If you want the autonomous to 
 	// continue until interrupted by another command, remove
 	// these lines or comment it out.
+
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
 }
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
-	clawPID->CheckBottom();
 
-	clawPID->SetMotor(oi->getJoystick1()->GetRawAxis(2));
+
+//	SmartDashboard::PutBoolean("Setting", Robot::intakeSystem->solenoid1->Get());
+//	SmartDashboard::PutBoolean("Setting 2", Robot::intakeSystem->solenoid1->Get());
+//	if(oi->getJoystick2()->GetRawButton(2)) {
+//		intakeSystem->ActuateIntake(true);
+//	} else {
+//		intakeSystem->ActuateIntake(false);
+//	}
+	if(oi->getJoystick3()->GetRawAxis(1) > 0.5 || oi->getJoystick3()->GetRawAxis(1) < -0.5) {
+		intakeSystem->SetIntakeMotors(oi->getJoystick3()->GetRawAxis(1), oi->getJoystick3()->GetRawAxis(1));
+	} else {
+		intakeSystem->SetIntakeMotors(0, 0);
+	}
+	if(Robot::clawPID->bottom->Get()) {
+		Robot::clawPID->ResetHeightEncoder();
+	}
+	SmartDashboard::PutBoolean("Setting", Robot::intakeSystem->doubleSolenoid1->Get());
 
 	SmartDashboard::PutNumber("Gyro", Robot::drivetrain->GetGyro());
 
@@ -92,6 +110,10 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("Rear Left", Robot::drivetrain->rearLeft->GetRaw());
 	SmartDashboard::PutNumber("Front Right", Robot::drivetrain->frontRight->GetRaw());
 	SmartDashboard::PutNumber("Front Left", Robot::drivetrain->frontLeft->GetRaw());
+
+	SmartDashboard::PutNumber("Winch Encoder", Robot::clawPID->heightEnccoder->GetRaw());
+
+	SmartDashboard::PutNumber("Bottom", Robot::clawPID->bottom->Get());
 
 //	SmartDashboard::PutNumber("encoder1", Robot::drivetrain->quadratureEncoder1->Get());
 //	SmartDashboard::PutNumber("encoder2", Robot::drivetrain->quadratureEncoder2->Get());
