@@ -5,6 +5,7 @@
  *      Author: Craig
  */
 
+#include <cmath>
 #include "DriverBase.h"
 
 DriverBase::DriverBase(
@@ -14,8 +15,8 @@ DriverBase::DriverBase(
 		int drivingYAxis,
 		int drivingTwistAxis,
 		int intakeAxis) :
-	stick(stick),
 	placeButton(new JoystickButton(stick, placeButton)),
+	stick(stick),
 	drivingXAxis(drivingXAxis),
 	drivingYAxis(drivingYAxis),
 	drivingTwistAxis(drivingTwistAxis),
@@ -24,27 +25,15 @@ DriverBase::DriverBase(
 }
 
 float DriverBase::GetDrivingX() {
-	if(abs(stick->GetRawAxis(drivingXAxis) > 0.1)) {
-		return stick->GetRawAxis(drivingXAxis);
-	} else {
-		return 0.0;
-	}
+	return stick->GetRawAxis(drivingXAxis);
 }
 
 float DriverBase::GetDrivingY() {
-	if(abs(stick->GetRawAxis(drivingYAxis) > 0.1)) {
-		return stick->GetRawAxis(drivingYAxis);
-	} else {
-		return 0.0;
-	}
+	return stick->GetRawAxis(drivingYAxis);
 }
 
 float DriverBase::GetDrivingTwist() {
-	if(abs(stick->GetRawAxis(drivingTwistAxis) > 0.1)) {
-		return stick->GetRawAxis(drivingTwistAxis);
-	} else {
-		return 0.0;
-	}
+	return stick->GetRawAxis(drivingTwistAxis);
 }
 
 float DriverBase::GetIntake() {
@@ -53,6 +42,14 @@ float DriverBase::GetIntake() {
 
 JoystickButton* DriverBase::GetPlaceButton() {
 	return placeButton;
+}
+
+float DriverBase::Desensitize(float value, float sensitivity) {
+	if(fabs(value) > sensitivity) {
+		return value;
+	} else {
+		return 0;
+	}
 }
 
 DriverBase::~DriverBase() {

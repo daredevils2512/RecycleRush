@@ -22,6 +22,10 @@ public:
 
 	TriggerButton* GetIntakeButton();
 	TriggerButton* GetOutakeButton();
+
+	virtual float GetDrivingX();
+	virtual float GetDrivingY();
+	virtual float GetDrivingTwist();
 };
 
 #endif /* SRC_CONTROLLER_DRIVERXBOX_H_ */

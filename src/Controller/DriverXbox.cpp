@@ -5,6 +5,7 @@
  *      Author: Craig
  */
 
+#include <cmath>
 #include "DriverXbox.h"
 
 DriverXbox::DriverXbox(Joystick* stick) :
@@ -26,4 +27,21 @@ TriggerButton* DriverXbox::GetIntakeButton() {
 TriggerButton* DriverXbox::GetOutakeButton() {
 	return outakeButton;
 }
+
+float DriverXbox::GetDrivingX() {
+	float value = -stick->GetRawAxis(drivingXAxis);
+	return Desensitize(value, 0.1);
+}
+
+float DriverXbox::GetDrivingY() {
+	float value = -stick->GetRawAxis(drivingYAxis);
+	return Desensitize(value, 0.1);
+}
+
+float DriverXbox::GetDrivingTwist() {
+	float value = stick->GetRawAxis(drivingTwistAxis);
+	return Desensitize(value, 0.1);
+}
+
+
 
