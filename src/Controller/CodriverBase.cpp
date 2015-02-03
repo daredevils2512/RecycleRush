@@ -6,6 +6,7 @@
  */
 
 #include "CodriverBase.h"
+#include "TriggerButton.h"
 
 CodriverBase::CodriverBase(
 		Joystick* stick,
@@ -29,6 +30,8 @@ CodriverBase::CodriverBase(
 		level7(new JoystickButton(stick, level7)),
 		placeButton(new JoystickButton(stick, placeButton)),
 		coopLevel(new JoystickButton(stick, coopLevel)),
+		clawOveridePos(new TriggerButton(stick, 4, 0.2)),
+		clawOverideNeg(new TriggerButton(stick, 4, 0.2)),
 		manualOverideAxis(manualOverideAxis)
 {
 
