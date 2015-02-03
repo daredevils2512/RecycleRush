@@ -27,9 +27,6 @@ private:
 
 	 DriverBase* driverController;
 	 CodriverBase* codriverController;
-
-	 TriggerButton* clawOveridePos;
-	 TriggerButton* clawOverideNeg;
 public:
 	OI();
  

@@ -9,6 +9,7 @@
 #define SRC_CONTROLLER_CODRIVERBASE_H_
 
 #include "WPILib.h"
+#include "TriggerButton.h"
 
 class CodriverBase {
 	Joystick* stick;
@@ -22,6 +23,9 @@ class CodriverBase {
 	JoystickButton* level7;
 	JoystickButton* placeButton;
 	JoystickButton* coopLevel;
+
+	TriggerButton* clawOveridePos;
+	TriggerButton* clawOverideNeg;
 
 	int manualOverideAxis;
 public:
@@ -49,9 +53,11 @@ public:
 			JoystickButton* level7,
 			JoystickButton* placeButton,
 			JoystickButton* coopLevel,
+			TriggerButton* clawOveridePos,
+			TriggerButton* clawOverideNeg,
 			int manualOverideAxis);
 
-	float GetManualOveride();
+	virtual float GetManualOveride();
 
 	JoystickButton* GetLevel1();
 	JoystickButton* GetLevel2();
@@ -62,6 +68,8 @@ public:
 	JoystickButton* GetLevel7();
 	JoystickButton* GetPlaceButton();
 	JoystickButton* GetCoopLevel();
+	TriggerButton* GetOverideButton1();
+	TriggerButton* GetOverideButton2();
 
 	virtual ~CodriverBase();
 

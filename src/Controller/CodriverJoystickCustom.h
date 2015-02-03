@@ -13,7 +13,8 @@
 class CodriverJoystickCustom: public CodriverBase {
 	Joystick* stick2;
 public:
-	CodriverJoystickCustom(Joystick* stick1, Joystick* stick2);
+	CodriverJoystickCustom(Joystick* joystick, Joystick* custom);
+
 	virtual ~CodriverJoystickCustom();
 };
 

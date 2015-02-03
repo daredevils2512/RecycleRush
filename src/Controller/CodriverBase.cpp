@@ -45,6 +45,8 @@ CodriverBase::CodriverBase(
 		JoystickButton* level7,
 		JoystickButton* placeButton,
 		JoystickButton* coopLevel,
+		TriggerButton* clawOveridePos,
+		TriggerButton* clawOverideNeg,
 		int manualOverideAxis):
 		stick(stick),
 		level1(level1),
@@ -56,6 +58,8 @@ CodriverBase::CodriverBase(
 		level7(level7),
 		placeButton(placeButton),
 		coopLevel(coopLevel),
+		clawOveridePos(clawOveridePos),
+		clawOverideNeg(clawOverideNeg),
 		manualOverideAxis(manualOverideAxis)
 {
 
@@ -101,6 +105,13 @@ JoystickButton* CodriverBase::GetCoopLevel() {
 	return coopLevel;
 }
 
+TriggerButton* CodriverBase::GetOverideButton1() {
+	return clawOveridePos;
+}
+
+TriggerButton* CodriverBase::GetOverideButton2() {
+	return clawOverideNeg;
+}
 
 
 CodriverBase::~CodriverBase() {
