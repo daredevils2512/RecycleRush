@@ -24,6 +24,7 @@
 #include "Commands/GoToLevel.h"
 #include "Commands/Place.h"
 #include "Commands/ResetLevelEncoder.h"
+#include "Commands/RunCompressor.h"
 #include "Commands/RunIntake.h"
 #include "Commands/RunWinch.h"
 #include "Commands/StopClaw.h"
