@@ -30,6 +30,9 @@ private:
 
 	 TriggerButton* clawOveridePos;
 	 TriggerButton* clawOverideNeg;
+
+	 TriggerButton* intake;
+	 TriggerButton* outake;
 public:
 	OI();
  
@@ -44,6 +47,7 @@ public:
 	float GetY();
 	float GetR();
 	float GetClawOveride();
+	float Desensitize(int axisNumber, float threshold);
 };
 
 #endif

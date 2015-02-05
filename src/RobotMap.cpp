@@ -71,7 +71,7 @@ void RobotMap::init() {
 	clawPIDTop = new DigitalInput(22);
 	lw->AddSensor("ClawPID", "Top", clawPIDTop);
 	
-	clawPIDHeightEnccoder = new Encoder(8, 9, false, Encoder::k4X);
+	clawPIDHeightEnccoder = new Encoder(8, 9, false, Encoder::k1X);
 	lw->AddSensor("ClawPID", "Height Enccoder", clawPIDHeightEnccoder);
 	clawPIDHeightEnccoder->SetDistancePerPulse(1.0);
         clawPIDHeightEnccoder->SetPIDSourceParameter(Encoder::kDistance);

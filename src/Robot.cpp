@@ -77,6 +77,7 @@ void Robot::TeleopInit() {
 
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
+	clawPID->Disable();
 }
 
 void Robot::TeleopPeriodic() {
@@ -90,14 +91,19 @@ void Robot::TeleopPeriodic() {
 //	} else {
 //		intakeSystem->ActuateIntake(false);
 //	}
-	if(oi->getJoystick3()->GetRawAxis(1) > 0.5 || oi->getJoystick3()->GetRawAxis(1) < -0.5) {
-		intakeSystem->SetIntakeMotors(oi->getJoystick3()->GetRawAxis(1), oi->getJoystick3()->GetRawAxis(1));
-	} else {
-		intakeSystem->SetIntakeMotors(0, 0);
-	}
+//	if(oi->getJoystick3()->GetRawAxis(1) > 0.5 || oi->getJoystick3()->GetRawAxis(1) < -0.5) {
+//		intakeSystem->SetIntakeMotors(oi->getJoystick3()->GetRawAxis(1), oi->getJoystick3()->GetRawAxis(1));
+//	} else {
+//		intakeSystem->SetIntakeMotors(0, 0);
+//	}
 	if(Robot::clawPID->bottom->Get()) {
 		Robot::clawPID->ResetHeightEncoder();
+		intakeSystem->ActuateIntake(false);
 	}
+
+	SmartDashboard::PutBoolean("PID On Target", clawPID->OnTarget());
+	SmartDashboard::PutNumber("PID Setpoint", clawPID->GetSetpoint());
+	SmartDashboard::PutNumber("PID Position", clawPID->GetPosition());
 	SmartDashboard::PutBoolean("Setting", Robot::intakeSystem->doubleSolenoid1->Get());
 
 	SmartDashboard::PutNumber("Gyro", Robot::drivetrain->GetGyro());

@@ -16,6 +16,11 @@ void GoToLevel::Initialize() {
 	} else {
 		Robot::clawPID->Disable();
 	}
+	if(Robot::clawPID->LEVELHEIGHT[level] > Robot::clawPID->GetSetpoint()) {
+		Robot::clawPID->RetrivePIDController()->SetPID(0.01, 0.0, 0.0);
+	} else {
+		Robot::clawPID->RetrivePIDController()->SetPID(0.01, 0.0001, 0.0);
+	}
 }
 
 // Called repeatedly when this Command is scheduled to run
