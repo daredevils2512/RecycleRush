@@ -14,6 +14,7 @@
 #include "../RobotMap.h"
 #include "SmartDashboard/SmartDashboard.h"
 #include "LiveWindow/LiveWindow.h"
+#include "../Robot.h"
 
 const float ClawPID::LEVELHEIGHT[] = {0, -25, -125, -225, -325, -425, -525};
 const float ClawPID::PLACEOFFSET = 5;
@@ -80,10 +81,15 @@ void ClawPID::InitDefaultCommand() {
 
 void ClawPID::SetMotor(float velocity) {
 	if(bottom->Get() == false) {
-		clawMotor->Set(velocity);
-		clawMotor2->Set(-velocity);
+//		if(heightEnccoder->GetRaw() >= -2 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kReverse) {
+			clawMotor->Set(velocity);
+			clawMotor2->Set(-velocity);
+//		} else {
+//			clawMotor->Set(0);
+//			clawMotor2->Set(0);
+//		}
 	} else {
-		if(velocity > 0) {
+		if(velocity > 0 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kForward) {
 			clawMotor->Set(velocity);
 			clawMotor2->Set(-velocity);
 		} else {
