@@ -23,9 +23,10 @@ Place::Place() {
 // Called just before this Command runs the first time
 void Place::Initialize() {
 	Robot::clawPID->Enable();
-	if (Robot::clawPID->GetSetpoint() >= Robot::clawPID->PLACEOFFSET + Robot::clawPID->MINSETPOINT) {
-		Robot::clawPID->SetSetpoint(Robot::clawPID->GetSetpoint() - Robot::clawPID->PLACEOFFSET);
-	}
+//	if (Robot::clawPID->GetSetpoint() >= Robot::clawPID->PLACEOFFSET + Robot::clawPID->MINSETPOINT) {
+//		Robot::clawPID->SetSetpoint(Robot::clawPID->GetSetpoint() - Robot::clawPID->PLACEOFFSET);
+//	}
+	Robot::clawPID->SetSetpointRelative(Robot::clawPID->PLACEOFFSET);
 }
 
 // Called repeatedly when this Command is scheduled to run

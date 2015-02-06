@@ -68,7 +68,7 @@ void RobotMap::init() {
 	clawPIDBottom = new DigitalInput(10);
 	lw->AddSensor("ClawPID", "Bottom", clawPIDBottom);
 	
-	clawPIDTop = new DigitalInput(22);
+	clawPIDTop = new DigitalInput(11);
 	lw->AddSensor("ClawPID", "Top", clawPIDTop);
 	
 	clawPIDHeightEnccoder = new Encoder(8, 9, false, Encoder::k1X);
@@ -121,7 +121,7 @@ void RobotMap::init() {
 	drivetrainSpeedController4 = new CANTalon(6);
 	lw->AddActuator("Drivetrain", "Speed Controller 4", (TalonSRX*) drivetrainSpeedController4);
 
-	drivetrainRobotDrive = new RobotDrive(drivetrainSpeedController1, drivetrainSpeedController2,
+	drivetrainRobotDrive = new RobotDrive(drivetrainSpeedController2, drivetrainSpeedController1,
               drivetrainSpeedController3, drivetrainSpeedController4);
 
 	clawPIDCANTalon = new CANTalon(8);

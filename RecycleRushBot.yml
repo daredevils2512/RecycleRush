@@ -173,7 +173,7 @@ Children:
           default: '0'
           name: Input Channel (Digital)
           validators: *id008
-          value: '22'
+          value: '11'
       Base: Digital Input
       Name: Top
     - Children: []
@@ -459,7 +459,7 @@ Children:
   - Children: []
     Properties:
       Requires: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
-        name: Requires, type: Subsystem, validators: null, value: Compressor}
+        name: Requires, type: Subsystem, validators: null, value: None}
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command
