@@ -63,7 +63,7 @@ double ClawPID::ReturnPIDInput() {
 void ClawPID::UsePIDOutput(double output) {
 	// Use output to drive your system, like a motor
 	// e.g. yourMotor->Set(output);
-	if((bottom->Get() == false) && (top->Get() || output < 0)) {
+	if((bottom->Get() == false || (output > 0 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kForward)) && (top->Get() || output < 0)) {
 		clawMotor->PIDWrite(-output);
 		clawMotor2->PIDWrite(output);
 	} else {
