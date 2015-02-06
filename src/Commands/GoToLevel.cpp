@@ -1,3 +1,4 @@
+#include <cmath>
 #include "GoToLevel.h"
 
 GoToLevel::GoToLevel(int level) {
@@ -17,7 +18,10 @@ void GoToLevel::Initialize() {
 		Robot::clawPID->Disable();
 	}
 	if(Robot::clawPID->LEVELHEIGHT[level] > Robot::clawPID->GetSetpoint()) {
-		Robot::clawPID->RetrivePIDController()->SetPID(0.85, 0.0003, 0.0);
+		//Down
+		goingDown = true;
+		Robot::clawPID->Disable();
+//		Robot::clawPID->RetrivePIDController()->SetPID(0.85, 0.0003, 0.0);
 		//0.75, 0.0001, 0.0
 	} else {
 		Robot::clawPID->RetrivePIDController()->SetPID(0.02, 0.0003, 0.0);
@@ -27,6 +31,10 @@ void GoToLevel::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void GoToLevel::Execute() {
+	if(goingDown) {
+		if(Robot::clawPID->heightEnccoder->GetRaw())
+		Robot::clawPID->SetMotor(1.5 * TimeSinceInitialized() + 0.15);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
@@ -37,10 +45,12 @@ bool GoToLevel::IsFinished() {
 // Called once after isFinished returns true
 void GoToLevel::End() {
 	Robot::clawPID->Disable();
+	Robot::clawPID->SetMotor(0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
 void GoToLevel::Interrupted() {
 	Robot::clawPID->Disable();
+	Robot::clawPID->SetMotor(0);
 }

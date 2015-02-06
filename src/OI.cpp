@@ -117,7 +117,6 @@ OI::OI() {
 	clawOveridePos = new TriggerButton(joystick2, 1, 0.3);
 	clawOverideNeg = new TriggerButton(joystick2, 1, -0.3);
 
-
 	intake = new TriggerButton(joystick1, 3, 0.3);
 	outake = new TriggerButton(joystick1, 2, 0.3);
 

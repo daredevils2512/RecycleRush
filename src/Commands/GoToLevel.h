@@ -8,6 +8,7 @@
 class GoToLevel: public Command {
 private:
 	int level;
+	bool goingDown;
 public:
 	GoToLevel(int level);
 	virtual void Initialize();
