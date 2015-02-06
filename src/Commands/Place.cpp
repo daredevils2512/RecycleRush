@@ -26,6 +26,7 @@ void Place::Initialize() {
 //	if (Robot::clawPID->GetSetpoint() >= Robot::clawPID->PLACEOFFSET + Robot::clawPID->MINSETPOINT) {
 //		Robot::clawPID->SetSetpoint(Robot::clawPID->GetSetpoint() - Robot::clawPID->PLACEOFFSET);
 //	}
+	Robot::clawPID->RetrivePIDController()->SetPID(0.85, 0.0003, 0.0);
 	Robot::clawPID->SetSetpointRelative(Robot::clawPID->PLACEOFFSET);
 }
 
