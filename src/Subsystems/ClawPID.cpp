@@ -16,7 +16,7 @@
 #include "LiveWindow/LiveWindow.h"
 #include "../Robot.h"
 
-const float ClawPID::LEVELHEIGHT[] = {0, -195, -300, -408, -513, -619, -670};
+const float ClawPID::LEVELHEIGHT[] = {0, -53, -195, -300, -408, -513, -619, -670};
 //Delta Place = 58;
 const float ClawPID::PLACEOFFSET = 58;
 const float ClawPID::MINSETPOINT = 0;

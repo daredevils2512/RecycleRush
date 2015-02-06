@@ -28,6 +28,8 @@ private:
 	 DriverBase* driverController;
 	 CodriverBase* codriverController;
 
+	 JoystickButton* tempLevel1;
+
 	 TriggerButton* clawOveridePos;
 	 TriggerButton* clawOverideNeg;
 

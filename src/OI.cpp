@@ -99,23 +99,27 @@ OI::OI() {
 	driverController = new DriverXbox(joystick1);
 	codriverController = new CodriverJoystickCustom(joystick2, joystick3);
 
+	tempLevel1 = new JoystickButton(joystick3, 16);
+
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 //	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));
 //	driverController->GetOutakeButton()->WhenPressed(new RunIntake(-1.0));
 //
 //	codriverController->GetCoopLevel()->WhenPressed(new GoToLevel(0));
+	tempLevel1->WhenPressed(new GoToLevel(1));
 	codriverController->GetLevel1()->WhenPressed(new GoToLevel(0));
-	codriverController->GetLevel2()->WhenPressed(new GoToLevel(1));
-	codriverController->GetLevel3()->WhenPressed(new GoToLevel(2));
-	codriverController->GetLevel4()->WhenPressed(new GoToLevel(3));
-	codriverController->GetLevel5()->WhenPressed(new GoToLevel(4));
-	codriverController->GetLevel6()->WhenPressed(new GoToLevel(5));
+	codriverController->GetLevel2()->WhenPressed(new GoToLevel(2));
+	codriverController->GetLevel3()->WhenPressed(new GoToLevel(3));
+	codriverController->GetLevel4()->WhenPressed(new GoToLevel(4));
+	codriverController->GetLevel5()->WhenPressed(new GoToLevel(5));
+	codriverController->GetLevel6()->WhenPressed(new GoToLevel(6));
 	codriverController->GetPlaceButton()->WhenPressed(new Place());
 	clawOveridePos = new TriggerButton(joystick2, 1, 0.3);
 	clawOverideNeg = new TriggerButton(joystick2, 1, -0.3);
 
-	intake = new TriggerButton(joystick1, 2, 0.3);
-	outake = new TriggerButton(joystick1, 3, 0.3);
+
+	intake = new TriggerButton(joystick1, 3, 0.3);
+	outake = new TriggerButton(joystick1, 2, 0.3);
 
 	clawOveridePos->WhileHeld(new ClawOveride());
 	clawOverideNeg->WhileHeld(new ClawOveride());
