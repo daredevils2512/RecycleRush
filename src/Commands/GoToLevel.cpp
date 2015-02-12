@@ -12,6 +12,7 @@ GoToLevel::GoToLevel(int level) {
 // Called just before this Command runs the first time
 void GoToLevel::Initialize() {
 	Robot::clawPID->Enable();
+	Robot::lEDindicator->TurnLEDoff();
 	if(level >= 0 && level < 7) {
 		Robot::clawPID->SetSetpoint(Robot::clawPID->LEVELHEIGHT[level]);
 	} else {
@@ -48,6 +49,7 @@ bool GoToLevel::IsFinished() {
 void GoToLevel::End() {
 	Robot::clawPID->Disable();
 	Robot::clawPID->SetMotor(0);
+	Robot::lEDindicator->TurnLEDon();
 }
 
 // Called when another command which requires one or more of the same

@@ -62,7 +62,7 @@ void RobotMap::init() {
 	lw->AddSensor("Drivetrain", "frontRight", drivetrainfrontRight);
 	drivetrainfrontRight->SetDistancePerPulse(1.0);
         drivetrainfrontRight->SetPIDSourceParameter(Encoder::kRate);
-	drivetrainGyro1 = new Gyro(1);
+	drivetrainGyro1 = new Gyro(0);
 	lw->AddSensor("Drivetrain", "Gyro 1", drivetrainGyro1);
 	drivetrainGyro1->SetSensitivity(0.007);
 	clawPIDBottom = new DigitalInput(10);

@@ -15,6 +15,7 @@
 #include "SmartDashboard/SmartDashboard.h"
 #include "Commands/ActuateIntake.h"
 #include "Commands/AutonDrive.h"
+#include "Commands/AutonRunIntake.h"
 #include "Commands/AutonomousCommand.h"
 #include "Commands/AutonomousForward.h"
 #include "Commands/AutonomousMainCommand.h"
