@@ -40,7 +40,7 @@ void Robot::RobotInit() {
 	lw = LiveWindow::GetInstance();
 
 	// instantiate the command used for the autonomous period
-	autonomousCommand = new AutonomousMainCommand(0, 0, true);
+	autonomousCommand = new AutonomousMainCommand(2, 0, false);
 
 	chooser = new SendableChooser();
 	chooser->AddDefault("Do Nothing", new AutonomousMainCommand(0, 0, true));
@@ -51,6 +51,8 @@ void Robot::RobotInit() {
 	chooser->AddObject("3 Containers, All Totes", new AutonomousMainCommand(3, 3, false));
 	chooser->AddObject("No Containers, 1 Tote", new AutonomousMainCommand(0, 1, false));
 	chooser->AddObject("No Containers, 2 Totes", new AutonomousMainCommand(0, 2, false));
+	chooser->AddObject("1 Container", new AutonomousMainCommand(1, 0, false));
+	chooser->AddObject("2 Containers", new AutonomousMainCommand(2, 0, false));
 
 	SmartDashboard::PutData("Autonomous Command", chooser);
 
@@ -72,7 +74,7 @@ void Robot::AutonomousInit() {
 //	liftDown.WhenActive(new ResetLevelEncoder());
 	intakeSystem->ActuateIntake(false);
 
-	autonomousCommand = (Command*) (chooser->GetSelected());
+//	autonomousCommand = (Command*) (chooser->GetSelected());
 
 	if (autonomousCommand != NULL)
 		autonomousCommand->Start();

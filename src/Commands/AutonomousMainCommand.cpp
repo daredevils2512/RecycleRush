@@ -33,6 +33,11 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 	int autonLevel = -185;
 
 	if(doNothing == false) {
+		if(totes == 0) {
+			if(containers >= 1) AddParallel(new RunWinch(1, 1, 3.0));
+			if(containers >= 2) AddSequential (new RunWinch(2, 1, 3.0));
+			if(containers > 0) AddSequential(new AutonDrive(-0.30, -0.30, 700));
+		}
 		if(totes >= 1) {
 			// Pick up tote 1 & container 1
 			AddSequential(new GoToLevel(0));
@@ -90,7 +95,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 				AddSequential(new AutonDrive(-1.0, -1.0, 800));
 				AddSequential(new AutonWait(0.85));
 			}
-		} else {
+		} else if (totes > 0) {
 			AddSequential(new AutonDrive(-0.5, -0.5, 650));
 			//825
 			AddSequential(new AutonWait(0.85));
@@ -121,7 +126,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 				AddSequential(new AutonDrive(-1.0, -1.0, 300));
 				AddSequential(new AutonDrive(-1.0, -0.10, 200));
 				AddSequential(new AutonDrive(-0.75, 0.75, 300));
-				AddSequential(new AutonDrive(-0.5, -0.5, 100));
+				AddSequential(new AutonDrive(-0.5, -0.5, 50));
 				//200, 300
 			} else {
 				AddSequential(new AutonDrive(-1.0, -1.0, 400));
@@ -131,8 +136,8 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 		}
 
 		// Turn so containers fit in the scoring zone
-		if(containers > 0) {
-	//		AddSequential(new AutonDrive(-1.0, 1.0, 300));
-		}
+//		if(containers > 0) {
+//	//		AddSequential(new AutonDrive(-1.0, 1.0, 300));
+//		}
 	}
 }
