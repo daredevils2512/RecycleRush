@@ -269,12 +269,42 @@ Children:
   - Children:
     - Children: []
       Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id008
+          value: '19'
+      Base: Digital Input
+      Name: Container Sensor 1
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id008
+          value: '20'
+      Base: Digital Input
+      Name: Container Sensor 2
+    - Children: []
+      Properties:
+        Input Channel (Digital): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id007
+          default: '0'
+          name: Input Channel (Digital)
+          validators: *id008
+          value: '21'
+      Base: Digital Input
+      Name: Container Senser 3
+    - Children: []
+      Properties:
         Type: !!robotbuilder.data.properties.ChoicesProperty
           choices: *id009
           default: Talon
           name: Type
           validators: null
-          value: Victor
+          value: Talon
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id010
           default: '0'
@@ -290,7 +320,7 @@ Children:
           default: Talon
           name: Type
           validators: null
-          value: Victor
+          value: Talon
         Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
           choices: *id010
           default: '0'
@@ -299,6 +329,22 @@ Children:
           value: '18'
       Base: Speed Controller
       Name: Container Pull 2
+    - Children: []
+      Properties:
+        Type: !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id009
+          default: Talon
+          name: Type
+          validators: null
+          value: Talon
+        Output Channel (PWM): !!robotbuilder.data.properties.ChoicesProperty
+          choices: *id010
+          default: '0'
+          name: Output Channel (PWM)
+          validators: *id011
+          value: '2'
+      Base: Speed Controller
+      Name: Container Pull 3
     Properties:
       Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
         name: Default Command, type: Command, validators: null, value: None}
@@ -372,6 +418,12 @@ Children:
         name: Default Command, type: Command, validators: null, value: CheckIntake}
     Base: Subsystem
     Name: Intake System
+  - Children: []
+    Properties:
+      Default Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
+        name: Default Command, type: Command, validators: null, value: None}
+    Base: Subsystem
+    Name: LEDindicator
   Properties: {}
   Base: Subsystems
   Name: Subsystems
@@ -521,6 +573,12 @@ Children:
   - Children: []
     Properties:
       Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
+        name: Button on SmartDashboard, validators: null, value: true}
+    Base: Command Group
+    Name: AutonomousForward
+  - Children: []
+    Properties:
+      Button on SmartDashboard: !!robotbuilder.data.properties.BooleanProperty {default: true,
         name: Button on SmartDashboard, validators: null, value: false}
     Base: Command Group
     Name: AutonomousMainCommand
@@ -576,8 +634,8 @@ Children:
   Base: Commands
   Name: Commands
 Properties:
-  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Loaner\workspace',
-    extension: null, folder: true, name: Eclipse Workspace, validators: null, value: 'C:\Users\Loaner\workspace'}
+  Eclipse Workspace: !!robotbuilder.data.properties.FileProperty {default: 'C:\Users\Troy\workspace',
+    extension: null, folder: true, name: Eclipse Workspace, validators: null, value: ..\}
   Export Commands: !!robotbuilder.data.properties.BooleanProperty {default: true,
     name: Export Commands, validators: null, value: true}
   Java Package: !!robotbuilder.data.properties.StringProperty {default: org.usfirst.frc0000,
@@ -595,4 +653,4 @@ Properties:
   Autonomous Command: !!robotbuilder.data.properties.TypeSelectionProperty {default: None,
     name: Autonomous Command, type: Command, validators: null, value: Autonomous Command}
 Base: Robot
-Name: RecycleRush
+Name: RecycleRushBot
