@@ -14,6 +14,7 @@ GoToLevel::GoToLevel(int level) {
 void GoToLevel::Initialize() {
 	Robot::clawPID->Enable();
 	if(level >= 0 && level < 8) {
+		Robot::lEDindicator->TurnLEDoff();
 		Robot::clawPID->SetSetpoint(Robot::clawPID->LEVELHEIGHT[level]);
 		if(level == 1) {
 			Robot::intakeSystem->SetCooperatition(true);
@@ -52,6 +53,7 @@ bool GoToLevel::IsFinished() {
 void GoToLevel::End() {
 	Robot::clawPID->Disable();
 	Robot::clawPID->SetMotor(0);
+	Robot::lEDindicator->TurnLEDon();
 }
 
 // Called when another command which requires one or more of the same
