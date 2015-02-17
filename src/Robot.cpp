@@ -42,7 +42,7 @@ void Robot::RobotInit() {
 	lw = LiveWindow::GetInstance();
 
 	// instantiate the command used for the autonomous period
-	autonomousCommand = new AutonomousMainCommand(2, 0, false);
+	autonomousCommand = new AutonomousMainCommand(1, 1, false);
 
 	chooser = new SendableChooser();
 	chooser->AddDefault("Do Nothing", new AutonomousMainCommand(0, 0, true));
