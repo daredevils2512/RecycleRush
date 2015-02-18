@@ -74,9 +74,11 @@ void Robot::DisabledPeriodic() {
 
 void Robot::AutonomousInit() {
 //	liftDown.WhenActive(new ResetLevelEncoder());
+	drivetrain->gyro1->Reset();
+
 	intakeSystem->ActuateIntake(false);
 
-//	autonomousCommand = (Command*) (chooser->GetSelected());
+	autonomousCommand = (Command*) (chooser->GetSelected());
 
 	if (autonomousCommand != NULL)
 		autonomousCommand->Start();
@@ -93,6 +95,11 @@ void Robot::AutonomousPeriodic() {
 	}
 
 	SmartDashboard::PutNumber("Front Right", Robot::drivetrain->frontRight->GetRaw());
+
+	if(drivetrain->gyro1->GetAngle() >= 20 || drivetrain->gyro1->GetAngle() <= -20) {
+		autonomousCommand->Cancel();
+		clawPID->Disable();
+	}
 }
 
 void Robot::TeleopInit() {
@@ -119,12 +126,28 @@ void Robot::TeleopPeriodic() {
 	if(Robot::clawPID->bottom->Get()) {
 		Robot::clawPID->ResetHeightEncoder();
 	}
-	if((Robot::clawPID->heightEnccoder->GetRaw() > -150 && Robot::clawPID->bottom->Get() == false) && (oi->getJoystick1()->GetRawButton(10) == false && intakeSystem->GetCooperatition() == false)) {
+	if((Robot::clawPID->heightEnccoder->GetRaw() > -150 && Robot::clawPID->bottom->Get() == false) && ((oi->getJoystick1()->GetRawButton(10) == false && oi->desensitize == false) && intakeSystem->GetCooperatition() == false)) {
 		intakeSystem->ActuateIntake(false);
 	}
 	if (Robot::clawPID->heightEnccoder->GetRaw() <= -150) {
 		intakeSystem->SetCooperatition(false);
 	}
+
+	if((Robot::oi->getJoystick2()->GetRawButton(3) || Robot::oi->getJoystick2()->GetRawButton(4)) || (Robot::oi->getJoystick2()->GetRawButton(5) || Robot::oi->getJoystick2()->GetRawButton(6))) {
+
+	} else {
+		if(Robot::oi->GetJoystick2POV() == 0) {
+			Robot::containerWinch->SetWinch(1, -1.0);
+			Robot::containerWinch->SetWinch(2, -1.0);
+		} else if(Robot::oi->GetJoystick2POV() == 180) {
+			Robot::containerWinch->SetWinch(1, 1.0);
+			Robot::containerWinch->SetWinch(2, 1.0);
+		} else {
+			Robot::containerWinch->SetWinch(1, 0.0);
+			Robot::containerWinch->SetWinch(2, 0.0);
+		}
+	}
+
 
 	SmartDashboard::PutBoolean("PID On Target", clawPID->OnTarget());
 	SmartDashboard::PutNumber("PID Setpoint", clawPID->GetSetpoint());
@@ -147,10 +170,16 @@ void Robot::TeleopPeriodic() {
 
 	SmartDashboard::PutNumber("Bottom", Robot::clawPID->bottom->Get());
 	SmartDashboard::PutNumber("Top", Robot::clawPID->top->Get());
+
+	SmartDashboard::PutBoolean("Desensitized", Robot::oi->desensitize);
 }
 
 void Robot::TestPeriodic() {
 	lw->Run();
+}
+
+bool Robot::GetIsAutonomous() {
+	return IsAutonomous();
 }
 
 START_ROBOT_CLASS(Robot);

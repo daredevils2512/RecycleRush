@@ -30,13 +30,22 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
+	/*  Regular setup at first tote, right winch: 70.75 left winch: 140.75
+	 * 	For 2 tote autonomous right winch: 85.25 left winch: 102.5
+	 *
+	 */
+
 	int autonLevel = -185;
 
 	if(doNothing == false) {
 		if(totes == 0) {
-			if(containers >= 1) AddParallel(new RunWinch(1, 1, 3.0));
-			if(containers >= 2) AddSequential (new RunWinch(2, 1, 3.0));
-			if(containers > 0) AddSequential(new AutonDrive(-0.30, -0.30, 700));
+			if(containers == 0) {
+				AddSequential(new AutonDrive(-0.6, -0.6, 650));
+			} else {
+				if(containers >= 1) AddParallel(new RunWinch(1, 1, 3.0));
+				if(containers >= 2) AddSequential (new RunWinch(2, 1, 3.0));
+				if(containers > 0) AddSequential(new AutonDrive(-0.30, -0.30, 700));
+			}
 		}
 		if(totes >= 1) {
 			// Pick up tote 1 & container 1

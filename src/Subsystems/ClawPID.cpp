@@ -17,6 +17,7 @@
 #include "../Robot.h"
 
 const float ClawPID::LEVELHEIGHT[] = {0, -110, -195, -300, -408, -513, -619, -615};
+//-195
 //const std::vector<int> ClawPID::LEVELHEIGHT = {0, -53, -195, -300, -408, -513, -619, -670};
 //Delta Place = 58;
 const float ClawPID::PLACEOFFSET = 58;
