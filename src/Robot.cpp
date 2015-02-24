@@ -108,6 +108,7 @@ void Robot::TeleopInit() {
 	// continue until interrupted by another command, remove
 	// these lines or comment it out.
 
+
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
 	clawPID->Disable();
@@ -126,12 +127,15 @@ void Robot::TeleopPeriodic() {
 	if(Robot::clawPID->bottom->Get()) {
 		Robot::clawPID->ResetHeightEncoder();
 	}
-	if((Robot::clawPID->heightEnccoder->GetRaw() > -150 && Robot::clawPID->bottom->Get() == false) && ((oi->getJoystick1()->GetRawButton(10) == false && oi->desensitize == false) && intakeSystem->GetCooperatition() == false)) {
-		intakeSystem->ActuateIntake(false);
+//	Actuates the intake arms when the lift comes down
+	if(oi->getJoystick1()->GetRawButton(10) == false) {
+		if(oi->desensitize == false) {
+			 SafetyCheck(-150);
+		 } else {
+			 SafetyCheck(-125);
+		 }
 	}
-	if (Robot::clawPID->heightEnccoder->GetRaw() <= -150) {
-		intakeSystem->SetCooperatition(false);
-	}
+
 
 	if((Robot::oi->getJoystick2()->GetRawButton(3) || Robot::oi->getJoystick2()->GetRawButton(4)) || (Robot::oi->getJoystick2()->GetRawButton(5) || Robot::oi->getJoystick2()->GetRawButton(6))) {
 
@@ -177,9 +181,13 @@ void Robot::TeleopPeriodic() {
 void Robot::TestPeriodic() {
 	lw->Run();
 }
-
-bool Robot::GetIsAutonomous() {
-	return IsAutonomous();
+void Robot::SafetyCheck( int threshold){
+	if((Robot::clawPID->heightEnccoder->GetRaw() > threshold && Robot::clawPID->bottom->Get() == false) && intakeSystem->GetCooperatition() == false) {
+			intakeSystem->ActuateIntake(false);
+		}
+		if (Robot::clawPID->heightEnccoder->GetRaw() <= threshold) {
+			intakeSystem->SetCooperatition(false);
+		}
 }
 
 START_ROBOT_CLASS(Robot);
