@@ -96,10 +96,10 @@ void Robot::AutonomousPeriodic() {
 
 	SmartDashboard::PutNumber("Front Right", Robot::drivetrain->frontRight->GetRaw());
 
-//	if(drivetrain->gyro1->GetAngle() >= 20 || drivetrain->gyro1->GetAngle() <= -20) {
-//		autonomousCommand->Cancel();
-//		clawPID->Disable();
-//	}
+	if(drivetrain->gyro1->GetAngle() >= 20 || drivetrain->gyro1->GetAngle() <= -20) {
+		autonomousCommand->Cancel();
+		clawPID->SetSetpoint(clawPID->heightEnccoder->GetRaw() - 100);
+	}
 }
 
 void Robot::TeleopInit() {
@@ -108,7 +108,7 @@ void Robot::TeleopInit() {
 	// continue until interrupted by another command, remove
 	// these lines or comment it out.
 
-
+	drivetrain->gyro1->Reset();
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
 	clawPID->Disable();
@@ -129,11 +129,7 @@ void Robot::TeleopPeriodic() {
 	}
 //	Actuates the intake arms when the lift comes down
 	if(oi->getJoystick1()->GetRawButton(10) == false) {
-//		if(oi->desensitize == false) {
-			 SafetyCheck(-150);
-//		 } else {
-//			 SafetyCheck(-125);
-//		 }
+		 SafetyCheck(-150);
 	}
 
 

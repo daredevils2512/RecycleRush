@@ -63,7 +63,7 @@ public:
 	float GetY();
 	float GetR();
 	float GetClawOveride();
-	float Desensitize(int axisNumber, float threshold);
+	float Desensitize(int axisNumber, float threshold, float dsdivision);
 	float GetJoystick2POV();
 };
 
