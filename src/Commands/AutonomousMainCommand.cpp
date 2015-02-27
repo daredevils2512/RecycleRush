@@ -42,7 +42,7 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 			if(containers == 0) {
 				AddSequential(new AutonDrive(-0.6, -0.6, 650));
 			} else {
-				if(containers >= 1) AddParallel(new RunWinch(1, 1, 3.0));
+				if(containers >= 1) AddParallel(new RunWinch(1, 1, 2.75));
 				if(containers >= 2) AddSequential (new RunWinch(2, 1, 3.0));
 				if(containers > 0) AddSequential(new AutonDrive(-0.30, -0.30, 700));
 			}
@@ -92,7 +92,8 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 		// 1st turn (at third tote) depending on the amount of weight that will be on the robot
 		if(totes >= 3) {
 			if(containers > 0) {
-				AddSequential(new AutonDrive(-0.75, 0.75, 950));
+				AddSequential(new AutonDrive(-0.75, 0.75, 625));
+				//950
 				AddParallel(new AutonRunIntake(-1.0, 0.5));
 			} else {
 				AddSequential(new AutonDrive(-0.80, 0.80, 500));
