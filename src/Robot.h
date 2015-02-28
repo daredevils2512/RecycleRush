@@ -34,6 +34,11 @@
 
 class Robot : public IterativeRobot {
 public:
+	bool prevCenter;
+	bool prevprevCentered;
+	bool intaking;
+	static bool centered;
+
 	Command *autonomousCommand;
 	static OI *oi;
 	LiveWindow *lw;

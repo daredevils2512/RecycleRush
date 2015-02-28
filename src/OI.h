@@ -33,7 +33,7 @@ private:
 	 JoystickButton* resetButton;
 	 JoystickButton* pickUp;
 	 JoystickButton* dropContainers;
-	 JoystickButton* center;
+//	 JoystickButton* center;
 //	 JoystickButton* secondaryPlace;
 	 JoystickButton* rightIn;
 	 JoystickButton* rightOut;

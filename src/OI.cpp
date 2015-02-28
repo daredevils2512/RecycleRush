@@ -104,7 +104,7 @@ OI::OI() {
 	resetButton = new JoystickButton(joystick3, 3);
 	pickUp = new JoystickButton(joystick1, 1);
 	dropContainers = new JoystickButton(joystick1, 8);
-	center = new JoystickButton(joystick1, 6);
+//	center = new JoystickButton(joystick1, 6);
 //	secondaryPlace = new JoystickButton(joystick2, 1);
 	rightIn = new JoystickButton(joystick2, 4);
 	rightOut = new JoystickButton(joystick2, 6);
@@ -116,8 +116,10 @@ OI::OI() {
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());
 	dropContainers->WhenPressed(new DropContainers());
-	center->WhenPressed(new ActuateIntake(true));
-	center->WhenReleased(new ActuateIntake(false));
+
+//	center->WhenPressed(new ActuateIntake(true));
+//	center->WhenReleased(new ActuateIntake(false));
+
 //	secondaryPlace->WhenPressed(new Place());
 	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
 	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
