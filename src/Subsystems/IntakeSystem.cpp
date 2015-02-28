@@ -46,6 +46,10 @@ void IntakeSystem::SetIntakeMotors(float leftVelocity, float rightVelocity) {
 	rightIntake->Set(rightVelocity);
 }
 
+bool IntakeSystem::GetCooperatition() {
+	return cooperatition;
+}
+
 void IntakeSystem::ActuateIntake(bool on) {
 	if(on) {
 		doubleSolenoid1->Set(DoubleSolenoid::kReverse);
@@ -56,10 +60,6 @@ void IntakeSystem::ActuateIntake(bool on) {
 //		solenoid1->Set(true);
 //		solenoid2->Set(true);
 	}
-}
-
-bool IntakeSystem::GetCooperatition() {
-	return cooperatition;
 }
 
 void IntakeSystem::SetCooperatition(bool coop) {
