@@ -95,18 +95,13 @@ OI::OI() {
 
 	SmartDashboard::PutData("Run Intake", new SetIntake(0.5, 0.5));
 
-//	LiveWindow::GetInstance()->AddActuator("ClawPID", "Claw PID Controller", Robot::clawPID->RetrivePIDController());
-//	LiveWindow::GetInstance()->AddActuator("ClawPID", "clawMotor", Robot::clawPID->clawMotor);
-
 	driverController = new DriverXbox(joystick1);
 	codriverController = new CodriverJoystickCustom(joystick2, joystick3);
 
-//	tempLevel1 = new JoystickButton(joystick3, 16);
 	resetButton = new JoystickButton(joystick3, 3);
 	pickUp = new JoystickButton(joystick1, 1);
 	dropContainers = new JoystickButton(joystick1, 8);
 	center = new JoystickButton(joystick1, 6);
-//	secondaryPlace = new JoystickButton(joystick2, 1);
 	rightIn = new JoystickButton(joystick2, 4);
 	rightOut = new JoystickButton(joystick2, 6);
 	leftIn = new JoystickButton(joystick2, 3);
@@ -119,9 +114,7 @@ OI::OI() {
 	dropContainers->WhenPressed(new DropContainers());
 
 	center->WhenPressed(new ReverseActuateIntake());
-//	center->WhenReleased(new ActuateIntake(false));
 
-//	secondaryPlace->WhenPressed(new Place());
 	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
 	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
 	leftIn->WhileHeld(new RunWinchOveride(2, 0.5));
@@ -130,13 +123,7 @@ OI::OI() {
 	stationPickUp->WhenReleased(new GoToHeight(-340));
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
-//	driverController->GetIntakeButton()->WhenPressed(new RunIntake(1.0));
-//	driverController->GetOutakeButton()->WhenPressed(new RunIntake(-1.0));
-//
-//	codriverController->GetCoopLevel()->WhenPressed(new GoToLevel(0));
-//	tempLevel1->WhenPressed(new GoToLevel(1));
 
-//	codriverController->GetLevel1()->WhenPressed(new GoToLevel(0));
 	codriverController->GetLevel2()->WhenPressed(new GoToLevel(2));
 	codriverController->GetLevel3()->WhenPressed(new GoToLevel(3));
 	codriverController->GetLevel4()->WhenPressed(new GoToLevel(4));
