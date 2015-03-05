@@ -41,6 +41,7 @@
 #include "Commands/RunWinchOveride.h"
 #include "Commands/StationPickUp.h"
 #include "Commands/GoToHeight.h"
+#include "Commands/ReverseActuateIntake.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -104,7 +105,7 @@ OI::OI() {
 	resetButton = new JoystickButton(joystick3, 3);
 	pickUp = new JoystickButton(joystick1, 1);
 	dropContainers = new JoystickButton(joystick1, 8);
-//	center = new JoystickButton(joystick1, 6);
+	center = new JoystickButton(joystick1, 6);
 //	secondaryPlace = new JoystickButton(joystick2, 1);
 	rightIn = new JoystickButton(joystick2, 4);
 	rightOut = new JoystickButton(joystick2, 6);
@@ -117,7 +118,7 @@ OI::OI() {
 	pickUp->WhenPressed(new PickUp());
 	dropContainers->WhenPressed(new DropContainers());
 
-//	center->WhenPressed(new ActuateIntake(true));
+	center->WhenPressed(new ReverseActuateIntake());
 //	center->WhenReleased(new ActuateIntake(false));
 
 //	secondaryPlace->WhenPressed(new Place());

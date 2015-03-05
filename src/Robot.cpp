@@ -136,40 +136,20 @@ void Robot::TeleopPeriodic() {
 		Robot::clawPID->ResetHeightEncoder();
 	}
 
-	if((prevCenter == false && oi->getJoystick1()->GetRawButton(6) == true) && centered == false) {
-		centered = true;
-	} else if ((prevCenter == false && oi->getJoystick1()->GetRawButton(6) == true) && centered == true) {
-		centered = false;
-	}
-	prevCenter = oi->getJoystick1()->GetRawButton(6);
-
-//	if(oi->getJoystick1()->GetRawButton(2) == true || oi->getJoystick1()->GetRawButton(3) == true) {
-//		intaking = true;
-//	} else {
-//		intaking = false;
-//	}
-//		if(intaking == false) {
-//			prevprevCentered = centered;
-//		}
-//		intaking = true;
+//	if((prevCenter == false && oi->getJoystick1()->GetRawButton(6) == true) && centered == false) {
 //		centered = true;
-//	} else {
-//		if(intaking == true) {
-//			centered = prevprevCentered;
-//			intaking = false;
+//	} else if ((prevCenter == false && oi->getJoystick1()->GetRawButton(6) == true) && centered == true) {
+//		centered = false;
+//	}
+//	prevCenter = oi->getJoystick1()->GetRawButton(6);
+//
+//	if((oi->getJoystick1()->GetRawAxis(2) < 0.3 && oi->getJoystick1()->GetRawAxis(2) > -0.3) && (oi->getJoystick1()->GetRawAxis(3) < 0.3 && oi->getJoystick1()->GetRawAxis(3) > -0.3)) {
+//		if(centered) {
+//			intakeSystem->ActuateIntake(true);
+//		} else {
+//			intakeSystem->ActuateIntake(false);
 //		}
 //	}
-	if((oi->getJoystick1()->GetRawAxis(2) < 0.3 && oi->getJoystick1()->GetRawAxis(2) > -0.3) && (oi->getJoystick1()->GetRawAxis(3) < 0.3 && oi->getJoystick1()->GetRawAxis(3) > -0.3)) {
-//		if(intaking == false) {
-//			if(intakeSystem->leftIntake->Get() == 0) {
-				if(centered) {
-					intakeSystem->ActuateIntake(true);
-				} else {
-					intakeSystem->ActuateIntake(false);
-				}
-//			}
-//		}
-	}
 
 //	Actuates the intake arms when the lift comes down
 	if(oi->getJoystick1()->GetRawButton(10) == false) {
