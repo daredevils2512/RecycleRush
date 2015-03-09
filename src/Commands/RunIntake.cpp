@@ -27,7 +27,11 @@ void RunIntake::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void RunIntake::Execute() {
-	Robot::intakeSystem->SetIntakeMotors(velocity, velocity);
+	if (Robot::intakeSystem->GetCooperatition()) {
+		Robot::intakeSystem->SetIntakeMotors(velocity / 2, velocity / 2);
+	} else {
+		Robot::intakeSystem->SetIntakeMotors(velocity, velocity);
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()
