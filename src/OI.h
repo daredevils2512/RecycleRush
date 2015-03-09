@@ -42,6 +42,10 @@ private:
 	const int intakeNum = 3;
 	const int outakeNum = 2;
 
+	const int toteTurnButtonNum = 2;
+	const int toteTurnNum = 2;
+	const int toteIntakeNum = 1;
+
 	const int level1Num = 3;
 	const int level2Num = 5;
 	const int level3Num = 4;
@@ -71,6 +75,7 @@ private:
 
 	TriggerButton* intake;
 	TriggerButton* outake;
+	JoystickButton* toteTurn;
 
 	JoystickButton* level1;
 	JoystickButton* level2;
@@ -97,6 +102,8 @@ public:
 	float GetX();
 	float GetY();
 	float GetR();
+	float GetToteTurn();
+	float GetToteIntake();
 	float GetClawOveride();
 	float Desensitize(int axisNumber, float threshold, float dsdivision);
 	float GetJoystick2POV();

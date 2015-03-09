@@ -40,6 +40,7 @@
 #include "Commands/StationPickUp.h"
 #include "Commands/GoToHeight.h"
 #include "Commands/ReverseActuateIntake.h"
+#include "Commands/CodriverToteScoot.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -141,6 +142,7 @@ OI::OI() {
 
 	intake = new TriggerButton(joystick1, intakeNum, 0.3);
 	outake = new TriggerButton(joystick1, outakeNum, 0.3);
+	toteTurn = new JoystickButton(joystick2, toteTurnButtonNum);
 
 	clawOveridePos->WhileHeld(new ClawOveride());
 	clawOverideNeg->WhileHeld(new ClawOveride());
@@ -150,6 +152,7 @@ OI::OI() {
 
 	intake->WhenPressed(new ActuateIntake(true));
 	outake->WhenPressed(new ActuateIntake(true));
+	toteTurn->WhenPressed(new CodriverToteScoot());
 
 	intake->WhileHeld(new RunIntake(-1.0));
 	outake->WhileHeld(new RunIntake(1.0));
@@ -192,6 +195,14 @@ float OI::GetY() {
 
 float OI::GetR() {
 	return Desensitize(4, 0.3, 2.5);
+}
+
+float OI::GetToteTurn() {
+	return joystick2->GetRawAxis(toteTurnNum);
+}
+
+float OI::GetToteIntake() {
+	return joystick2->GetRawAxis(toteIntakeNum);
 }
 
 float OI::GetClawOveride() {
