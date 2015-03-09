@@ -91,16 +91,16 @@ OI::OI() {
 
 	SmartDashboard::PutData("Run Intake", new SetIntake(0.5, 0.5));
 
-	resetButton = new JoystickButton(joystick3, 3);
-	pickUp = new JoystickButton(joystick1, 1);
-	dropContainers = new JoystickButton(joystick1, 8);
-	center = new JoystickButton(joystick1, 6);
-	rightIn = new JoystickButton(joystick2, 4);
-	rightOut = new JoystickButton(joystick2, 6);
-	leftIn = new JoystickButton(joystick2, 3);
-	leftOut = new JoystickButton(joystick2, 5);
-	stationPickUp = new JoystickButton(joystick2, 1);
-	feederHeight = new JoystickButton(joystick3, 16);
+	resetButton = new JoystickButton(joystick3, resetButtonNum);
+	pickUp = new JoystickButton(joystick1, pickUpNum);
+	dropContainers = new JoystickButton(joystick1, dropContainersNum);
+	center = new JoystickButton(joystick1, centerNum);
+	rightIn = new JoystickButton(joystick2, rightInNum);
+	rightOut = new JoystickButton(joystick2, rightOutNum);
+	leftIn = new JoystickButton(joystick2, leftInNum);
+	leftOut = new JoystickButton(joystick2, leftOutNum);
+	stationPickUp = new JoystickButton(joystick2, stationPickUpNum);
+	feederHeight = new JoystickButton(joystick3, feederHeightNum);
 
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());
@@ -117,15 +117,15 @@ OI::OI() {
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 
-	level1 = new JoystickButton(joystick3, 3);
-	level2 = new JoystickButton(joystick3, 5);
-	level3 = new JoystickButton(joystick3, 4);
-	level4 = new JoystickButton(joystick3, 8);
-	level5 = new JoystickButton(joystick3, 6);
-	level6 = new JoystickButton(joystick3, 2);
-	level7 = new JoystickButton(joystick3, 7);
-	placeButton = new JoystickButton(joystick3, 14);
-	coopLevel = new JoystickButton(joystick3, 15);
+	level1 = new JoystickButton(joystick3, level1Num);
+	level2 = new JoystickButton(joystick3, level2Num);
+	level3 = new JoystickButton(joystick3, level3Num);
+	level4 = new JoystickButton(joystick3, level4Num);
+	level5 = new JoystickButton(joystick3, level5Num);
+	level6 = new JoystickButton(joystick3, level6Num);
+	level7 = new JoystickButton(joystick3, level7Num);
+	placeButton = new JoystickButton(joystick3, placeButtonNum);
+	coopLevel = new JoystickButton(joystick3, coopLevelNum);
 
 	level2->WhenPressed(new GoToLevel(2));
 	level3->WhenPressed(new GoToLevel(3));
@@ -136,11 +136,11 @@ OI::OI() {
 	placeButton->WhenPressed(new Place());
 	coopLevel->WhenPressed(new GoToLevel(1));
 
-	clawOveridePos = new TriggerButton(joystick2, 1, 0.3);
-	clawOverideNeg = new TriggerButton(joystick2, 1, -0.3);
+	clawOveridePos = new TriggerButton(joystick2, clawOverideNum, 0.3);
+	clawOverideNeg = new TriggerButton(joystick2, clawOverideNum, -0.3);
 
-	intake = new TriggerButton(joystick1, 3, 0.3);
-	outake = new TriggerButton(joystick1, 2, 0.3);
+	intake = new TriggerButton(joystick1, intakeNum, 0.3);
+	outake = new TriggerButton(joystick1, outakeNum, 0.3);
 
 	clawOveridePos->WhileHeld(new ClawOveride());
 	clawOverideNeg->WhileHeld(new ClawOveride());
