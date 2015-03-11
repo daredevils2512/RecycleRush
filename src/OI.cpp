@@ -152,7 +152,8 @@ OI::OI() {
 
 	intake->WhenPressed(new ActuateIntake(true));
 	outake->WhenPressed(new ActuateIntake(true));
-	toteTurn->WhenPressed(new CodriverToteScoot());
+
+	toteTurn->WhileHeld(new CodriverToteScoot());
 
 	intake->WhileHeld(new RunIntake(-1.0));
 	outake->WhileHeld(new RunIntake(1.0));

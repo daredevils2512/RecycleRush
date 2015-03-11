@@ -23,11 +23,12 @@ void CodriverToteScoot::Execute()
 
 	if (fabs(intake) > 0.3) {
 		Robot::intakeSystem->SetIntakeMotors(intake, intake);
+		SmartDashboard::PutNumber("intake", intake);
 	}
 	else if (fabs(turn) > 0.3) {
 		Robot::intakeSystem->SetIntakeMotors(-turn, turn);
+		SmartDashboard::PutNumber("turn", turn);
 	}
-
 }
 
 // Make this return true when this Command no longer needs to run execute()
