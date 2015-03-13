@@ -41,6 +41,7 @@
 #include "Commands/GoToHeight.h"
 #include "Commands/ReverseActuateIntake.h"
 #include "Commands/CodriverToteScoot.h"
+#include "Commands/AutonRampDrive.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -91,6 +92,8 @@ OI::OI() {
 	SmartDashboard::PutData("Actuate Intake Out", new ActuateIntake(false));
 
 	SmartDashboard::PutData("Run Intake", new SetIntake(0.5, 0.5));
+
+	SmartDashboard::PutData("RevUP Drive", new AutonRampDrive(0.5, 0.5, 100, 0.25, 0.25, true, 0.1));
 
 	resetButton = new JoystickButton(joystick3, resetButtonNum);
 	pickUp = new JoystickButton(joystick1, pickUpNum);

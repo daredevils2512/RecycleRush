@@ -14,7 +14,6 @@ AutonRampDrive::AutonRampDrive(float right, float left, float distance, float st
 	this->startRight = startRight;
 	this->rampDown = rampDown;
 	this->rampRate = rampRate;
-	lastTime = 0;
 }
 
 // Called just before this Command runs the first time
@@ -22,17 +21,56 @@ void AutonRampDrive::Initialize()
 {
 	Robot::drivetrain->rearRight->Reset();
 	Robot::drivetrain->Go(startRight, startLeft);
+	rightReached = false;
+	leftReached = false;
+	rightSpeed = 0;
+	leftSpeed = 0;
+	rightDist = 0;
+	leftDist = 0;
+	rightTime = 0;
+	leftTime = 0;
+	rightFarEnough = false;
+	leftFarEnough = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
-void AutonRampDrive::Execute()
-{
-	if (abs(Robot::drivetrain->rearRight->GetRaw()) <= distance * (4 / 5) || !rampDown) {
-		Robot::drivetrain->Go(std::fmin(right, startRight + (TimeSinceInitialized() * rampRate)), std::fmin(left, startLeft + (TimeSinceInitialized() * rampRate)));
-		lastTime = TimeSinceInitialized();
+void AutonRampDrive::Execute() {
+	if ( (!rampDown) || (!rightFarEnough)) {
+		rightSpeed = std::fmin(right, startRight + (TimeSinceInitialized() * rampRate));
+
+		if (!rightReached && rightSpeed == right) {
+			rightDist = fabs(Robot::drivetrain->rearRight->GetRaw());
+			rightReached = true;
+		}
+
+		if (rightReached && ((abs(Robot::drivetrain->rearRight->GetRaw()) >= distance - rightDist) || Robot::oi->getJoystick3()->GetRawButton(1))) {
+			rightFarEnough = true;
+			rightTime = TimeSinceInitialized();
+		}
 	} else {
-		Robot::drivetrain->Go(std::fmax(0.1, right - (TimeSinceInitialized() * rampRate)), std::fmax(0.1, left - (TimeSinceInitialized() * rampRate)));
+		rightSpeed = std::fmax(0.1, right - ((TimeSinceInitialized() - rightTime) * rampRate));
 	}
+
+	if ( (!rampDown) || (!leftFarEnough)) {
+		leftSpeed = std::fmin(left, startLeft + (TimeSinceInitialized() * rampRate));
+
+		if (!leftReached && leftSpeed == left) {
+			leftDist = fabs(Robot::drivetrain->rearRight->GetRaw());
+			leftReached = true;
+		}
+
+		if (leftReached && ((abs(Robot::drivetrain->rearRight->GetRaw()) >= distance - leftDist) || Robot::oi->getJoystick3()->GetRawButton(1))) {
+			leftFarEnough = true;
+			leftTime = TimeSinceInitialized();
+		}
+	} else {
+		leftSpeed = std::fmax(0.1, left - ((TimeSinceInitialized() - leftTime) * rampRate));
+	}
+
+	Robot::drivetrain->Go(rightSpeed, leftSpeed);
+
+	SmartDashboard::PutNumber("Right Motor Speed (ramp)", rightSpeed);
+	SmartDashboard::PutNumber("Left Motor Speed (ramp)", leftSpeed);
 }
 
 // Make this return true when this Command no longer needs to run execute()

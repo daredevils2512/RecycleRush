@@ -13,7 +13,21 @@ class AutonRampDrive: public CommandBase
 	float startRight;
 	float rampRate;
 	bool rampDown;
-	float lastTime;
+
+	bool rightReached;
+	bool leftReached;
+
+	float rightSpeed;
+	float leftSpeed;
+
+	int rightDist;
+	int leftDist;
+
+	float rightTime;
+	float leftTime;
+
+	bool rightFarEnough;
+	bool leftFarEnough;
 
 public:
 	AutonRampDrive(float right, float left, float distance, float startRight, float startLeft, bool rampDown, float rampRate);
