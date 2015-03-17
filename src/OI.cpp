@@ -95,80 +95,85 @@ OI::OI() {
 
 	SmartDashboard::PutData("RevUP Drive", new AutonRampDrive(0.5, 0.5, 100, 0.25, 0.25, true, 0.1));
 
-	resetButton = new JoystickButton(joystick3, resetButtonNum);
-	pickUp = new JoystickButton(joystick1, pickUpNum);
-	dropContainers = new JoystickButton(joystick1, dropContainersNum);
-	center = new JoystickButton(joystick1, centerNum);
-	rightIn = new JoystickButton(joystick2, rightInNum);
-	rightOut = new JoystickButton(joystick2, rightOutNum);
-	leftIn = new JoystickButton(joystick2, leftInNum);
-	leftOut = new JoystickButton(joystick2, leftOutNum);
-	stationPickUp = new JoystickButton(joystick2, stationPickUpNum);
-	feederHeight = new JoystickButton(joystick3, feederHeightNum);
+	// Joytick 1
 
-	resetButton->WhenPressed(new ResetLevelEncoder());
+	pickUp = new JoystickButton(joystick1, pickUpNum);
 	pickUp->WhenPressed(new PickUp());
+
+	dropContainers = new JoystickButton(joystick1, dropContainersNum);
 	dropContainers->WhenPressed(new DropContainers());
 
+	center = new JoystickButton(joystick1, centerNum);
 	center->WhenPressed(new ReverseActuateIntake());
-
-	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
-	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
-	leftIn->WhileHeld(new RunWinchOveride(2, 0.5));
-	leftOut->WhileHeld(new RunWinchOveride(2, -1.0));
-	stationPickUp->WhenPressed(new GoToLevel(0));
-	stationPickUp->WhenReleased(new GoToHeight(-340));
-
-//	driverController->GetPlaceButton()->WhenPressed(new Place());
-
-	level1 = new JoystickButton(joystick3, level1Num);
-	level2 = new JoystickButton(joystick3, level2Num);
-	level3 = new JoystickButton(joystick3, level3Num);
-	level4 = new JoystickButton(joystick3, level4Num);
-	level5 = new JoystickButton(joystick3, level5Num);
-	level6 = new JoystickButton(joystick3, level6Num);
-	level7 = new JoystickButton(joystick3, level7Num);
-	placeButton = new JoystickButton(joystick3, placeButtonNum);
-	coopLevel = new JoystickButton(joystick3, coopLevelNum);
-
-	level2->WhenPressed(new GoToLevel(2));
-	level3->WhenPressed(new GoToLevel(3));
-	level4->WhenPressed(new GoToLevel(4));
-	level5->WhenPressed(new GoToLevel(5));
-	level6->WhenPressed(new GoToLevel(6));
-	level7->WhenPressed(new GoToLevel(7));
-	placeButton->WhenPressed(new Place());
-	coopLevel->WhenPressed(new GoToLevel(1));
-
-	clawOveridePos = new TriggerButton(joystick2, clawOverideNum, 0.3);
-	clawOverideNeg = new TriggerButton(joystick2, clawOverideNum, -0.3);
 
 	intake = new TriggerButton(joystick1, intakeNum, 0.3);
 	outake = new TriggerButton(joystick1, outakeNum, 0.3);
+
+	// Joystick 2
+
+	rightIn = new JoystickButton(joystick2, rightInNum);
+	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
+
+	rightOut = new JoystickButton(joystick2, rightOutNum);
+	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
+
+	leftIn = new JoystickButton(joystick2, leftInNum);
+	leftIn->WhileHeld(new RunWinchOveride(2, 0.5));
+
+	leftOut->WhileHeld(new RunWinchOveride(2, -1.0));
+	leftOut = new JoystickButton(joystick2, leftOutNum);
+
+	stationPickUp = new JoystickButton(joystick2, stationPickUpNum);
+	stationPickUp->WhenPressed(new GoToLevel(0));
+	stationPickUp->WhenReleased(new GoToHeight(-340));
+
 	toteTurn = new JoystickButton(joystick2, toteTurnButtonNum);
-
-	clawOveridePos->WhileHeld(new SudoClawOveride());
-	clawOverideNeg->WhileHeld(new SudoClawOveride());
-
-	clawOveridePos->WhenReleased(new StopClaw());
-	clawOverideNeg->WhenReleased(new StopClaw());
-
-	intake->WhenPressed(new ActuateIntake(true));
-	outake->WhenPressed(new ActuateIntake(true));
-
 	toteTurn->WhileHeld(new CodriverToteScoot());
 
-	intake->WhileHeld(new RunIntake(-1.0));
-	outake->WhileHeld(new RunIntake(1.0));
+	clawOveridePos = new TriggerButton(joystick2, clawOverideNum, 0.3);
+	clawOveridePos->WhileHeld(new SudoClawOveride());
+	clawOveridePos->WhenReleased(new StopClaw());
 
-	intake->WhenReleased(new ActuateIntake(false));
-	outake->WhenReleased(new ActuateIntake(false));
+	clawOverideNeg = new TriggerButton(joystick2, clawOverideNum, -0.3);
+	clawOverideNeg->WhileHeld(new SudoClawOveride());
+	clawOverideNeg->WhenReleased(new StopClaw());
 
-	intake->WhenReleased(new RunIntake(0.0));
-	outake->WhenReleased(new RunIntake(0.0));
+	// Joystick 3
 
+	feederHeight = new JoystickButton(joystick3, feederHeightNum);
 	feederHeight->WhenPressed(new GoToHeight(-55));
 
+	resetButton = new JoystickButton(joystick3, resetButtonNum);
+	resetButton->WhenPressed(new ResetLevelEncoder());
+
+//	level1 = new JoystickButton(joystick3, level1Num);
+
+	level2 = new JoystickButton(joystick3, level2Num);
+	level2->WhenPressed(new GoToLevel(2));
+
+	level3 = new JoystickButton(joystick3, level3Num);
+	level3->WhenPressed(new GoToLevel(3));
+
+	level4 = new JoystickButton(joystick3, level4Num);
+	level4->WhenPressed(new GoToLevel(4));
+
+	level5 = new JoystickButton(joystick3, level5Num);
+	level5->WhenPressed(new GoToLevel(5));
+
+	level6 = new JoystickButton(joystick3, level6Num);
+	level6->WhenPressed(new GoToLevel(6));
+
+	level7 = new JoystickButton(joystick3, level7Num);
+	level7->WhenPressed(new GoToLevel(7));
+
+	placeButton = new JoystickButton(joystick3, placeButtonNum);
+	placeButton->WhenPressed(new Place());
+
+	coopLevel = new JoystickButton(joystick3, coopLevelNum);
+	coopLevel->WhenPressed(new GoToLevel(1));
+
+
+//	driverController->GetPlaceButton()->WhenPressed(new Place());
 	desensitize = false;
 }
 
