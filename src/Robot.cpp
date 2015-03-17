@@ -53,12 +53,11 @@ void Robot::RobotInit() {
 	autonomousCommand = new AutonomousMainCommand(1, 1, false);
 
 	chooser = new SendableChooser();
-	chooser->AddDefault("Do Nothing", new AutonomousMainCommand(0, 0, true));
+	chooser->AddDefault("2 Containers, All Totes", new AutonomousMainCommand(2, 3, false));
+	chooser->AddObject("Do Nothing", new AutonomousMainCommand(0, 0, true));
 	chooser->AddObject("Just Drive", new AutonomousMainCommand(0, 0, false));
 	chooser->AddObject("No Containers, All Totes", new AutonomousMainCommand(0, 3, false));
 	chooser->AddObject("1 Containers, All Totes", new AutonomousMainCommand(1, 3, false));
-	chooser->AddObject("2 Containers, All Totes", new AutonomousMainCommand(2, 3, false));
-	chooser->AddObject("3 Containers, All Totes", new AutonomousMainCommand(3, 3, false));
 	chooser->AddObject("No Containers, 1 Tote", new AutonomousMainCommand(0, 1, false));
 	chooser->AddObject("No Containers, 2 Totes", new AutonomousMainCommand(0, 2, false));
 	chooser->AddObject("1 Container", new AutonomousMainCommand(1, 0, false));
