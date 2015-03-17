@@ -48,7 +48,7 @@ void AutonRampDrive::Execute() {
 			rightTime = TimeSinceInitialized();
 		}
 	} else {
-		rightSpeed = std::fmax(0.1, right - ((TimeSinceInitialized() - rightTime) * rampRate));
+		rightSpeed = std::fmax(startRight, right - ((TimeSinceInitialized() - rightTime) * rampRate));
 	}
 
 	if ( (!rampDown) || (!leftFarEnough)) {
@@ -64,13 +64,16 @@ void AutonRampDrive::Execute() {
 			leftTime = TimeSinceInitialized();
 		}
 	} else {
-		leftSpeed = std::fmax(0.1, left - ((TimeSinceInitialized() - leftTime) * rampRate));
+		leftSpeed = std::fmax(startLeft, left - ((TimeSinceInitialized() - leftTime) * rampRate));
 	}
 
 	Robot::drivetrain->Go(rightSpeed, leftSpeed);
 
 	SmartDashboard::PutNumber("Right Motor Speed (ramp)", rightSpeed);
 	SmartDashboard::PutNumber("Left Motor Speed (ramp)", leftSpeed);
+
+	SmartDashboard::PutNumber("Right Reached", rightReached);
+	SmartDashboard::PutNumber("Left Reached", leftReached);
 }
 
 // Make this return true when this Command no longer needs to run execute()
