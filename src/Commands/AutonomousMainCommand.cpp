@@ -87,7 +87,9 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 
 			AddSequential(new ActuateIntake(true));
 			AddSequential(new AutonRunIntake(-1.0, 0.6));
-			AddParallel(new Place());
+			AddSequential(new ActuateIntake(false));
+			AddSequential(new Place());
+			AddSequential(new ActuateIntake(true));
 //			AddSequential(new AutonRunIntake(-1.0, 0.2));
 		}
 

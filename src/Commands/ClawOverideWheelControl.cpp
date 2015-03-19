@@ -1,8 +1,8 @@
-#include "WinchDriveToContainer.h"
-#include "RunWinch.h"
-#include "AutonWait.h"
+#include "ClawOverideWheelControl.h"
+#include "CodriverToteScoot.h"
+#include "ClawOveride.h"
 
-WinchDriveToContainer::WinchDriveToContainer()
+ClawOverideWheelControl::ClawOverideWheelControl()
 {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -20,6 +20,10 @@ WinchDriveToContainer::WinchDriveToContainer()
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	AddSequential(new AutonWait(0.5));
-	AddSequential(new RunWinch(2, 1.0, 6.35));
+
+	if(Robot::oi->getJoystick2()->GetRawButton(2)) {
+		AddSequential(new ClawOveride());
+	} else {
+		AddSequential(new CodriverToteScoot());
+	}
 }
