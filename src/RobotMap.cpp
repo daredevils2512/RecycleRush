@@ -83,7 +83,7 @@ void RobotMap::init() {
 	intakeSystemRightIntake = new Victor(1);
 	lw->AddActuator("Intake System", "RightIntake", (Victor*) intakeSystemRightIntake);
 	
-	intakeSystemDoubleSolenoid1 = new DoubleSolenoid(0, 0, 1);      
+	intakeSystemDoubleSolenoid1 = new DoubleSolenoid(7, 0, 1);
 	lw->AddActuator("Intake System", "Double Solenoid 1", intakeSystemDoubleSolenoid1);
 	
 

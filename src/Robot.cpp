@@ -195,6 +195,8 @@ void Robot::TeleopPeriodic() {
 	SmartDashboard::PutNumber("Top", Robot::clawPID->top->Get());
 
 	SmartDashboard::PutBoolean("Desensitized", Robot::oi->desensitize);
+
+	SmartDashboard::PutNumber("PDP Port 1 Amp Draw", pdp.GetCurrent(1));
 }
 
 void Robot::TestPeriodic() {

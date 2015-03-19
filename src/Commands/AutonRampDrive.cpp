@@ -48,7 +48,7 @@ void AutonRampDrive::Execute() {
 			rightTime = TimeSinceInitialized();
 		}
 	} else {
-		rightSpeed = std::fmax(0.1, right - ((TimeSinceInitialized() - rightTime) * rampRate));
+		rightSpeed = std::fmax(startRight, right - ((TimeSinceInitialized() - rightTime) * rampRate));
 	}
 
 	if ( (!rampDown) || (!leftFarEnough)) {
@@ -64,7 +64,7 @@ void AutonRampDrive::Execute() {
 			leftTime = TimeSinceInitialized();
 		}
 	} else {
-		leftSpeed = std::fmax(0.1, left - ((TimeSinceInitialized() - leftTime) * rampRate));
+		leftSpeed = std::fmax(startLeft, left - ((TimeSinceInitialized() - leftTime) * rampRate));
 	}
 
 	Robot::drivetrain->Go(rightSpeed, leftSpeed);

@@ -53,6 +53,8 @@ public:
 
 	SendableChooser* chooser;
 
+	PowerDistributionPanel pdp;
+
 	LiftDown liftDown;
 
 	virtual void RobotInit();

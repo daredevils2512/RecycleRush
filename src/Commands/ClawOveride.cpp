@@ -27,7 +27,9 @@ void ClawOveride::Initialize() {
 
 // Called repeatedly when this Command is scheduled to run
 void ClawOveride::Execute() {
-	Robot::clawPID->SetMotor(Robot::oi->GetClawOveride());
+	if(Robot::oi->getJoystick2()->GetRawButton(2) == false) {
+		Robot::clawPID->SetMotor(Robot::oi->GetClawOveride());
+	}
 }
 
 // Make this return true when this Command no longer needs to run execute()

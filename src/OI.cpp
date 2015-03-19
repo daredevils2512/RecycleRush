@@ -166,6 +166,7 @@ OI::OI() {
 
 	intake->WhenReleased(new RunIntake(0.0));
 	outake->WhenReleased(new RunIntake(0.0));
+	toteTurn->WhenReleased(new RunIntake(0.0));
 
 	feederHeight->WhenPressed(new GoToHeight(-55));
 
