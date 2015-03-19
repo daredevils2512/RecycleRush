@@ -10,6 +10,7 @@
 #include "GoToHeight.h"
 #include "WinchDriveToContainer.h"
 #include "AutonPickUp.h"
+#include "AutonRampDrive.h"
 
 AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doNothing)
 {
@@ -106,7 +107,8 @@ AutonomousMainCommand::AutonomousMainCommand(int containers, int totes, bool doN
 		// Drive to scoring zone
 		if(totes >= 3) {
 			if(containers > 0) {
-				AddSequential(new AutonDrive(-1.0, -1.0, 550));
+//				AddSequential(new AutonDrive(-1.0, -1.0, 550));
+				AddSequential(new AutonRampDrive(-1.0, -1.0, 550, -0.5, -0.5, false, 0.1));
 			} else {
 				AddSequential(new AutonDrive(-1.0, -1.0, 800));
 				AddSequential(new AutonWait(0.85));
