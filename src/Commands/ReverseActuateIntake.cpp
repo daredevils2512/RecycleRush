@@ -10,7 +10,12 @@ ReverseActuateIntake::ReverseActuateIntake()
 // Called just before this Command runs the first time
 void ReverseActuateIntake::Initialize()
 {
-	value = !Robot::intakeSystem->doubleSolenoid1->Get();
+	if(Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kForward) {
+		value = true;
+	} else {
+		value = false;
+	}
+
 }
 
 // Called repeatedly when this Command is scheduled to run
