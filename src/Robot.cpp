@@ -66,6 +66,10 @@ void Robot::RobotInit() {
 
 	SmartDashboard::PutData("Autonomous Command", chooser);
 
+//	CameraServer::GetInstance()->SetQuality(10);
+//	CameraServer::GetInstance()->StartAutomaticCapture("cam0");
+
+//	CameraServer::GetInstance()->StartAutomaticCapture("cam0");
   }
 
 /**
@@ -108,6 +112,7 @@ void Robot::AutonomousPeriodic() {
 		autonomousCommand->Cancel();
 		clawPID->SetSetpoint(clawPID->heightEnccoder->GetRaw() - 100);
 	}
+
 }
 
 void Robot::TeleopInit() {
@@ -125,6 +130,8 @@ void Robot::TeleopInit() {
 
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
+
+//	SmartDashboard::PutData("Camera", CameraServer::GetInstance());
 
 //	Robot::containerWinch->containerPull1->Set(0.5);
 //	Robot::containerWinch->containerPull2->Set(0.5);
