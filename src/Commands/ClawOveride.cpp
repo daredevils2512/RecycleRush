@@ -22,7 +22,7 @@ ClawOveride::ClawOveride() {
 
 // Called just before this Command runs the first time
 void ClawOveride::Initialize() {
-	
+	prevWheelControl = false;
 }
 
 // Called repeatedly when this Command is scheduled to run
@@ -30,11 +30,15 @@ void ClawOveride::Execute() {
 	if(Robot::oi->getJoystick2()->GetRawButton(2) == false) {
 		Robot::clawPID->SetMotor(Robot::oi->GetClawOveride());
 	}
+	if(prevWheelControl == false && Robot::oi->getJoystick2()->GetRawButton(2) == true) {
+		Robot::clawPID->SetMotor(0);
+	}
+	prevWheelControl = Robot::oi->getJoystick2()->GetRawButton(2);
 }
 
 // Make this return true when this Command no longer needs to run execute()
 bool ClawOveride::IsFinished() {
-	return true;
+	return false;
 }
 
 // Called once after isFinished returns true

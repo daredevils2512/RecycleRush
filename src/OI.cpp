@@ -147,8 +147,8 @@ OI::OI() {
 	outake = new TriggerButton(joystick1, outakeNum, 0.3);
 	toteTurn = new JoystickButton(joystick2, toteTurnButtonNum);
 
-	clawOveridePos->WhileHeld(new ClawOveride());
-	clawOverideNeg->WhileHeld(new ClawOveride());
+	clawOveridePos->WhenPressed(new ClawOveride());
+	clawOverideNeg->WhenPressed(new ClawOveride());
 
 	clawOveridePos->WhenReleased(new StopClaw());
 	clawOverideNeg->WhenReleased(new StopClaw());
@@ -157,6 +157,7 @@ OI::OI() {
 	outake->WhenPressed(new ActuateIntake(true));
 
 	toteTurn->WhileHeld(new CodriverToteScoot());
+	toteTurn->WhenPressed(new StopClaw());
 
 	intake->WhileHeld(new RunIntake(-1.0));
 	outake->WhileHeld(new RunIntake(1.0));

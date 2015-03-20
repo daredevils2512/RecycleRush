@@ -22,6 +22,7 @@
  * @author ExampleAuthor
  */
 class ClawOveride: public Command {
+	bool prevWheelControl;
 public:
 	ClawOveride();
 	virtual void Initialize();
