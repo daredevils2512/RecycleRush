@@ -117,7 +117,7 @@ OI::OI() {
 	leftIn->WhileHeld(new RunWinchOveride(2, 0.5));
 	leftOut->WhileHeld(new RunWinchOveride(2, -1.0));
 	stationPickUp->WhenPressed(new GoToLevel(0));
-	stationPickUp->WhenReleased(new GoToHeight(-340));
+	stationPickUp->WhenReleased(new GoToHeight(-352));
 
 //	driverController->GetPlaceButton()->WhenPressed(new Place());
 

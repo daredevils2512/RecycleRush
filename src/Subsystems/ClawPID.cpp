@@ -64,7 +64,7 @@ double ClawPID::ReturnPIDInput() {
 void ClawPID::UsePIDOutput(double output) {
 	// Use output to drive your system, like a motor
 	// e.g. yourMotor->Set(output);
-	if((bottom->Get() == false || (output < 0 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kForward)) && (top->Get() == false || output > 0)) {
+	if((bottom->Get() == false || (output < 0 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kForward)) && ((top->Get() == false || Robot::oi->getJoystick2()->GetRawButton(7) == true) || output > 0)) {
 		clawMotor->PIDWrite(-output);
 		clawMotor2->PIDWrite(output);
 	} else {
@@ -82,7 +82,7 @@ void ClawPID::InitDefaultCommand() {
 }
 
 void ClawPID::SetMotor(float velocity) {
-	if(bottom->Get() == false && (top->Get() == false || velocity < 0)) {
+	if(bottom->Get() == false && ((top->Get() == false || Robot::oi->getJoystick2()->GetRawButton(7) == true) || velocity < 0)) {
 //		if(heightEnccoder->GetRaw() >= -2 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kReverse) {
 			clawMotor->Set(velocity);
 			clawMotor2->Set(-velocity);
@@ -91,7 +91,7 @@ void ClawPID::SetMotor(float velocity) {
 //			clawMotor2->Set(0);
 //		}
 	} else {
-		if((velocity > 0 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kForward) && (top->Get() == false || velocity < 0)) {
+		if((velocity > 0 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kForward) && ((top->Get() == false || Robot::oi->getJoystick2()->GetRawButton(7) == true) || velocity < 0)) {
 			clawMotor->Set(velocity);
 			clawMotor2->Set(-velocity);
 		} else {
