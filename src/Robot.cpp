@@ -129,7 +129,16 @@ void Robot::TeleopInit() {
 }
 
 void Robot::TeleopPeriodic() {
+
 	Scheduler::GetInstance()->Run();
+
+	if(Robot::oi->getJoystick1()->GetRawButton(1)) {
+		RobotMap::testServo->Set(0.1);
+		RobotMap::testServo2->Set(0.9);
+	} else {
+		RobotMap::testServo->Set(0.575);
+		RobotMap::testServo2->Set(0.525);
+	}
 
 //	SmartDashboard::PutData("Camera", CameraServer::GetInstance());
 

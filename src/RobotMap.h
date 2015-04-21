@@ -45,6 +45,9 @@ public:
 	static CANTalon* clawPIDCANTalon;
 	static CANTalon* clawMotor2;
 
+	static Servo* testServo;
+	static Servo* testServo2;
+
 	static void init();
 };
 #endif
