@@ -4,7 +4,7 @@
 ContainerGrabber::ContainerGrabber() :
 		Subsystem("ExampleSubsystem")
 {
-	solenoid = RobotMap::canGrabberSolenoid;
+//	solenoid = RobotMap::canGrabberSolenoid;
 }
 
 void ContainerGrabber::InitDefaultCommand()
@@ -18,10 +18,10 @@ void ContainerGrabber::InitDefaultCommand()
 
 void ContainerGrabber::SetSolenoid(bool actuate)
 {
-	if (actuate == true) {
-		solenoid->Set(DoubleSolenoid::kForward);
-	}else {
-		solenoid->Set(DoubleSolenoid::kReverse);
-	}
+//	if (actuate == true) {
+//		solenoid->Set(DoubleSolenoid::kForward);
+//	}else {
+//		solenoid->Set(DoubleSolenoid::kReverse);
+//	}
 }
 

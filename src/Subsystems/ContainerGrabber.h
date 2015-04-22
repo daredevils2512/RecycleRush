@@ -10,7 +10,7 @@ private:
 	// It's desirable that everything possible under private except
 	// for methods that implement subsystem capabilities
 public:
-	DoubleSolenoid* solenoid;
+//	DoubleSolenoid* solenoid;
 	ContainerGrabber();
 	void InitDefaultCommand();
 	void SetSolenoid(bool actuate);

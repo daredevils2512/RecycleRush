@@ -40,6 +40,8 @@ public:
 	bool intaking;
 	static bool centered;
 
+	static bool servoSet;
+
 	Command *autonomousCommand;
 	static OI *oi;
 	LiveWindow *lw;
