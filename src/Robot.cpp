@@ -124,7 +124,7 @@ void Robot::AutonomousPeriodic() {
 	if(Robot::clawPID->bottom->Get()) {
 		Robot::clawPID->ResetHeightEncoder();
 	}
-	if(Robot::clawPID->heightEnccoder->GetRaw() > -122 && Robot::clawPID->heightEnccoder->GetRaw() != 0) {
+	if(Robot::clawPID->heightEnccoder->GetRaw() > -100 && Robot::clawPID->heightEnccoder->GetRaw() != 0) {
 		intakeSystem->ActuateIntake(false);
 	}
 

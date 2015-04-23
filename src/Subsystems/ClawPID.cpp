@@ -72,12 +72,14 @@ void ClawPID::UsePIDOutput(double output) {
 			} else {
 				motorSetting = 0.1;
 			}
-		} else {
+		} else if (output < 0) {
 			if(output <= -0.1) {
 				motorSetting = output;
 			} else {
 				motorSetting = -0.1;
 			}
+		} else {
+			motorSetting = 0;
 		}
 		clawMotor->PIDWrite(-motorSetting);
 		clawMotor2->PIDWrite(motorSetting);

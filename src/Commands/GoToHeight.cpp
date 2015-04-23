@@ -20,9 +20,9 @@ void GoToHeight::Initialize()
 	if(targetHeight > Robot::clawPID->heightEnccoder->GetRaw()) {
 		//Down
 		goingDown = true;
-		Robot::clawPID->RetrivePIDController()->SetPID(0.3, 0.0003, -0.2);
+		Robot::clawPID->RetrivePIDController()->SetPID(0.025, 0.0, 0.0);
 	} else {
-		Robot::clawPID->RetrivePIDController()->SetPID(0.03, 0.0003, 0.0);
+		Robot::clawPID->RetrivePIDController()->SetPID(0.02, 0.0005, 0.0);
 	}
 }
 
