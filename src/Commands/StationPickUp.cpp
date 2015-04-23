@@ -1,6 +1,7 @@
 #include "StationPickUp.h"
 #include "GoToLevel.h"
 #include "GoToHeight.h"
+#include "AutonWait.h"
 
 StationPickUp::StationPickUp()
 {
@@ -22,5 +23,6 @@ StationPickUp::StationPickUp()
 	// arm.
 
 	AddSequential(new GoToLevel(0));
+//	AddSequential(new AutonWait(0.5));
 	AddSequential(new GoToHeight(-366));
 }

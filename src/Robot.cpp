@@ -103,14 +103,16 @@ void Robot::DisabledPeriodic() {
 void Robot::AutonomousInit() {
 //	liftDown.WhenActive(new ResetLevelEncoder());
 	drivetrain->gyro1->Reset();
+	clawPID->Disable();
+	Robot::clawPID->SetMotor(0);
 
 	intakeSystem->ActuateIntake(false);
 
-	if (Robot::oi->getJoystick2()->GetThrottle() > 1) {
+//	if (Robot::oi->getJoystick2()->GetThrottle() > 1) {
 		autonomousCommand = (Command*) (chooser->GetSelected());
-	} else {
-		autonomousCommand = new AutonomousMainCommand(0, 0, true);
-	}
+//	} else {
+//		autonomousCommand = new AutonomousMainCommand(0, 0, true);
+//	}
 
 	if (autonomousCommand != NULL)
 		autonomousCommand->Start();
@@ -145,6 +147,8 @@ void Robot::TeleopInit() {
 	if (autonomousCommand != NULL)
 		autonomousCommand->Cancel();
 	clawPID->Disable();
+	Robot::clawPID->SetMotor(0);
+
 	intakeSystem->ActuateIntake(false);
 
 	// acquire images
@@ -154,18 +158,15 @@ void Robot::TeleopInit() {
 void Robot::TeleopPeriodic() {
 	Scheduler::GetInstance()->Run();
 
-//	while(IsOperatorControl() && IsEnabled()) {
-		IMAQdxGrab(session, frame, true, NULL);
-		if(imaqError != IMAQdxErrorSuccess) {
-			DriverStation::ReportError("IMAQdxGrab error: " + std::to_string((long)imaqError) + "\n");
-		} else {
-			CameraServer::GetInstance()->SetImage(frame);
-		}
-		Wait(0.005);				// wait for a motor update time
-//	}
+	IMAQdxGrab(session, frame, true, NULL);
+	if(imaqError != IMAQdxErrorSuccess) {
+		DriverStation::ReportError("IMAQdxGrab error: " + std::to_string((long)imaqError) + "\n");
+	} else {
+		CameraServer::GetInstance()->SetImage(frame);
+	}				// wait for a motor update time
 
 
-	if(Robot::oi->getJoystick1()->GetRawButton(4) || Robot::oi->getJoystick2()->GetRawButton(12) || Robot::servoSet) {
+	if(Robot::oi->getJoystick1()->GetRawButton(4) || Robot::oi->getJoystick3()->GetRawButton(14) || Robot::servoSet) {
 		RobotMap::testServo->Set(0.575);
 		RobotMap::testServo2->Set(0.525);
 	} else {
