@@ -28,16 +28,16 @@ void GoToLevel::Initialize() {
 	if(Robot::clawPID->LEVELHEIGHT[level] > Robot::clawPID->heightEnccoder->GetRaw()) {
 		//Down
 		goingDown = true;
-//		35:1 0.3, , 0.0003, -0.2
+//		35:1 0.3, 0.0003, -0.2 Mk. 2 0.025
 //		50:1 0.4, 0.0003, -0.2
 
 
-		Robot::clawPID->RetrivePIDController()->SetPID(0.3, 0.0003, -0.2);
+		Robot::clawPID->RetrivePIDController()->SetPID(0.025, 0.0, 0.0);
 	} else {
-//		35:1, 0.03, 0.0003, 0.0
+//		35:1, 0.03, 0.0003, 0.0 Mk2 0.02 0.0005
 //		50:1, 0.02, 0.0003, 0.0
 
-		Robot::clawPID->RetrivePIDController()->SetPID(0.025, 0.0003, 0.0);
+		Robot::clawPID->RetrivePIDController()->SetPID(0.02, 0.0005, 0.0);
 
 	}
 }
