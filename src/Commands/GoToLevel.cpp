@@ -19,9 +19,9 @@ void GoToLevel::Initialize() {
 		if(level == 1) {
 			Robot::intakeSystem->SetCooperatition(true);
 		}
-		if (level == 7) {
-			Robot::servoSet = true;
-		}
+//		if (level == 7) {
+//			Robot::servoSet = true;
+//		}
 	} else {
 		Robot::clawPID->Disable();
 	}
@@ -60,7 +60,7 @@ void GoToLevel::End() {
 	Robot::clawPID->Disable();
 	Robot::clawPID->SetMotor(0);
 
-	Robot::servoSet = false;
+//	Robot::servoSet = false;
 
 	Robot::lEDindicator->TurnLEDon();
 }

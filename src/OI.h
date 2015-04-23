@@ -62,6 +62,7 @@ private:
 	JoystickButton* pickUp;
 	JoystickButton* dropContainers;
 	JoystickButton* center;
+	JoystickButton* servoControl;
 	//	 JoystickButton* secondaryPlace;
 	JoystickButton* rightIn;
 	JoystickButton* rightOut;

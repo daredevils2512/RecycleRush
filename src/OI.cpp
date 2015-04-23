@@ -42,6 +42,7 @@
 #include "Commands/ReverseActuateIntake.h"
 #include "Commands/CodriverToteScoot.h"
 #include "Commands/AutonRampDrive.h"
+#include "Commands/SetServos.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -99,6 +100,7 @@ OI::OI() {
 	pickUp = new JoystickButton(joystick1, pickUpNum);
 	dropContainers = new JoystickButton(joystick1, dropContainersNum);
 	center = new JoystickButton(joystick1, centerNum);
+	servoControl = new JoystickButton(joystick1, 4);
 	rightIn = new JoystickButton(joystick2, rightInNum);
 	rightOut = new JoystickButton(joystick2, rightOutNum);
 	leftIn = new JoystickButton(joystick2, leftInNum);
@@ -111,6 +113,9 @@ OI::OI() {
 	dropContainers->WhenPressed(new DropContainers());
 
 	center->WhenPressed(new ReverseActuateIntake());
+
+	servoControl->WhenPressed(new SetServos(true));
+	servoControl->WhenReleased(new SetServos(false));
 
 	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
 	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
@@ -137,7 +142,10 @@ OI::OI() {
 	level5->WhenPressed(new GoToLevel(5));
 	level6->WhenPressed(new GoToLevel(6));
 	level7->WhenPressed(new GoToLevel(7));
-	placeButton->WhenPressed(new Place());
+
+	placeButton->WhenPressed(new SetServos(true));
+	placeButton->WhenReleased(new SetServos(false));
+
 	coopLevel->WhenPressed(new GoToLevel(1));
 
 	clawOveridePos = new TriggerButton(joystick2, clawOverideNum, 0.3);

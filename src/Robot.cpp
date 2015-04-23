@@ -166,7 +166,7 @@ void Robot::TeleopPeriodic() {
 	}				// wait for a motor update time
 
 
-	if(Robot::oi->getJoystick1()->GetRawButton(4) || Robot::oi->getJoystick3()->GetRawButton(14) || Robot::servoSet) {
+	if(Robot::oi->getJoystick1()->GetRawButton(4)/* || Robot::oi->getJoystick3()->GetRawButton(14)*/ || Robot::servoSet) {
 		RobotMap::testServo->Set(0.575);
 		RobotMap::testServo2->Set(0.525);
 	} else {
