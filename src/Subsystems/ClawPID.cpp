@@ -67,17 +67,17 @@ void ClawPID::UsePIDOutput(double output) {
 	if((bottom->Get() == false || (output < 0 && Robot::intakeSystem->doubleSolenoid1->Get() == DoubleSolenoid::kForward)) && ((top->Get() == false || Robot::oi->getJoystick2()->GetRawButton(7) == true) || output > 0)) {
 		float motorSetting;
 		if(output > 0.05) {
-			if(output >= 0.1) {
-				motorSetting = output;
-			} else {
+//			if(output >= 0.1) {
+//				motorSetting = output;
+//			} else {
 				motorSetting = 0.1;
-			}
+//			}
 		} else if (output < -0.05) {
-			if(output <= -0.1) {
-				motorSetting = output;
-			} else {
+//			if(output <= -0.1) {
+//				motorSetting = output;
+//			} else {
 				motorSetting = -0.1;
-			}
+//			}
 		} else {
 			motorSetting = 0;
 		}
