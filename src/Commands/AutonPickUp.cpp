@@ -2,6 +2,7 @@
 #include "GoToHeight.h"
 #include "GoToLevel.h"
 #include "AutonWait.h"
+#include "ResetLevelEncoder.h"
 
 AutonPickUp::AutonPickUp()
 {
@@ -23,6 +24,6 @@ AutonPickUp::AutonPickUp()
 	// arm.
 
 	AddSequential(new AutonWait(1.0));
-	AddSequential(new GoToLevel(0));
+	AddSequential(new ResetLevelEncoder());
 	AddSequential(new GoToHeight(-185));
 }
