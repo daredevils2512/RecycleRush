@@ -27,6 +27,7 @@ OI* Robot::oi = 0;
 
 bool Robot::centered = false;
 bool Robot::servoSet = false;
+bool Robot::servosMove = false;
 
 void Robot::RobotInit() {
 	RobotMap::init();
@@ -166,12 +167,18 @@ void Robot::TeleopPeriodic() {
 	}				// wait for a motor update time
 
 
-	if(Robot::oi->getJoystick1()->GetRawButton(4)/* || Robot::oi->getJoystick3()->GetRawButton(14)*/ || Robot::servoSet) {
-		RobotMap::testServo->Set(0.575);
-		RobotMap::testServo2->Set(0.525);
+	if(Robot::servoSet) {
+		if(Robot::servosMove == true) {
+			RobotMap::testServo->Set(0.575);
+			RobotMap::testServo2->Set(0.525);
+			Robot::servosMove = false;
+		}
 	} else {
-		RobotMap::testServo->Set(0.1);
-		RobotMap::testServo2->Set(0.9);
+		if(servosMove == true) {
+			RobotMap::testServo->Set(0.1);
+			RobotMap::testServo2->Set(0.95);
+			Robot::servosMove = false;
+		}
 	}
 
 //	SmartDashboard::PutData("Camera", CameraServer::GetInstance());
@@ -181,6 +188,7 @@ void Robot::TeleopPeriodic() {
 
 //	SmartDashboard::PutBoolean("Setting", Robot::intakeSystem->solenoid1->Get());
 //	SmartDashboard::PutBoolean("Setting 2", Robot::intakeSystem->solenoid1->Get());
+	SmartDashboard::PutBoolean("ServosMove", Robot::servosMove);
 
 	if(Robot::clawPID->bottom->Get()) {
 		Robot::clawPID->ResetHeightEncoder();

@@ -43,6 +43,7 @@
 #include "Commands/CodriverToteScoot.h"
 #include "Commands/AutonRampDrive.h"
 #include "Commands/SetServos.h"
+#include "Commands/GoToContainerWithServos.h"
 
 OI::OI() {
 	// Process operator interface input here.
@@ -141,7 +142,7 @@ OI::OI() {
 	level4->WhenPressed(new GoToLevel(4));
 	level5->WhenPressed(new GoToLevel(5));
 	level6->WhenPressed(new GoToLevel(6));
-	level7->WhenPressed(new GoToLevel(7));
+	level7->WhenPressed(new GoToContainerWithServos());
 
 	placeButton->WhenPressed(new SetServos(true));
 	placeButton->WhenReleased(new SetServos(false));
@@ -237,6 +238,11 @@ float OI::Desensitize(int axisNumber, float threshold, float dsdivision) {
 		value = value / dsdivision;
 		joystick1->SetRumble(joystick1->kLeftRumble, 0.5);
 	} else {
+		if(value > 0) {
+			value = value * value;
+		} else {
+			value = -1 * (value * value);
+		}
 		joystick1->SetRumble(joystick1->kLeftRumble, 0.0);
 	}
 	if(joystick1->GetRawButton(5)) {

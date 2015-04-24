@@ -25,5 +25,5 @@ GoToContainerWithServos::GoToContainerWithServos()
 	AddSequential(new Place());
 	AddSequential(new SetServos(true));
 	AddSequential(new GoToLevel(7));
-	AddSequential(new SetServos(true));
+	AddSequential(new SetServos(false));
 }

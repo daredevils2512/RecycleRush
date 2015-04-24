@@ -41,6 +41,7 @@ public:
 	static bool centered;
 
 	static bool servoSet;
+	static bool servosMove;
 
 	Command *autonomousCommand;
 	static OI *oi;

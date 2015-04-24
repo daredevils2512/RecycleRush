@@ -12,6 +12,7 @@ SetServos::SetServos(bool out)
 void SetServos::Initialize()
 {
 	Robot::servoSet = out;
+	Robot::servosMove = true;
 }
 
 // Called repeatedly when this Command is scheduled to run
