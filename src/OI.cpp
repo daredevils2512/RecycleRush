@@ -97,6 +97,8 @@ OI::OI() {
 
 	SmartDashboard::PutData("RevUP Drive", new AutonRampDrive(0.5, 0.5, 100, 0.25, 0.25, true, 0.1));
 
+	SmartDashboard::PutData("Go to Auton Height", new GoToHeight(-185));
+
 	resetButton = new JoystickButton(joystick3, resetButtonNum);
 	pickUp = new JoystickButton(joystick1, pickUpNum);
 	dropContainers = new JoystickButton(joystick1, dropContainersNum);
@@ -115,8 +117,8 @@ OI::OI() {
 
 	center->WhenPressed(new ReverseActuateIntake());
 
-	servoControl->WhenPressed(new SetServos(true));
-	servoControl->WhenReleased(new SetServos(false));
+//	servoControl->WhenPressed(new SetServos(true));
+//	servoControl->WhenReleased(new SetServos(false));
 
 	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
 	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
