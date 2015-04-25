@@ -125,9 +125,9 @@ OI::OI() {
 //	servoControl->WhenPressed(new SetServos(true));
 //	servoControl->WhenReleased(new SetServos(false));
 
-	rightIn->WhileHeld(new RunWinchOveride(1, 0.25));
+	rightIn->WhileHeld(new RunWinchOveride(1, 0.75));
 	rightOut->WhileHeld(new RunWinchOveride(1, -0.25));
-	leftIn->WhileHeld(new RunWinchOveride(2, 0.25));
+	leftIn->WhileHeld(new RunWinchOveride(2, 0.75));
 	leftOut->WhileHeld(new RunWinchOveride(2, -0.25));
 	stationPickUp->WhenPressed(new GoToLevel(0));
 	stationPickUp->WhenReleased(new GoToHeight(-352));
