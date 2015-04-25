@@ -71,6 +71,8 @@ private:
 	JoystickButton* stationPickUp;
 	JoystickButton* feederHeight;
 
+	JoystickButton* keepHooks;
+
 	TriggerButton* clawOveridePos;
 	TriggerButton* clawOverideNeg;
 

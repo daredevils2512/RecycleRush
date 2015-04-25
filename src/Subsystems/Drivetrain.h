@@ -42,6 +42,9 @@ public:
 	void InitDefaultCommand();
 
 	void Go(float magnitude, float angle);
+
+	void Straif(float magnitude);
+
 	float GetGyro();
 
 };

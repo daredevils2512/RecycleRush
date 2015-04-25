@@ -69,7 +69,7 @@ void Robot::RobotInit() {
 	chooser->AddObject("1 Container", new AutonomousMainCommand(1, 0, false));
 	chooser->AddObject("2 Containers", new AutonomousMainCommand(2, 0, false));
 	chooser->AddObject("End out of zone", new EndOutOfZoneAutonomous());
-	chooser->AddObject("Center Can Grab/Swagtonomous", new )
+	chooser->AddObject("Center Can Grab/Cheescake", new CenterCanGrab());
 
 	SmartDashboard::PutData("Autonomous Command", chooser);
 
@@ -84,7 +84,7 @@ void Robot::RobotInit() {
 	imaqError = IMAQdxOpenCamera("cam0", IMAQdxCameraControlModeController, &session);
 	if(imaqError != IMAQdxErrorSuccess) {
 		DriverStation::ReportError("IMAQdxOpenCamera error: " + std::to_string((long)imaqError) + "\n");
-  }
+	}
 	imaqError = IMAQdxConfigureGrab(session);
 	if(imaqError != IMAQdxErrorSuccess) {
 		DriverStation::ReportError("IMAQdxConfigureGrab error: " + std::to_string((long)imaqError) + "\n");

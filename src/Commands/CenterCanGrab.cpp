@@ -1,6 +1,8 @@
 #include "CenterCanGrab.h"
 #include "RunWinch.h"
 #include "AutonDrive.h"
+#include "AutonWait.h"
+#include "AutonFastDrive.h"
 
 CenterCanGrab::CenterCanGrab()
 {
@@ -20,8 +22,9 @@ CenterCanGrab::CenterCanGrab()
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	AddParallel(new RunWinch(1, 1.0, 1.0));
-	AddSequential(new RunWinch(2, 1.0, 1.0));
-	AddSequential(new AutonDrive(1.0, 1.0, 400));
-
+	AddParallel(new RunWinch(1, 1.0, 1.5));
+	AddParallel(new RunWinch(2, 1.0, 1.5));
+	AddSequential(new AutonWait(0.1));
+	AddSequential(new AutonFastDrive(1.0, 1.0, 400));
+	AddSequential(new AutonFastDrive(-1.0, -1.0, 400));
 }

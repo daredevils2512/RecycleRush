@@ -55,6 +55,10 @@ void Drivetrain::Go(float right, float left) {
 	robotDrive->TankDrive(right, -left, false);
 }
 
+void Drivetrain::Straif(float magnitude) {
+	robotDrive->MecanumDrive_Cartesian(magnitude, 0, 0);
+}
+
 float Drivetrain::GetGyro() {
 	return gyro1->GetAngle();
 }

@@ -111,6 +111,11 @@ OI::OI() {
 	stationPickUp = new JoystickButton(joystick2, stationPickUpNum);
 	feederHeight = new JoystickButton(joystick3, feederHeightNum);
 
+	keepHooks = new JoystickButton(joystick2, 9);
+
+	keepHooks->WhenPressed(new RunWinch(1, -0.1, 180));
+	keepHooks->WhenPressed(new RunWinch(2, -0.1, 180));
+
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());
 	dropContainers->WhenPressed(new DropContainers());
@@ -120,10 +125,10 @@ OI::OI() {
 //	servoControl->WhenPressed(new SetServos(true));
 //	servoControl->WhenReleased(new SetServos(false));
 
-	rightIn->WhileHeld(new RunWinchOveride(1, 0.5));
-	rightOut->WhileHeld(new RunWinchOveride(1, -1.0));
-	leftIn->WhileHeld(new RunWinchOveride(2, 0.5));
-	leftOut->WhileHeld(new RunWinchOveride(2, -1.0));
+	rightIn->WhileHeld(new RunWinchOveride(1, 0.25));
+	rightOut->WhileHeld(new RunWinchOveride(1, -0.25));
+	leftIn->WhileHeld(new RunWinchOveride(2, 0.25));
+	leftOut->WhileHeld(new RunWinchOveride(2, -0.25));
 	stationPickUp->WhenPressed(new GoToLevel(0));
 	stationPickUp->WhenReleased(new GoToHeight(-352));
 
