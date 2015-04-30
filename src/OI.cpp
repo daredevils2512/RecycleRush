@@ -113,8 +113,8 @@ OI::OI() {
 
 	keepHooks = new JoystickButton(joystick2, 9);
 
-	keepHooks->WhenPressed(new RunWinch(1, -0.1, 180));
-	keepHooks->WhenPressed(new RunWinch(2, -0.1, 180));
+	keepHooks->WhenPressed(new RunWinch(1, -0.15, 180));
+	keepHooks->WhenPressed(new RunWinch(2, -0.15, 180));
 
 	resetButton->WhenPressed(new ResetLevelEncoder());
 	pickUp->WhenPressed(new PickUp());

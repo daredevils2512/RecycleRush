@@ -23,10 +23,10 @@ CenterCanGrab::CenterCanGrab()
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 	AddParallel(new RunWinch(1, 1.0, 1.5));
-	AddParallel(new RunWinch(2, 1.0, 1.5));
-	AddSequential(new AutonWait(0.1));
-	AddSequential(new AutonFastDrive(1.0, 1.0, 400));
-	AddParallel(new RunWinch(1, -0.5, 0.5));
-	AddParallel(new RunWinch(2, -0.5, 0.5));
-	AddSequential(new AutonFastDrive(-1.0, -1.0, 400));
+	AddSequential(new RunWinch(2, 1.0, 1.5));
+//	AddSequential(new AutonWait(0.1));
+//	AddSequential(new AutonFastDrive(1.0, 1.0, 400));
+//	AddParallel(new RunWinch(1, -0.5, 0.5));
+//	AddParallel(new RunWinch(2, -0.5, 0.5));
+//	AddSequential(new AutonFastDrive(-1.0, -1.0, 400));
 }
