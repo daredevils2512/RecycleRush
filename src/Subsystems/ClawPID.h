@@ -14,7 +14,8 @@
 
 #include <vector>
 #include "Commands/PIDSubsystem.h"
-#include "WPILib.h"
+#include <WPILib.h>
+#include <CANTalon.h>
 
 /**
  *
@@ -57,7 +58,7 @@ class ClawPID: public PIDSubsystem {
 
 	void ResetHeightEncoder();
 
-	PIDController* RetrivePIDController();
+	std::shared_ptr<PIDController> RetrivePIDController();
 };
 
 #endif

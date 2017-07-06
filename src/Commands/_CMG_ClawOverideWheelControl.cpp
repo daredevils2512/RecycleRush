@@ -1,7 +1,8 @@
-#include "DropContainers.h"
-#include "RunWinch.h"
+#include "_CMG_ClawOverideWheelControl.h"
+#include "CodriverToteScoot.h"
+#include "ClawOveride.h"
 
-DropContainers::DropContainers()
+_CMG_ClawOverideWheelControl::_CMG_ClawOverideWheelControl()
 {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -19,8 +20,10 @@ DropContainers::DropContainers()
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	AddParallel(new RunWinch(2, -1, 1.5));
-	AddSequential(new RunWinch(1, -1, 1.5));
-	AddParallel(new RunWinch(2, 1, 2.3));
-	AddSequential(new RunWinch(1, 1, 2.5));
+
+	if(Robot::oi->getJoystick2()->GetRawButton(2)) {
+		AddSequential(new ClawOveride());
+	} else {
+		AddSequential(new CodriverToteScoot());
+	}
 }

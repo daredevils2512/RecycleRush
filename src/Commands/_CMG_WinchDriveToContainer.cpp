@@ -1,10 +1,8 @@
-#include "AutonPickUp.h"
-#include "GoToHeight.h"
-#include "GoToLevel.h"
+#include "_CMG_WinchDriveToContainer.h"
+#include "RunWinch.h"
 #include "AutonWait.h"
-#include "ResetLevelEncoder.h"
 
-AutonPickUp::AutonPickUp()
+_CMG_WinchDriveToContainer::_CMG_WinchDriveToContainer()
 {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -22,8 +20,6 @@ AutonPickUp::AutonPickUp()
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-
-	AddSequential(new AutonWait(1.0));
-	AddSequential(new ResetLevelEncoder());
-	AddSequential(new GoToHeight(-185));
+	AddSequential(new AutonWait(0.5));
+	AddSequential(new RunWinch(2, 1.0, 6.35));
 }

@@ -47,7 +47,7 @@ ClawPID::ClawPID() : PIDSubsystem("ClawPID", 0.0, 0.0, 0.0) {
 	SetSetpoint(0); // -  Sets where the PID controller should move the system
 	//                  to
 	Enable(); //- Enables the PID controller.
-	ITable* table = GetTable();
+	std::shared_ptr<ITable> table = GetTable();
 	ClawPID::InitTable(table);
 }
 
@@ -125,7 +125,7 @@ bool ClawPID::GetBottom() {
 	return bottom->Get();
 }
 
-PIDController* ClawPID::RetrivePIDController() {
+std::shared_ptr<PIDController> ClawPID::RetrivePIDController() {
 	return GetPIDController();
 }
 

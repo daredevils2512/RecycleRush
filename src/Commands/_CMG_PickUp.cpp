@@ -1,7 +1,7 @@
-#include "PickUp.h"
+#include "_CMG_PickUp.h"
 #include "GoToLevel.h"
 
-PickUp::PickUp()
+_CMG_PickUp::_CMG_PickUp()
 {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());

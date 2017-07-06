@@ -1,9 +1,9 @@
-#include "StationPickUp.h"
+#include "_CMG_StationPickUp.h"
 #include "GoToLevel.h"
 #include "GoToHeight.h"
 #include "AutonWait.h"
 
-StationPickUp::StationPickUp()
+_CMG_StationPickUp::_CMG_StationPickUp()
 {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());

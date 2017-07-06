@@ -1,8 +1,7 @@
-#include "WinchDriveToContainer.h"
+#include "_CMG_DropContainer.h"
 #include "RunWinch.h"
-#include "AutonWait.h"
 
-WinchDriveToContainer::WinchDriveToContainer()
+_CMG_DropContainer::_CMG_DropContainer()
 {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -20,6 +19,8 @@ WinchDriveToContainer::WinchDriveToContainer()
 	// e.g. if Command1 requires chassis, and Command2 requires arm,
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
-	AddSequential(new AutonWait(0.5));
-	AddSequential(new RunWinch(2, 1.0, 6.35));
+	AddParallel(new RunWinch(2, -1, 1.5));
+	AddSequential(new RunWinch(1, -1, 1.5));
+	AddParallel(new RunWinch(2, 1, 2.3));
+	AddSequential(new RunWinch(1, 1, 2.5));
 }

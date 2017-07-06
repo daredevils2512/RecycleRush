@@ -1,4 +1,6 @@
-#include "EndOutOfZoneAutonomous.h"
+#include "_CMG_AutonPickUp.h"
+#include "_CMG_EndOutOfZoneAutonomous.h"
+#include "_CMG_WinchDriveToContainer.h"
 #include "RunIntake.h"
 #include "AutonDrive.h"
 #include "RunWinch.h"
@@ -8,11 +10,9 @@
 #include "AutonRunIntake.h"
 #include "AutonWait.h"
 #include "GoToHeight.h"
-#include "WinchDriveToContainer.h"
-#include "AutonPickUp.h"
 #include "AutonRampDrive.h"
 
-EndOutOfZoneAutonomous::EndOutOfZoneAutonomous()
+_CMG_EndOutOfZoneAutonomous::_CMG_EndOutOfZoneAutonomous()
 {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -40,7 +40,7 @@ EndOutOfZoneAutonomous::EndOutOfZoneAutonomous()
 	AddSequential(new AutonWait(0.25));
 
 	// Pick up tote 2 & container 2
-	AddParallel(new WinchDriveToContainer());
+	AddParallel(new _CMG_WinchDriveToContainer());
 	AddSequential(new AutonDrive(0.30, 0.30, 900));
 	AddSequential(new ActuateIntake(true));
 	AddSequential(new AutonRunIntake(-1.0, 0.8));
@@ -48,7 +48,7 @@ EndOutOfZoneAutonomous::EndOutOfZoneAutonomous()
 	AddSequential(new Place());
 
 	// Pick up tote 3 & container 3
-	AddParallel(new AutonPickUp());
+	AddParallel(new _CMG_AutonPickUp());
 	AddSequential(new AutonDrive(0.30, 0.30, 900));
 
 	AddSequential(new ActuateIntake(true));

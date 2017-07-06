@@ -1,8 +1,10 @@
-#include "ClawOverideWheelControl.h"
-#include "CodriverToteScoot.h"
-#include "ClawOveride.h"
+#include "_CMG_AutonPickUp.h"
+#include "GoToHeight.h"
+#include "GoToLevel.h"
+#include "AutonWait.h"
+#include "ResetLevelEncoder.h"
 
-ClawOverideWheelControl::ClawOverideWheelControl()
+_CMG_AutonPickUp::_CMG_AutonPickUp()
 {
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
@@ -21,9 +23,7 @@ ClawOverideWheelControl::ClawOverideWheelControl()
 	// a CommandGroup containing them would require both the chassis and the
 	// arm.
 
-	if(Robot::oi->getJoystick2()->GetRawButton(2)) {
-		AddSequential(new ClawOveride());
-	} else {
-		AddSequential(new CodriverToteScoot());
-	}
+	AddSequential(new AutonWait(1.0));
+	AddSequential(new ResetLevelEncoder());
+	AddSequential(new GoToHeight(-185));
 }
