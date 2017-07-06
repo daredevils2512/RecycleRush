@@ -86,7 +86,7 @@ void RobotMap::init() {
 	intakeSystemRightIntake = new frc::Victor(1);
 	lw->AddActuator("Intake System", "RightIntake", (frc::Victor*) intakeSystemRightIntake);
 	
-	intakeSystemDoubleSolenoid1 = new frc::DoubleSolenoid(7, 0, 1);
+	intakeSystemDoubleSolenoid1 = new frc::DoubleSolenoid(0, 0, 1);
 	lw->AddActuator("Intake System", "Double Solenoid 1", intakeSystemDoubleSolenoid1);
 	
 //	canGrabberSolenoid = new DoubleSolenoid(7, 2, 3);

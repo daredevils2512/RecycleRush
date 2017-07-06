@@ -52,11 +52,11 @@ bool IntakeSystem::GetCooperatition() {
 
 void IntakeSystem::ActuateIntake(bool on) {
 	if(on) {
-		doubleSolenoid1->Set(DoubleSolenoid::kReverse);
+		doubleSolenoid1->Set(frc::DoubleSolenoid::kReverse);
 //		solenoid1->Set(true);
 //		solenoid2->Set(false);
 	} else {
-		doubleSolenoid1->Set(DoubleSolenoid::kForward);
+		doubleSolenoid1->Set(frc::DoubleSolenoid::kForward);
 //		solenoid1->Set(true);
 //		solenoid2->Set(true);
 	}
